@@ -1,23 +1,26 @@
 <template>
   <div id="ui">
-    <range-slider></range-slider>
+    <RangeSlider></RangeSlider>
+    <TextArea></TextArea>
   </div>
 </template>
 
 <script>
 import RangeSlider from "./controllers/RangeSlider.vue";
+import TextArea from "./controllers/TextArea.vue";
 
 export default {
   name: "Ui",
   components: {
-    RangeSlider
+    RangeSlider,
+    TextArea
   }
 };
 </script>
 
 <style scoped lang="scss">
 #ui {
-  width: 300px;
+  width: $uiWidth;
   background: #111111;
   height: 100vh;
   padding: 25px;

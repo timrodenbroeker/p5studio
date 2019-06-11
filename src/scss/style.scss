@@ -1,14 +1,27 @@
-// USER INTERFACE
+@import 'variables.scss';
 
-$uiWidth: 300px;
-
-// CANVAS
-
-$posterW: 586px;
-$posterH: 810px;
-
+body {
+	font-family: sans-serif;
+}
 #ui {
-	* {
+	label {
 		color: white;
+	}
+}
+
+.controller {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	margin-top: 15px;
+
+	.controller-label {
+	}
+	.controller-controller  {
+		width: 100% !important;
+	}
+
+	input {
+		width: 100% !important;
 	}
 }

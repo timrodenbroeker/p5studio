@@ -1,8 +1,7 @@
 <template>
   <div id="posterWrapper">
     <div id="poster">
-      <h1 v-bind:style="{ fontSize: fontSize + 'px' }">{{headline}}</h1>
-      <div id="canvasWrapper"></div>
+      <vue-p5 v-on="{setup}"></vue-p5>
     </div>
   </div>
 </template>
@@ -12,6 +11,9 @@ import VueP5 from "vue-p5";
 
 export default {
   name: "PosterP5",
+  components: {
+    "vue-p5": VueP5
+  },
   computed: {
     headline() {
       return this.$store.state.headline;

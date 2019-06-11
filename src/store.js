@@ -12,6 +12,9 @@ export default new Vuex.Store({
 		updateFontSize(state, fontSize) {
 			state.fontSize = fontSize;
 		},
+		updateHeadline(state, headline) {
+			state.headline = headline;
+		},
 	},
 	actions: {},
 });

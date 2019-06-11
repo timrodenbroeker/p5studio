@@ -1,7 +1,11 @@
 <template>
-  <div class="range-slider">
-    <label>FONT_SIZE</label>
-    <input type="range" min="20" max="100" :value="fontSize" @input="updateFontSize">
+  <div class="controller">
+    <div class="controller-label">
+      <label>FONT_SIZE</label>
+    </div>
+    <div class="controller-controller">
+      <input type="range" min="20" max="160" :value="fontSize" @input="updateFontSize">
+    </div>
   </div>
 </template>
 
@@ -22,6 +26,4 @@ export default {
 </script>
 
 <style scoped>
-.range-slider {
-}
 </style>
