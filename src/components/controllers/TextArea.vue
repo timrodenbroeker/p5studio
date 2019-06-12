@@ -4,10 +4,9 @@
 
 <script>
 export default {
-  name: "Button"
+  name: "TextArea"
 };
 </script>
 
 <style scoped lang="scss">
 </style>
- 
