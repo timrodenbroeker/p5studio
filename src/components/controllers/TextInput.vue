@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "TextArea",
+  name: "TextInput",
   computed: {
     headline() {
       return this.$store.state.healine;

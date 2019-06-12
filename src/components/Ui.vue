@@ -1,19 +1,19 @@
 <template>
   <div id="ui">
     <RangeSlider></RangeSlider>
-    <TextArea></TextArea>
+    <TextInput></TextInput>
   </div>
 </template>
 
 <script>
 import RangeSlider from "./controllers/RangeSlider.vue";
-import TextArea from "./controllers/TextArea.vue";
+import TextInput from "./controllers/TextInput.vue";
 
 export default {
   name: "Ui",
   components: {
     RangeSlider,
-    TextArea
+    TextInput
   }
 };
 </script>

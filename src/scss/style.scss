@@ -5,7 +5,12 @@ body {
 }
 #ui {
 	label {
+		font-size: 12px;
+		text-transform: uppercase;
 		color: white;
+	}
+	input {
+		background: #555555;
 	}
 }
 
@@ -24,4 +29,11 @@ body {
 	input {
 		width: 100% !important;
 	}
+}
+
+::-moz-selection {
+	background: transparent;
+}
+::selection {
+	background: transparent;
 }
