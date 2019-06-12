@@ -1,10 +1,10 @@
 <template>
   <div class="controller">
     <div class="controller-label">
-      <label>FONT_SIZE</label>
+      <label>{{label}}</label>
     </div>
     <div class="controller-controller">
-      <input type="range" min="20" max="160" :value="fontSize" @input="updateFontSize">
+      <input type="range" min="min" max="max" :value="val" @input="update">
     </div>
   </div>
 </template>
@@ -12,15 +12,12 @@
 <script>
 export default {
   name: "RangeSlider",
-  computed: {
-    fontSize() {
-      return this.$store.state.fontSize;
-    }
-  },
-  methods: {
-    updateFontSize(e) {
-      this.$store.commit("updateFontSize", e.target.value);
-    }
+  props: {
+    label: String,
+    min: Number,
+    max: Number,
+    val: Number,
+    update: Function
   }
 };
 </script>
@@ -31,8 +28,8 @@ export default {
     -webkit-appearance: none; /* Override default CSS styles */
     appearance: none;
     width: 100%; /* Full-width */
-    height: 13px; /* Specified height */
-    background: #d3d3d3; /* Grey background */
+    height: 20px; /* Specified height */
+    background: $uiFG; /* Grey background */
     outline: none; /* Remove outline */
     opacity: 1; /* Set transparency (for mouse-over effects on hover) */
     -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */

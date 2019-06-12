@@ -47,11 +47,4 @@ export default {
 <style scoped lang="scss">
 #poster {
 }
-
-h1 {
-  font-size: 40px;
-  line-height: 100%;
-  color: white;
-  margin: 0;
-}
 </style>

@@ -1,10 +1,10 @@
 <template>
-  <div class="text-area controller">
+  <div class="text controller">
     <div class="controller-label">
-      <label>Text</label>
+      <label>{{label}}</label>
     </div>
     <div class="controller-controller">
-      <input type="text" area :value="headline" @input="updateHeadline">
+      <input type="text" :value="value" @input="update">
     </div>
   </div>
 </template>
@@ -12,23 +12,20 @@
 <script>
 export default {
   name: "TextInput",
-  computed: {
-    headline() {
-      return this.$store.state.healine;
-    }
+  props: {
+    label: String,
+    value: String,
+    update: Function
   },
-  methods: {
-    updateHeadline(e) {
-      this.$store.commit("updateHeadline", e.target.value);
-    }
-  }
+  computed: {},
+  methods: {}
 };
 </script>
 
 <style scoped lang="scss">
 input {
   background: #d3d3d3;
+  color: white;
   border: 0;
-  min-height: 40px;
 }
 </style>
