@@ -4,7 +4,7 @@
       <label>Text</label>
     </div>
     <div class="controller-controller">
-      <input type="text" area :value="headline" @input="updateHeadline"></textarea>
+      <input type="text" area :value="headline" @input="updateHeadline">
     </div>
   </div>
 </template>
@@ -26,4 +26,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+input {
+  background: #d3d3d3;
+  border: 0;
+  min-height: 40px;
+}
 </style>

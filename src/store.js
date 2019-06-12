@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		fontSize: 80,
+		fontSize: 60,
 		headline: 'LOREM IPSUM',
 	},
 	mutations: {

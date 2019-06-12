@@ -1,7 +1,7 @@
 <template>
   <div id="posterWrapper">
     <div id="poster">
-      <vue-p5 v-on="{setup}"></vue-p5>
+      <vue-p5 @setup="setup" @draw="draw"></vue-p5>
     </div>
   </div>
 </template>
@@ -23,9 +23,19 @@ export default {
     }
   },
   methods: {
-    setup(sketch) {
-      sketch.background("green");
-      sketch.text("Hello p5!", 20, 20);
+    setup(c) {
+      c.createCanvas(586, 810);
+    },
+    draw(c) {
+      c.background("#2203a7");
+      c.fill("#ffffff");
+
+      var fs = Math.floor(this.fontSize);
+
+      c.textSize(fs);
+
+      c.textAlign(c.LEFT, c.TOP);
+      c.text(this.headline, 20, 20);
     }
   },
   render(h) {
@@ -36,10 +46,6 @@ export default {
 
 <style scoped lang="scss">
 #poster {
-  width: $posterW;
-  height: $posterH;
-  background: #2203a7;
-  padding: 20px;
 }
 
 h1 {
