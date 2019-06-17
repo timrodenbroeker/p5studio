@@ -1,5 +1,12 @@
 <template>
-  <div class="controller"></div>
+  <div class="controller">
+    <div class="controller-label">
+      <label>Text</label>
+    </div>
+    <div class="controller-controller">
+      <button>TEXT</button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -8,6 +15,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-</style>
- 
+<style scoped lang="scss"></style>
