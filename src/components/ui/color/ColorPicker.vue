@@ -5,7 +5,9 @@
     </div>
     <div class="controller-controller">
       <div class="colorWrapper">
-        <div class="color" v-for="color in colors">{{color}}</div>
+        <div v-for="(color, index) in colors">
+          <div class="color active" v-bind:style="{background: color, borderColor: color}"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -29,8 +31,15 @@ export default {
   .color {
     width: 30px;
     height: 30px;
-    margin: 0 5px 5px 0;
-    border: 1px solid white;
+
+    border-width: 5px;
+    border-style: solid;
+    cursor: pointer;
+
+    &.active {
+      width: 50px;
+      height: 50px;
+    }
   }
 }
 </style>

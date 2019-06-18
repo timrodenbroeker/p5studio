@@ -23,11 +23,11 @@
 </template>
 
 <script>
-import RangeSlider from "./controllers/RangeSlider.vue";
-import TextArea from "./controllers/TextArea.vue";
-import Button from "./controllers/Button.vue";
-import DropDown from "./controllers/DropDown.vue";
-import ColorPicker from "./controllers/ColorPicker.vue";
+import RangeSlider from "./ui/slider/RangeSlider.vue";
+import TextArea from "./ui/text/TextArea.vue";
+import Button from "./ui/button/Button.vue";
+import DropDown from "./ui/select/DropDown.vue";
+import ColorPicker from "./ui/color/ColorPicker.vue";
 
 export default {
   name: "Ui",
