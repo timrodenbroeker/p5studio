@@ -1,17 +1,21 @@
 <template>
   <div class="controller">
     <div class="controller-label">
-      <label>Text</label>
+      <label>{{ label }}</label>
     </div>
     <div class="controller-controller">
-      <button>TEXT</button>
+      <button>{{ text }}</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Button"
+  name: "Button",
+  props: {
+    label: String,
+    text: String
+  }
 };
 </script>
 

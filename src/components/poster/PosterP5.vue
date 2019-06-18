@@ -20,6 +20,9 @@ export default {
     },
     fontSize() {
       return this.$store.state.fontSize;
+    },
+    fontfiles() {
+      return this.$store.state.fontFiles;
     }
   },
   methods: {

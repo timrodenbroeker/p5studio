@@ -13,18 +13,30 @@
       v-bind:text="headline"
       v-bind:update="updateHeadline"
     />
+
+    <DropDown label="Font" v-bind:options="fontFiles"/>
+
+    <ColorPicker label="Color" v-bind:colors="colors"/>
+
+    <Button label="Save" text="PNG"/>
   </div>
 </template>
 
 <script>
 import RangeSlider from "./controllers/RangeSlider.vue";
 import TextArea from "./controllers/TextArea.vue";
+import Button from "./controllers/Button.vue";
+import DropDown from "./controllers/DropDown.vue";
+import ColorPicker from "./controllers/ColorPicker.vue";
 
 export default {
   name: "Ui",
   components: {
     RangeSlider,
-    TextArea
+    TextArea,
+    Button,
+    DropDown,
+    ColorPicker
   },
   computed: {
     fontSize() {
@@ -32,6 +44,15 @@ export default {
     },
     headline() {
       return this.$store.state.headline;
+    },
+    fontFiles() {
+      return this.$store.state.fontFiles;
+    },
+    colors() {
+      return this.$store.state.colors;
+    },
+    selectedColor() {
+      return this.$store.state.selectedColor;
     }
   },
   created: function() {},
