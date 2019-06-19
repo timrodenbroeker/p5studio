@@ -4,7 +4,7 @@
       <label>{{ label }}</label>
     </div>
     <div class="controller-controller">
-      <select name="top5" size="1">
+      <select name="top5" size="1" @change="onChange($event)">
         <option v-for="option in options">{{option}}</option>
       </select>
     </div>
@@ -16,7 +16,15 @@ export default {
   name: "DropDown",
   props: {
     label: String,
-    options: Array
+    options: Array,
+    change: Function
+  },
+
+  methods: {
+    onChange(event) {
+      console.log(propsa);
+      console.log(event.target.value);
+    }
   }
 };
 </script>

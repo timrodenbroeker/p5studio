@@ -3,26 +3,27 @@
     <RangeSlider
       label="fontsize"
       v-bind:min="10"
-      v-bind:max="300"
-      v-bind:val="70"
+      v-bind:max="350"
+      v-bind:val="parseInt(fontSize)"
       v-bind:update="updateFontSize"
     />
     <RangeSlider
       label="lineheight"
       v-bind:min="0"
-      v-bind:max="10"
-      v-bind:val="1"
+      v-bind:max="2"
+      v-bind:val="parseFloat(lineHeight)"
       v-bind:step="0.01"
       v-bind:update="updateLineHeight"
     />
     <TextArea
       v-bind:rows="4"
       label="headline"
+      :value="headline"
       v-bind:text="headline"
       v-bind:update="updateHeadline"
     />
 
-    <DropDown label="Font" v-bind:options="fontFiles"/>
+    <DropDown label="Font" v-bind:options="fontFiles" :change="updateCurrentFont()"/>
 
     <ColorPicker
       label="Color"
@@ -31,7 +32,7 @@
       v-bind:updateSelectedColor="updateSelectedColor"
     />
 
-    <Button v-bind:doThis="toggleVisibility" label="Select Font" text="CLICK"/>
+    <Button v-bind:doThis="toggleVisibility" label="Select Font" text="Open Library"/>
 
     <Button v-bind:doThis="() => {}" label="Save" text="PNG"/>
   </div>
@@ -55,16 +56,16 @@ export default {
   },
   computed: {
     fontSize() {
-      return this.$store.state.typography.fontSize;
+      return this.$store.state.headline.fontSize;
     },
     lineHeight() {
-      return this.$store.state.typography.fontSize;
+      return this.$store.state.headline.lineHeight;
     },
     headline() {
-      return this.$store.state.typography.headline;
+      return this.$store.state.headline.headline;
     },
     fontFiles() {
-      return this.$store.state.typography.fontFiles;
+      return this.$store.state.headline.fontFiles;
     },
     colors() {
       return this.$store.state.colors.colors;
@@ -92,6 +93,9 @@ export default {
     },
     toggleVisibility() {
       this.$store.commit("toggleFontsModal");
+    },
+    updateCurrentFont(val) {
+      this.$store.commit("updateCurrentFont", val);
     }
   }
 };

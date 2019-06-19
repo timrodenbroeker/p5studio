@@ -4,7 +4,7 @@
       <label>{{label}}</label>
     </div>
     <div class="controller-controller">
-      <textarea :rows="rows" type="text" area :value="value" @input="update"/>
+      <textarea :rows="rows" type="text" area v-bind:value="value" @input="update"/>
     </div>
   </div>
 </template>
