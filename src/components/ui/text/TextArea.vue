@@ -25,11 +25,12 @@ export default {
 
 <style scoped lang="scss">
 textarea {
-  font-weight: bold;
   resize: none;
   width: 100%;
-  background: $uiFG;
-  color: black;
+  background: $uiMix;
+  color: $uiWhite;
   border: 0;
+  font-size: 16px;
+  padding: 5px;
 }
 </style>

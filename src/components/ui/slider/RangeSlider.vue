@@ -4,7 +4,7 @@
       <label>{{label}}</label>
     </div>
     <div class="controller-controller">
-      <input type="range" min="min" max="max" :value="val" @input="update">
+      <input type="range" :min="min" :max="max" :value="val" :step="step" @input="update">
     </div>
   </div>
 </template>
@@ -17,6 +17,7 @@ export default {
     min: Number,
     max: Number,
     val: Number,
+    step: Number,
     update: Function
   }
 };
@@ -28,8 +29,8 @@ export default {
     -webkit-appearance: none; /* Override default CSS styles */
     appearance: none;
     width: 100%; /* Full-width */
-    height: 20px; /* Specified height */
-    background: $uiFG; /* Grey background */
+    height: 3px; /* Specified height */
+    background: $uiMix; /* Grey background */
     outline: none; /* Remove outline */
     opacity: 1; /* Set transparency (for mouse-over effects on hover) */
     -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */

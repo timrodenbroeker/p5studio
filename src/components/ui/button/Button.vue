@@ -3,7 +3,7 @@
     <div class="controller-label">
       <label>{{ label }}</label>
     </div>
-    <div class="controller-controller">
+    <div class="controller-controller" v-on:click="doThis">
       <button>{{ text }}</button>
     </div>
   </div>
@@ -14,7 +14,8 @@ export default {
   name: "Button",
   props: {
     label: String,
-    text: String
+    text: String,
+    doThis: Function
   }
 };
 </script>

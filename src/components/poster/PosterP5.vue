@@ -16,13 +16,23 @@ export default {
   },
   computed: {
     headline() {
-      return this.$store.state.headline;
+      return this.$store.state.typography.headline;
     },
     fontSize() {
-      return this.$store.state.fontSize;
+      return this.$store.state.typography.fontSize;
+    },
+    lineHeight() {
+      return this.$store.state.typography.lineHeight;
     },
     fontfiles() {
-      return this.$store.state.fontFiles;
+      return this.$store.state.typography.fontFiles;
+    },
+    selectedColor() {
+      var c = this.$store.state.colors.colors[
+        this.$store.state.colors.selectedColor
+      ];
+
+      return c;
     }
   },
   methods: {
@@ -30,12 +40,14 @@ export default {
       c.createCanvas(586, 810);
     },
     draw(c) {
-      c.background("#2203a7");
+      c.background(this.selectedColor);
       c.fill("#ffffff");
 
       var fs = Math.floor(this.fontSize);
+      var lh = this.lineHeight;
 
       c.textSize(fs);
+      c.textLeading(fs * lh);
 
       c.textAlign(c.LEFT, c.TOP);
       c.text(this.headline, 20, 20);

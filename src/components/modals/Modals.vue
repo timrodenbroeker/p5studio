@@ -1,0 +1,90 @@
+<template>
+  <div id="modals">
+    <modal-select-font v-if="ModalSelectFontVisible == true"></modal-select-font>
+  </div>
+</template>
+
+<script>
+import ModalSelectFont from "./selectFont/SelectFont.vue";
+
+export default {
+  name: "Modals",
+  components: {
+    ModalSelectFont
+  },
+  computed: {
+    ModalSelectFontVisible() {
+      return this.$store.state.ui.ModalSelectFont.visible;
+    }
+
+    // isAnyModalVisible() {
+    //   var modalObjects = this.$store.state.ui.modals;
+
+    //   var bool = false;
+
+    //   for (var i = 0; i < modalObjects.length; i++) {
+    //     var thisModal = modalObjects[i];
+    //     console.log(thisModal);
+
+    //     var thisModalVisible = thisModal.visible;
+
+    //     console.log(thisModalVisible);
+
+    //     if (thisModalVisible) {
+    //       bool = true;
+    //     }
+    //   }
+
+    //   return bool;
+    // }
+  }
+};
+</script>
+
+<style lang="scss">
+#silk {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100vh;
+}
+
+.close {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  cursor: pointer;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before,
+.close:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: white;
+  width: 50%;
+  height: 100%;
+}
+</style>

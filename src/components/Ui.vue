@@ -3,9 +3,17 @@
     <RangeSlider
       label="fontsize"
       v-bind:min="10"
-      v-bind:max="140"
+      v-bind:max="300"
       v-bind:val="70"
       v-bind:update="updateFontSize"
+    />
+    <RangeSlider
+      label="lineheight"
+      v-bind:min="0"
+      v-bind:max="10"
+      v-bind:val="1"
+      v-bind:step="0.01"
+      v-bind:update="updateLineHeight"
     />
     <TextArea
       v-bind:rows="4"
@@ -16,9 +24,16 @@
 
     <DropDown label="Font" v-bind:options="fontFiles"/>
 
-    <ColorPicker label="Color" v-bind:colors="colors"/>
+    <ColorPicker
+      label="Color"
+      v-bind:colors="colors"
+      v-bind:selectedColor="selectedColor"
+      v-bind:updateSelectedColor="updateSelectedColor"
+    />
 
-    <Button label="Save" text="PNG"/>
+    <Button v-bind:doThis="toggleVisibility" label="Select Font" text="CLICK"/>
+
+    <Button v-bind:doThis="() => {}" label="Save" text="PNG"/>
   </div>
 </template>
 
@@ -40,19 +55,25 @@ export default {
   },
   computed: {
     fontSize() {
-      return this.$store.state.fontSize;
+      return this.$store.state.typography.fontSize;
+    },
+    lineHeight() {
+      return this.$store.state.typography.fontSize;
     },
     headline() {
-      return this.$store.state.headline;
+      return this.$store.state.typography.headline;
     },
     fontFiles() {
-      return this.$store.state.fontFiles;
+      return this.$store.state.typography.fontFiles;
     },
     colors() {
-      return this.$store.state.colors;
+      return this.$store.state.colors.colors;
     },
     selectedColor() {
-      return this.$store.state.selectedColor;
+      return this.$store.state.colors.selectedColor;
+    },
+    ModalSelectFontVisible() {
+      return this.$store.state.ui.ModalSelectFont.visible;
     }
   },
   created: function() {},
@@ -60,8 +81,17 @@ export default {
     updateFontSize(e) {
       this.$store.commit("updateFontSize", e.target.value);
     },
+    updateLineHeight(e) {
+      this.$store.commit("updateLineHeight", e.target.value);
+    },
     updateHeadline(e) {
       this.$store.commit("updateHeadline", e.target.value);
+    },
+    updateSelectedColor(index) {
+      this.$store.commit("updateSelectedColor", index);
+    },
+    toggleVisibility() {
+      this.$store.commit("toggleFontsModal");
     }
   }
 };

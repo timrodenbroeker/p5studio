@@ -1,43 +1,47 @@
-@import "variables.scss";
+@import 'variables.scss';
 
 body {
-  font-family: sans-serif;
+	font-family: sans-serif;
 }
 *:focus {
-  outline: none;
+	outline: none;
 }
 
 #ui {
-  label {
-    font-size: 12px;
-    text-transform: uppercase;
-    color: $uiFG;
-  }
-  input {
-    background: #555555;
-  }
+	label {
+		font-size: 12px;
+		text-transform: uppercase;
+		color: $uiFG;
+	}
+	input {
+	}
 }
 
 .controller {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  margin-top: 15px;
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	margin-top: 15px;
+	margin-bottom: 25px;
 
-  .controller-label {
-  }
-  .controller-controller  {
-    width: 100% !important;
-  }
+	.controller-label {
+	}
+	.controller-controller  {
+		width: 100% !important;
+	}
 
-  input {
-    width: 100% !important;
-  }
+	input {
+		width: 100% !important;
+	}
 }
 
 ::-moz-selection {
-  background: transparent;
+	background: transparent;
 }
 ::selection {
-  background: transparent;
+	background: transparent;
+}
+
+button {
+	cursor: pointer;
 }

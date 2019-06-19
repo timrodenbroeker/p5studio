@@ -6,7 +6,18 @@
     <div class="controller-controller">
       <div class="colorWrapper">
         <div v-for="(color, index) in colors">
-          <div class="color active" v-bind:style="{background: color, borderColor: color}"></div>
+          <div
+            v-if="selectedColor == index"
+            v-on:click="updateSelectedColor(index)"
+            class="color"
+            v-bind:style="{background: color}"
+          ></div>
+          <div
+            v-else
+            v-on:click="updateSelectedColor(index)"
+            class="color active"
+            v-bind:style="{background: color, borderColor: color}"
+          ></div>
         </div>
       </div>
     </div>
@@ -18,7 +29,9 @@ export default {
   name: "ColorPicker",
   props: {
     label: String,
-    colors: Array
+    colors: Array,
+    selectedColor: Number,
+    updateSelectedColor: Function
   }
 };
 </script>
@@ -32,13 +45,13 @@ export default {
     width: 30px;
     height: 30px;
 
-    border-width: 5px;
+    border-width: 4px;
     border-style: solid;
+    border-color: $uiWhite;
     cursor: pointer;
 
     &.active {
-      width: 50px;
-      height: 50px;
+      border-color: $uiBG;
     }
   }
 }

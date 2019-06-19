@@ -2,18 +2,21 @@
   <div id="app">
     <Ui></Ui>
     <Artboard></Artboard>
+    <Modals/>
   </div>
 </template>
 
 <script>
 import Ui from "./components/Ui.vue";
 import Artboard from "./components/Artboard.vue";
+import Modals from "./components/modals/Modals.vue";
 
 export default {
   name: "app",
   components: {
     Artboard,
-    Ui
+    Ui,
+    Modals
   }
 };
 </script>
