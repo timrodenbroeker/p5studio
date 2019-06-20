@@ -16,7 +16,12 @@
       />
     </Group>
     <Group name="Arrangement">
-      <LayerList label="layers"></LayerList>
+      <LayerList
+        v-bind:update="updateSelectedLayer"
+        label="layers"
+        v-bind:options="layers"
+        v-bind:selected="selectedLayer"
+      ></LayerList>
     </Group>
     <Group name="HEADLINE">
       <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/>
@@ -113,6 +118,16 @@ export default {
     },
     ModalSelectFontVisible() {
       return this.$store.state.ui.ModalSelectFont.visible;
+    },
+    layers() {
+      var layers = this.$store.state.ui.layers;
+      console.log(layers);
+      return layers;
+    },
+    selectedLayer() {
+      var layer = this.$store.state.ui.selectedLayer;
+      console.log("currentLayer: " + layer);
+      return layer;
     }
   },
   created: function() {},
@@ -140,6 +155,10 @@ export default {
     },
     updateCurrentFont(val) {
       this.$store.commit("updateCurrentFont", val);
+    },
+    updateSelectedLayer() {
+      console.log("aa");
+      this.$store.commit("updateSelectedLayer");
     }
   }
 };

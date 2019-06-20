@@ -16,9 +16,9 @@ export default new Vuex.Store({
 
 		headline: {
 			posX: 0,
-			posY: 0,
-			fontSize: 250,
-			lineHeight: 0.82,
+			posY: -40,
+			fontSize: 220,
+			lineHeight: 0.92,
 			headline: 'ABC\nDEF',
 			fontFiles: fontFiles,
 			currentFont: 'Pilowlava-Regular.otf',
@@ -36,7 +36,7 @@ export default new Vuex.Store({
 		colors: {
 			background: {
 				colors: ['#ff0000', '#2203a7', '#f1f1f1', '#111111'],
-				selectedColor: 0,
+				selectedColor: 2,
 			},
 			text: {
 				colors: ['#ff0000', '#2203a7', '#f1f1f1', '#111111'],
@@ -47,7 +47,7 @@ export default new Vuex.Store({
 		ui: {
 			// SelectedLayer
 			layers: ['TEXT', 'IMAGE'],
-			selectedLayer: 'TEXT',
+			selectedLayer: 0,
 
 			// Modals
 			ModalSelectFont: {
@@ -108,6 +108,14 @@ export default new Vuex.Store({
 		toggleFontsModal(state, val) {
 			state.ui.ModalSelectFont.visible = !state.ui.ModalSelectFont.visible;
 			console.log(state);
+		},
+
+		updateSelectedLayer(state) {
+			if (state.ui.selectedLayer < state.ui.layers.length - 1) {
+				state.ui.selectedLayer++;
+			} else {
+				state.ui.selectedLayer = 0;
+			}
 		},
 	},
 });
