@@ -29,8 +29,13 @@ textarea {
   width: 100%;
   background: $uiMix;
   color: $uiWhite;
-  border: 0;
+  border: 1px solid $uiBG;
   font-size: 16px;
   padding: 5px;
+
+  &:focus {
+    outline: none !important;
+    border: 1px solid $uiFG;
+  }
 }
 </style>

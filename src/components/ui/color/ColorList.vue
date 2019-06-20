@@ -5,7 +5,7 @@
     </div>
     <div class="controller-controller">
       <div class="colorWrapper">
-        <div v-for="(color, index) in colors">
+        <div v-for="(color, index) in colors" class="color-border">
           <div
             v-if="selectedColor == index"
             v-on:click="updateSelectedColor(index)"
@@ -41,13 +41,17 @@ export default {
   width: 100%;
   display: flex;
 
+  .color-border {
+    border: 3px solid $uiBG;
+  }
+
   .color {
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
 
     border-width: 4px;
     border-style: solid;
-    border-color: $uiWhite;
+    border-color: $uiSecondary;
     cursor: pointer;
 
     &.active {

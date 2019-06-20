@@ -17,7 +17,8 @@ export default {
 
 <style lang="scss">
 #artboard {
-  width: calc(100vw - #{$uiWidth};
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;

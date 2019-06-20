@@ -9,6 +9,7 @@
         @mousedragged="mouseDragged"
         @mousepressed="mousePressed"
         @mousereleased="mouseReleased"
+        v-once
       ></vue-p5>
     </div>
   </div>
@@ -23,12 +24,17 @@ export default {
     "vue-p5": VueP5
   },
   computed: {
+    // DIMENSIONS
+
     posterW() {
       return this.$store.state.poster.posterW;
     },
     posterH() {
       return this.$store.state.poster.posterW;
     },
+
+    // HEADLINE
+
     headline() {
       return this.$store.state.headline.headline;
     },
@@ -44,20 +50,39 @@ export default {
     lineHeight() {
       return this.$store.state.headline.lineHeight;
     },
+
+    // FONTS
+
     fontfiles() {
       return this.$store.state.headline.fontFiles;
     },
     currentFont() {
       var result = this.$store.state.headline.currentFont;
-      console.log(result);
       return result;
     },
-    selectedColor() {
-      var c = this.$store.state.colors.colors[
-        this.$store.state.colors.selectedColor
-      ];
 
+    // COLORS
+    selectedColor() {
+      var c = this.$store.state.colors.background.colors[
+        this.$store.state.colors.background.selectedColor
+      ];
       return c;
+    },
+
+    textColor() {
+      var c = this.$store.state.colors.text.colors[
+        this.$store.state.colors.text.selectedColor
+      ];
+      return c;
+    },
+
+    // IMAGE
+
+    imageX() {
+      return this.$store.state.image.posX;
+    },
+    imageY() {
+      return this.$store.state.image.posY;
     }
   },
   methods: {
@@ -65,6 +90,8 @@ export default {
       var path = "fonts/Pilowlava-Regular.otf";
 
       c.font = c.loadFont(path);
+
+      c.img = c.loadImage("images/6798728194_8967ebd8b2_o.jpg");
     },
     setup(c) {
       c.dragging = false;
@@ -82,7 +109,13 @@ export default {
 
       c.background(this.selectedColor);
 
-      c.fill("#ffffff");
+      // IMAGE
+      c.push();
+      c.translate(this.imageX, this.imageY);
+      c.image(c.img, 0, 0);
+      c.pop();
+
+      c.fill(this.textColor);
 
       var fs = Math.floor(this.fontSize);
       var lh = this.lineHeight;
@@ -95,9 +128,7 @@ export default {
       c.text(this.headline, 20, 20);
       c.pop();
     },
-    mouseMoved(c) {
-      // console.log("mouse moved" + c.mouseX);
-    },
+    mouseMoved(c) {},
     mouseDragged(c) {},
     mouseReleased(c) {
       // Quit dragging
@@ -124,7 +155,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
+/* Standard syntax */
+@keyframes sayHello {
+  from {
+    transform: scale(0) rotateY(360deg) rotate(45deg);
+  }
+  to {
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
 #poster {
+  perspective: 100px !important;
   width: 100%;
   max-width: $posterW;
   max-height: $posterH;
@@ -136,5 +178,7 @@ export default {
   canvas {
     width: 100% !important;
   }
+  animation-name: sayHello;
+  animation-duration: 1s;
 }
 </style>

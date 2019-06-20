@@ -1,5 +1,7 @@
 <template>
-  <div class="controller-group"></div>
+  <div class="controller-group">
+    <slot></slot>
+  </div>
 </template>
 
 <script>

@@ -21,10 +21,7 @@ export default {
   },
 
   methods: {
-    onChange(event) {
-      console.log(propsa);
-      console.log(event.target.value);
-    }
+    onChange(event) {}
   }
 };
 </script>
