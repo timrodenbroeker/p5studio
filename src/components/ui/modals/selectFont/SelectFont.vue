@@ -3,7 +3,14 @@
     <div id="silk" v-on:click="toggleVisibility"></div>
     <div class="modal">
       <div v-on:click="toggleVisibility" class="close"></div>
-      <div>hahah</div>
+      <div class="fontList">
+        <div
+          class="font"
+          v-for="font in fontFiles"
+          v-bind:key="font"
+          @click="changeFont(font)"
+        >{{font}}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -11,9 +18,21 @@
 <script>
 export default {
   name: "ModalSelectFont",
+
+  computed: {
+    fontFiles() {
+      return this.$store.state.headline.fontFiles;
+    }
+  },
   methods: {
     toggleVisibility() {
       this.$store.commit("toggleFontsModal");
+    },
+    changeFont: function(font) {
+      this.$store.commit("updateFont", font);
+      this.$store.commit("toggleFontsModal");
+      this.$store.commit("changeFontTrue");
+      // this.$store.state.headline.currentFont = font;
     }
   }
 };
@@ -22,5 +41,9 @@ export default {
 <style lang="scss">
 .modal {
   padding: 25px;
+}
+.font {
+  font-size: 20px;
+  cursor: pointer;
 }
 </style>

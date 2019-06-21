@@ -16,7 +16,7 @@
       />
     </Group>
     <Group name="View">
-      <RangeSlider label="zoom"/>
+      <RangeSlider label="zoom" v-bind:update="doSomethingStupid"/>
       <Checkbox label="Dark Mode"></Checkbox>
     </Group>
     <Group name="Export">
@@ -71,6 +71,9 @@ export default {
   // Methods
 
   methods: {
+    doSomethingStupid() {
+      console.log("i've boiled your dog");
+    },
     updateSelectedColor(index) {
       this.$store.commit("updateSelectedColor", index);
     },

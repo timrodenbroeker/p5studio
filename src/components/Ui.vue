@@ -35,13 +35,15 @@
         v-bind:update="updateHeadline"
       />
 
-      <DropDown label="Font" v-bind:options="fontFiles" :change="updateCurrentFont()"/>
+      <!-- <DropDown label="Font" v-bind:options="fontFiles" :change="updateCurrentFont()"/> -->
+
+      <DisplayString label="FONT" v-bind:text="currentFont"></DisplayString>
 
       <Button v-bind:doThis="toggleVisibility" label="Select Font" text="Open Library"/>
     </Group>
     <Group name="Image">
       <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/>
-      <Button label="Select" text="Open Library"/>
+      <Button label="Select" text="Open Library" v-bind:doThis="doSomethingStupid"/>
       <RangeSlider
         label="Width"
         v-bind:min="0"
@@ -63,6 +65,7 @@ import ColorList from "./ui/elements/color/ColorList.vue";
 import Position from "./ui/elements/position/Position.vue";
 import Group from "./ui/elements/group/Group.vue";
 import LayerList from "./ui/elements/layerlist/LayerList.vue";
+import DisplayString from "./ui/elements/display/DisplayString.vue";
 
 export default {
   name: "Ui",
@@ -74,7 +77,8 @@ export default {
     DropDown,
     ColorList,
     Position,
-    LayerList
+    LayerList,
+    DisplayString
   },
 
   // computed
@@ -82,12 +86,12 @@ export default {
   computed: {
     layers() {
       var layers = this.$store.state.ui.layers;
-      console.log(layers);
+
       return layers;
     },
     selectedLayer() {
       var layer = this.$store.state.ui.selectedLayer;
-      console.log("currentLayer: " + layer);
+
       return layer;
     },
 
@@ -115,6 +119,10 @@ export default {
     },
     imageW() {
       return this.$store.state.image.w;
+    },
+    currentFont() {
+      var cf = this.$store.state.headline.currentFont;
+      return cf;
     }
   },
   created: function() {},
@@ -122,6 +130,9 @@ export default {
   // Methods
 
   methods: {
+    doSomethingStupid() {
+      console.log("i've boiled your dog");
+    },
     updateFontSize(e) {
       this.$store.commit("updateFontSize", e.target.value);
     },
@@ -132,7 +143,6 @@ export default {
       this.$store.commit("updateHeadline", e.target.value);
     },
     updateSelectedLayer() {
-      console.log("aa");
       this.$store.commit("updateSelectedLayer");
     },
     toggleVisibility() {

@@ -18,27 +18,6 @@ export default {
     ModalSelectFontVisible() {
       return this.$store.state.ui.ModalSelectFont.visible;
     }
-
-    // isAnyModalVisible() {
-    //   var modalObjects = this.$store.state.ui.modals;
-
-    //   var bool = false;
-
-    //   for (var i = 0; i < modalObjects.length; i++) {
-    //     var thisModal = modalObjects[i];
-    //     console.log(thisModal);
-
-    //     var thisModalVisible = thisModal.visible;
-
-    //     console.log(thisModalVisible);
-
-    //     if (thisModalVisible) {
-    //       bool = true;
-    //     }
-    //   }
-
-    //   return bool;
-    // }
   }
 };
 </script>

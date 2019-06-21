@@ -23,7 +23,8 @@ export default new Vuex.Store({
 			lineHeight: 0.92,
 			headline: 'ABC\nDEF',
 			fontFiles: fontFiles,
-			currentFont: 'Pilowlava-Regular.otf',
+			currentFont: fontFiles[0],
+			changeFont: false,
 		},
 
 		image: {
@@ -78,6 +79,9 @@ export default new Vuex.Store({
 		updateFontSize(state, fontSize) {
 			state.headline.fontSize = fontSize;
 		},
+		updateFont(state, font) {
+			state.headline.currentFont = font;
+		},
 
 		// headline.lineHeight
 
@@ -111,7 +115,6 @@ export default new Vuex.Store({
 
 		toggleFontsModal(state, val) {
 			state.ui.ModalSelectFont.visible = !state.ui.ModalSelectFont.visible;
-			console.log(state);
 		},
 
 		updateSelectedLayer(state) {
@@ -123,6 +126,13 @@ export default new Vuex.Store({
 		},
 		updateImageW(state, val) {
 			state.image.w = val;
+		},
+
+		changeFontTrue(state) {
+			state.headline.changeFont = true;
+		},
+		changeFontFalse(state) {
+			state.headline.changeFont = false;
 		},
 	},
 });

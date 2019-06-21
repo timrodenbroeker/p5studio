@@ -92,6 +92,9 @@ export default {
       var layerIndex = this.$store.state.ui.selectedLayer;
       var selectedLayer = layers[layerIndex];
       return selectedLayer;
+    },
+    changeFont() {
+      return this.$store.state.headline.changeFont;
     }
 
     // LAYERS
@@ -100,13 +103,14 @@ export default {
   },
   methods: {
     preload(c) {
-      var path = "fonts/Pilowlava-Regular.otf";
-
-      c.font = c.loadFont(path);
+      c.pathToFonts = "fonts/";
+      c.currentFontPath = c.pathToFonts + this.currentFont;
+      c.font = c.loadFont(c.currentFontPath);
 
       c.img = c.loadImage("images/6798728194_8967ebd8b2_o.jpg");
     },
     setup(c) {
+      // c.frameRate(1);
       c.dragging = false;
       c.imageOffsetX = 0;
       c.imageOffsetY = 0;
@@ -117,6 +121,13 @@ export default {
       // c.textFont(c.font);
     },
     draw(c) {
+      if (this.changeFont == true) {
+        c.currentFontPath = c.pathToFonts + this.currentFont;
+        c.font = c.loadFont(c.currentFontPath);
+
+        this.$store.commit("changeFontFalse");
+      }
+
       // DRAGGING
       if (c.dragging) {
         if (this.selectedLayer == "TEXT") {
