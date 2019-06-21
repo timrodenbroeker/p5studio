@@ -1,3 +1,3 @@
-# vue-poster-prototype
+# bold statements
 
 <img src="app.jpg"/>
