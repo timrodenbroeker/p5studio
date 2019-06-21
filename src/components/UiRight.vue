@@ -1,6 +1,22 @@
 <template>
   <div id="uiRight">
+    <Group name="Colors">
+      <ColorList
+        label="Background"
+        v-bind:colors="colors"
+        v-bind:selectedColor="selectedColor"
+        v-bind:updateSelectedColor="updateSelectedColor"
+      />
+
+      <ColorList
+        label="Text"
+        v-bind:colors="textColors"
+        v-bind:selectedColor="textColor"
+        v-bind:updateSelectedColor="updateTextColor"
+      />
+    </Group>
     <Group name="View">
+      <RangeSlider label="zoom"/>
       <Checkbox label="Dark Mode"></Checkbox>
     </Group>
     <Group name="Export">
@@ -12,14 +28,14 @@
 </template>
 
 <script>
-import RangeSlider from "./ui/slider/RangeSlider.vue";
-import TextArea from "./ui/text/TextArea.vue";
-import Button from "./ui/button/Button.vue";
-import DropDown from "./ui/select/DropDown.vue";
-import ColorList from "./ui/color/ColorList.vue";
-import Position from "./ui/position/Position.vue";
-import Group from "./ui/group/Group.vue";
-import Checkbox from "./ui/checkbox/Checkbox.vue";
+import RangeSlider from "./ui/elements/slider/RangeSlider.vue";
+import TextArea from "./ui/elements/text/TextArea.vue";
+import Button from "./ui/elements/button/Button.vue";
+import DropDown from "./ui/elements/select/DropDown.vue";
+import ColorList from "./ui/elements/color/ColorList.vue";
+import Position from "./ui/elements/position/Position.vue";
+import Group from "./ui/elements/group/Group.vue";
+import Checkbox from "./ui/elements/checkbox/Checkbox.vue";
 
 export default {
   name: "UiRight",
@@ -36,29 +52,30 @@ export default {
 
   // computed
 
-  computed: {},
+  computed: {
+    colors() {
+      return this.$store.state.colors.background.colors;
+    },
+    selectedColor() {
+      return this.$store.state.colors.background.selectedColor;
+    },
+    textColors() {
+      return this.$store.state.colors.text.colors;
+    },
+    textColor() {
+      return this.$store.state.colors.text.selectedColor;
+    }
+  },
   created: function() {},
 
   // Methods
 
   methods: {
-    updateFontSize(e) {
-      this.$store.commit("updateFontSize", e.target.value);
-    },
-    updateLineHeight(e) {
-      this.$store.commit("updateLineHeight", e.target.value);
-    },
-    updateHeadline(e) {
-      this.$store.commit("updateHeadline", e.target.value);
-    },
     updateSelectedColor(index) {
       this.$store.commit("updateSelectedColor", index);
     },
-    toggleVisibility() {
-      this.$store.commit("toggleFontsModal");
-    },
-    updateCurrentFont(val) {
-      this.$store.commit("updateCurrentFont", val);
+    updateTextColor(index) {
+      this.$store.commit("updateTextColor", index);
     }
   }
 };

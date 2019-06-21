@@ -44,14 +44,14 @@ export default {
       width: 13px; /* Set a specific slider handle width */
       height: 13px; /* Slider handle height */
       border-radius: 100%;
-      background: #ff0000; /* Green background */
+      background: $uiSecondary; /* Green background */
       cursor: pointer; /* Cursor on hover */
     }
 
     &::-moz-range-thumb {
       width: 13px; /* Set a specific slider handle width */
       height: 13px; /* Slider handle height */
-      background: #ff0000; /* Green background */
+      background: $uiSecondary; /* Green background */
       cursor: pointer; /* Cursor on hover */
     }
   }

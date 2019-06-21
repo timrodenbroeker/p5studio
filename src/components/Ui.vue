@@ -1,20 +1,5 @@
 <template>
   <div id="ui">
-    <Group name="Colors">
-      <ColorList
-        label="Background"
-        v-bind:colors="colors"
-        v-bind:selectedColor="selectedColor"
-        v-bind:updateSelectedColor="updateSelectedColor"
-      />
-
-      <ColorList
-        label="Text"
-        v-bind:colors="textColors"
-        v-bind:selectedColor="textColor"
-        v-bind:updateSelectedColor="updateTextColor"
-      />
-    </Group>
     <Group name="Arrangement">
       <LayerList
         v-bind:update="updateSelectedLayer"
@@ -23,6 +8,7 @@
         v-bind:selected="selectedLayer"
       ></LayerList>
     </Group>
+
     <Group name="HEADLINE">
       <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/>
       <RangeSlider
@@ -54,21 +40,29 @@
       <Button v-bind:doThis="toggleVisibility" label="Select Font" text="Open Library"/>
     </Group>
     <Group name="Image">
+      <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/>
       <Button label="Select" text="Open Library"/>
-      <RangeSlider label="Width"/>
+      <RangeSlider
+        label="Width"
+        v-bind:min="0"
+        v-bind:max="1000"
+        v-bind:val="parseInt(imageW)"
+        v-bind:step="1"
+        v-bind:update="updateImageW"
+      />
     </Group>
   </div>
 </template>
 
 <script>
-import RangeSlider from "./ui/slider/RangeSlider.vue";
-import TextArea from "./ui/text/TextArea.vue";
-import Button from "./ui/button/Button.vue";
-import DropDown from "./ui/select/DropDown.vue";
-import ColorList from "./ui/color/ColorList.vue";
-import Position from "./ui/position/Position.vue";
-import Group from "./ui/group/Group.vue";
-import LayerList from "./ui/layerlist/LayerList.vue";
+import RangeSlider from "./ui/elements/slider/RangeSlider.vue";
+import TextArea from "./ui/elements/text/TextArea.vue";
+import Button from "./ui/elements/button/Button.vue";
+import DropDown from "./ui/elements/select/DropDown.vue";
+import ColorList from "./ui/elements/color/ColorList.vue";
+import Position from "./ui/elements/position/Position.vue";
+import Group from "./ui/elements/group/Group.vue";
+import LayerList from "./ui/elements/layerlist/LayerList.vue";
 
 export default {
   name: "Ui",
@@ -86,6 +80,17 @@ export default {
   // computed
 
   computed: {
+    layers() {
+      var layers = this.$store.state.ui.layers;
+      console.log(layers);
+      return layers;
+    },
+    selectedLayer() {
+      var layer = this.$store.state.ui.selectedLayer;
+      console.log("currentLayer: " + layer);
+      return layer;
+    },
+
     fontSize() {
       return this.$store.state.headline.fontSize;
     },
@@ -104,30 +109,12 @@ export default {
     fontFiles() {
       return this.$store.state.headline.fontFiles;
     },
-    colors() {
-      return this.$store.state.colors.background.colors;
-    },
-    selectedColor() {
-      return this.$store.state.colors.background.selectedColor;
-    },
-    textColors() {
-      return this.$store.state.colors.text.colors;
-    },
-    textColor() {
-      return this.$store.state.colors.text.selectedColor;
-    },
+
     ModalSelectFontVisible() {
       return this.$store.state.ui.ModalSelectFont.visible;
     },
-    layers() {
-      var layers = this.$store.state.ui.layers;
-      console.log(layers);
-      return layers;
-    },
-    selectedLayer() {
-      var layer = this.$store.state.ui.selectedLayer;
-      console.log("currentLayer: " + layer);
-      return layer;
+    imageW() {
+      return this.$store.state.image.w;
     }
   },
   created: function() {},
@@ -144,11 +131,9 @@ export default {
     updateHeadline(e) {
       this.$store.commit("updateHeadline", e.target.value);
     },
-    updateSelectedColor(index) {
-      this.$store.commit("updateSelectedColor", index);
-    },
-    updateTextColor(index) {
-      this.$store.commit("updateTextColor", index);
+    updateSelectedLayer() {
+      console.log("aa");
+      this.$store.commit("updateSelectedLayer");
     },
     toggleVisibility() {
       this.$store.commit("toggleFontsModal");
@@ -156,9 +141,8 @@ export default {
     updateCurrentFont(val) {
       this.$store.commit("updateCurrentFont", val);
     },
-    updateSelectedLayer() {
-      console.log("aa");
-      this.$store.commit("updateSelectedLayer");
+    updateImageW(e) {
+      this.$store.commit("updateImageW", e.target.value);
     }
   }
 };

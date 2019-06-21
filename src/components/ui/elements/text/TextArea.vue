@@ -35,7 +35,7 @@ textarea {
 
   &:focus {
     outline: none !important;
-    border: 1px solid $uiFG;
+    border: 1px solid $uiSecondary;
   }
 }
 </style>

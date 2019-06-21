@@ -9,14 +9,16 @@ export default new Vuex.Store({
 	state: {
 		// General Poster-settings
 		poster: {
-			posterW: 586,
-			posterH: 810,
+			w: 586,
+			h: 810,
 		},
 		// THe Headline
 
 		headline: {
-			posX: 0,
-			posY: -40,
+			pos: {
+				x: 0,
+				y: -40,
+			},
 			fontSize: 220,
 			lineHeight: 0.92,
 			headline: 'ABC\nDEF',
@@ -25,9 +27,11 @@ export default new Vuex.Store({
 		},
 
 		image: {
-			posX: 0,
-			posY: 0,
-			width: 400,
+			pos: {
+				x: 586 / 2,
+				y: 810 / 2,
+			},
+			w: 500,
 			selectedImage: 'images/6798728194_8967ebd8b2_o.jpg',
 		},
 
@@ -57,16 +61,16 @@ export default new Vuex.Store({
 	},
 
 	mutations: {
-		// headline.posX
+		// HEADLINE-POSITION
 
-		updateHeadlinePosX(state, posX) {
-			state.headline.posX = posX;
+		updateHeadlinePos(state, newPos) {
+			state.headline.pos = newPos;
 		},
 
-		// headline.posY
+		// IMAGE-POSITION
 
-		updateHeadlinePosY(state, posY) {
-			state.headline.posY = posY;
+		updateImagePos(state, newPos) {
+			state.image.pos = newPos;
 		},
 
 		// headline.fontSize
@@ -116,6 +120,9 @@ export default new Vuex.Store({
 			} else {
 				state.ui.selectedLayer = 0;
 			}
+		},
+		updateImageW(state, val) {
+			state.image.w = val;
 		},
 	},
 });

@@ -1,5 +1,5 @@
 <template>
-  <div id="posterWrapper">
+  <div id="wrapper">
     <div id="poster">
       <vue-p5
         @setup="setup"
@@ -26,24 +26,31 @@ export default {
   computed: {
     // DIMENSIONS
 
-    posterW() {
-      return this.$store.state.poster.posterW;
+    width() {
+      return this.$store.state.poster.w;
     },
-    posterH() {
-      return this.$store.state.poster.posterW;
+    height() {
+      return this.$store.state.poster.h;
     },
 
     // HEADLINE
 
+    headlinePos() {
+      return this.$store.state.headline.pos;
+    },
+
+    imagePos() {
+      return this.$store.state.image.pos;
+    },
+
+    imageW() {
+      return this.$store.state.image.w;
+    },
+
     headline() {
       return this.$store.state.headline.headline;
     },
-    headlinePosX() {
-      return this.$store.state.headline.posX;
-    },
-    headlinePosY() {
-      return this.$store.state.headline.posY;
-    },
+
     fontSize() {
       return this.$store.state.headline.fontSize;
     },
@@ -76,14 +83,20 @@ export default {
       return c;
     },
 
-    // IMAGE
-
-    imageX() {
-      return this.$store.state.image.posX;
+    layers() {
+      var layers = this.$store.state.ui.layers;
+      return layers;
     },
-    imageY() {
-      return this.$store.state.image.posY;
+    selectedLayer() {
+      var layers = this.$store.state.ui.layers;
+      var layerIndex = this.$store.state.ui.selectedLayer;
+      var selectedLayer = layers[layerIndex];
+      return selectedLayer;
     }
+
+    // LAYERS
+
+    // IMAGE
   },
   methods: {
     preload(c) {
@@ -95,24 +108,44 @@ export default {
     },
     setup(c) {
       c.dragging = false;
-      c.offsetX = 0;
-      c.offsetY = 0;
+      c.imageOffsetX = 0;
+      c.imageOffsetY = 0;
+      c.headlineOffsetX = 0;
+      c.headlineOffsetY = 0;
       c.createCanvas(586, 810);
+      c.imageMode(c.CENTER);
       // c.textFont(c.font);
     },
     draw(c) {
-      // Adjust location if being dragged
+      // DRAGGING
       if (c.dragging) {
-        this.$store.commit("updateHeadlinePosX", c.mouseX + c.offsetX);
-        this.$store.commit("updateHeadlinePosY", c.mouseY + c.offsetY);
+        if (this.selectedLayer == "TEXT") {
+          var newPos = {
+            x: Math.floor(c.mouseX + c.headlineOffsetX),
+            y: Math.floor(c.mouseY + c.headlineOffsetY)
+          };
+          this.$store.commit("updateHeadlinePos", newPos);
+        } else if (this.selectedLayer == "IMAGE") {
+          var newPos = {
+            x: Math.floor(c.mouseX + c.imageOffsetX),
+            y: Math.floor(c.mouseY + c.imageOffsetY)
+          };
+
+          this.$store.commit("updateImagePos", newPos);
+        }
       }
+
+      // / DRAGGING
 
       c.background(this.selectedColor);
 
       // IMAGE
       c.push();
-      c.translate(this.imageX, this.imageY);
-      c.image(c.img, 0, 0);
+
+      var ratio = c.img.height / c.img.width;
+
+      c.translate(this.imagePos.x, this.imagePos.y);
+      c.image(c.img, 0, 0, this.imageW, this.imageW * ratio);
       c.pop();
 
       c.fill(this.textColor);
@@ -124,7 +157,7 @@ export default {
       c.textLeading(fs * lh);
       c.textAlign(c.LEFT, c.TOP);
       c.push();
-      c.translate(this.headlinePosX, this.headlinePosY);
+      c.translate(this.headlinePos.x, this.headlinePos.y);
       c.text(this.headline, 20, 20);
       c.pop();
     },
@@ -137,14 +170,20 @@ export default {
     mousePressed(c) {
       if (
         c.mouseX > 0 &&
-        c.mouseX < this.posterW &&
+        c.mouseX < this.width &&
         c.mouseY > 0 &&
-        c.mouseY < this.posterH
+        c.mouseY < this.height
       ) {
         c.dragging = true;
         // If so, keep track of relative location of click to corner of rectangle
-        c.offsetX = this.headlinePosX - c.mouseX;
-        c.offsetY = this.headlinePosY - c.mouseY;
+
+        if (this.selectedLayer == "TEXT") {
+          c.headlineOffsetX = this.headlinePos.x - c.mouseX;
+          c.headlineOffsetY = this.headlinePos.y - c.mouseY;
+        } else if (this.selectedLayer == "IMAGE") {
+          c.imageffsetX = this.imagePosX - c.mouseX;
+          c.imageffsetY = this.imagePosY - c.mouseY;
+        }
       }
     }
   },
@@ -155,30 +194,4 @@ export default {
 </script>
 
 <style scoped lang="scss">
-/* Standard syntax */
-@keyframes sayHello {
-  from {
-    transform: scale(0) rotateY(360deg) rotate(45deg);
-  }
-  to {
-    transform: scale(1) rotateY(0deg);
-  }
-}
-
-#poster {
-  perspective: 100px !important;
-  width: 100%;
-  max-width: $posterW;
-  max-height: $posterH;
-
-  cursor: move; /* fallback if grab cursor is unsupported */
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
-  canvas {
-    width: 100% !important;
-  }
-  animation-name: sayHello;
-  animation-duration: 1s;
-}
 </style>

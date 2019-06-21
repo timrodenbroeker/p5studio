@@ -1,4 +1,5 @@
 @import 'variables.scss';
+@import 'poster.scss';
 
 /* roboto-300 - latin */
 @font-face {
@@ -67,7 +68,9 @@
 		/* Safari, Android, iOS */ url('/assets/uiFontsroboto-mono-v6-latin-700.svg#RobotoMono') format('svg'); /* Legacy iOS */
 }
 
-body {
+body,
+html {
+	background: black;
 	font-family: 'Roboto Mono', sans-serif;
 }
 
@@ -132,6 +135,6 @@ select {
 	cursor: pointer;
 	text-transform: uppercase;
 	&:hover {
-		background: $uiFG;
+		background: $uiSecondary;
 	}
 }

@@ -1,0 +1,25 @@
+@keyframes sayHello {
+	from {
+		transform: scale(0) rotateY(360deg) rotate(45deg);
+	}
+	to {
+		transform: scale(1) rotateY(0deg);
+	}
+}
+
+#poster {
+	perspective: 100px !important;
+	width: 100%;
+	max-width: $posterW;
+	max-height: $posterH;
+
+	cursor: move; /* fallback if grab cursor is unsupported */
+	cursor: grab;
+	cursor: -moz-grab;
+	cursor: -webkit-grab;
+	canvas {
+		width: 100% !important;
+	}
+	animation-name: sayHello;
+	animation-duration: 1s;
+}

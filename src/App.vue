@@ -11,7 +11,7 @@
 import Ui from "./components/Ui.vue";
 import UiRight from "./components/UiRight.vue";
 import Artboard from "./components/Artboard.vue";
-import Modals from "./components/modals/Modals.vue";
+import Modals from "./components/ui/modals/Modals.vue";
 
 export default {
   name: "app",

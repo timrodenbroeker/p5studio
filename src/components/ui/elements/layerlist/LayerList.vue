@@ -6,7 +6,7 @@
     <div class="controller-controller">
       <div class="layers" v-on:click="update()">
         <div class="layer" v-for="(option, index) in options">
-          <div v-if="selected == index" class="inner active">{{option}}{{index}}</div>
+          <div v-if="selected == index" class="inner active">{{option}}</div>
           <div v-else class="inner">{{option}}</div>
         </div>
       </div>
@@ -39,7 +39,7 @@ export default {
     cursor: pointer;
 
     &.active {
-      background: $uiMix;
+      background: $uiSecondary;
     }
   }
 }
