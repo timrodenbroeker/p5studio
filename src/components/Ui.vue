@@ -57,15 +57,15 @@
 </template>
 
 <script>
-import RangeSlider from "./ui/elements/slider/RangeSlider.vue";
-import TextArea from "./ui/elements/text/TextArea.vue";
-import Button from "./ui/elements/button/Button.vue";
-import DropDown from "./ui/elements/select/DropDown.vue";
-import ColorList from "./ui/elements/color/ColorList.vue";
-import Position from "./ui/elements/position/Position.vue";
-import Group from "./ui/elements/group/Group.vue";
-import LayerList from "./ui/elements/layerlist/LayerList.vue";
-import DisplayString from "./ui/elements/display/DisplayString.vue";
+import RangeSlider from "./ui/reusableComponents/slider/RangeSlider.vue";
+import TextArea from "./ui/reusableComponents/text/TextArea.vue";
+import Button from "./ui/reusableComponents/button/Button.vue";
+import DropDown from "./ui/reusableComponents/select/DropDown.vue";
+import ColorList from "./ui/reusableComponents/color/ColorList.vue";
+import Position from "./ui/reusableComponents/position/Position.vue";
+import Group from "./ui/reusableComponents/group/Group.vue";
+import LayerList from "./ui/reusableComponents/layerlist/LayerList.vue";
+import DisplayString from "./ui/reusableComponents/display/DisplayString.vue";
 
 export default {
   name: "Ui",
