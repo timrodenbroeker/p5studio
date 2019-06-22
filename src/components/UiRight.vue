@@ -17,7 +17,8 @@
     </Group>
     <Group name="View">
       <RangeSlider label="zoom" v-bind:update="doSomethingStupid"/>
-      <Checkbox label="Dark Mode"></Checkbox>
+      <RangeSlider label="Brightness" v-bind:update="doSomethingStupid"/>
+      <!-- <Checkbox label="Dark Mode"></Checkbox> -->
     </Group>
     <Group name="Export">
       <Checkbox label="Frame"></Checkbox>

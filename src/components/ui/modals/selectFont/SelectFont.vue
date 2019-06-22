@@ -8,7 +8,7 @@
           class="font"
           v-for="font in fontFiles"
           v-bind:key="font"
-          @click="changeFont(font)"
+          @click="updateFont(font)"
         >{{font}}</div>
       </div>
     </div>
@@ -28,10 +28,10 @@ export default {
     toggleVisibility() {
       this.$store.commit("toggleFontsModal");
     },
-    changeFont: function(font) {
+    updateFont: function(font) {
       this.$store.commit("updateFont", font);
       this.$store.commit("toggleFontsModal");
-      this.$store.commit("changeFontTrue");
+      this.$store.commit("updateFontTrue");
       // this.$store.state.headline.currentFont = font;
     }
   }

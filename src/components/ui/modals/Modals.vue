@@ -67,7 +67,8 @@ export default {
   right: 0;
   background: white;
   width: 50%;
-  height: 100%;
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 /* Enter and leave animations can use different */

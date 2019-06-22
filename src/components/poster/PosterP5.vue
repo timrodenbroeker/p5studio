@@ -93,8 +93,8 @@ export default {
       var selectedLayer = layers[layerIndex];
       return selectedLayer;
     },
-    changeFont() {
-      return this.$store.state.headline.changeFont;
+    updateFont() {
+      return this.$store.state.headline.updateFont;
     }
 
     // LAYERS
@@ -121,11 +121,11 @@ export default {
       // c.textFont(c.font);
     },
     draw(c) {
-      if (this.changeFont == true) {
+      if (this.updateFont == true) {
         c.currentFontPath = c.pathToFonts + this.currentFont;
         c.font = c.loadFont(c.currentFontPath);
 
-        this.$store.commit("changeFontFalse");
+        this.$store.commit("updateFontFalse");
       }
 
       // DRAGGING

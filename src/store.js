@@ -24,7 +24,7 @@ export default new Vuex.Store({
 			headline: 'ABC\nDEF',
 			fontFiles: fontFiles,
 			currentFont: fontFiles[0],
-			changeFont: false,
+			updateFont: false,
 		},
 
 		image: {
@@ -128,11 +128,11 @@ export default new Vuex.Store({
 			state.image.w = val;
 		},
 
-		changeFontTrue(state) {
-			state.headline.changeFont = true;
+		updateFontTrue(state) {
+			state.headline.updateFont = true;
 		},
-		changeFontFalse(state) {
-			state.headline.changeFont = false;
+		updateFontFalse(state) {
+			state.headline.updateFont = false;
 		},
 	},
 });

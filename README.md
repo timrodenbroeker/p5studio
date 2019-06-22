@@ -1,3 +1,4 @@
-# bold statements
+# To Do
 
-<img src="app.jpg"/>
+- Store: Less functions
+- Image Grab: 

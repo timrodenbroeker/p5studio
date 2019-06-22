@@ -9,13 +9,13 @@
       ></LayerList>
     </Group>
 
-    <Group name="HEADLINE">
-      <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/>
+    <Group name="headline">
+      <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
       <RangeSlider
         label="fontsize"
         v-bind:min="10"
         v-bind:max="350"
-        v-bind:val="parseInt(fontSize)"
+        v-bind:val="parseInt(headlineFontSize)"
         v-bind:update="updateFontSize"
       />
       <RangeSlider
@@ -35,14 +35,14 @@
         v-bind:update="updateHeadline"
       />
 
-      <!-- <DropDown label="Font" v-bind:options="fontFiles" :change="updateCurrentFont()"/> -->
+      <!-- <DropDown label="Font" v-bind:options="fontFiles" :update="updateCurrentFont()"/> -->
 
       <DisplayString label="FONT" v-bind:text="currentFont"></DisplayString>
 
       <Button v-bind:doThis="toggleVisibility" label="Select Font" text="Open Library"/>
     </Group>
     <Group name="Image">
-      <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/>
+      <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
       <Button label="Select" text="Open Library" v-bind:doThis="doSomethingStupid"/>
       <RangeSlider
         label="Width"
@@ -95,7 +95,7 @@ export default {
       return layer;
     },
 
-    fontSize() {
+    headlineFontSize() {
       return this.$store.state.headline.fontSize;
     },
     posX() {

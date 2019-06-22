@@ -4,7 +4,7 @@
       <label>{{ label }}</label>
     </div>
     <div class="controller-controller">
-      <select name="top5" size="1" @change="onChange($event)">
+      <select name="top5" size="1" @update="onupdate($event)">
         <option v-for="option in options">{{option}}</option>
       </select>
     </div>
@@ -17,11 +17,11 @@ export default {
   props: {
     label: String,
     options: Array,
-    change: Function
+    update: Function
   },
 
   methods: {
-    onChange(event) {}
+    onupdate(event) {}
   }
 };
 </script>
