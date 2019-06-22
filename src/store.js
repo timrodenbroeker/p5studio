@@ -58,6 +58,8 @@ export default new Vuex.Store({
 			ModalSelectFont: {
 				visible: false,
 			},
+			zoom: 1,
+			brightness: 0,
 		},
 	},
 
@@ -133,6 +135,12 @@ export default new Vuex.Store({
 		},
 		updateFontFalse(state) {
 			state.headline.updateFont = false;
+		},
+		updateZoom(state, val) {
+			state.ui.zoom = val.target.value;
+		},
+		updateBrightness(state, val) {
+			state.ui.brightness = val.target.value;
 		},
 	},
 });

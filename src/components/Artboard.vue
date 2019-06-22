@@ -1,6 +1,9 @@
 <template>
-  <div id="artboard">
-    <PosterP5></PosterP5>
+  <div
+    id="artboard"
+    v-bind:style="{background: 'rgb(' + brightness + ',' + brightness + ',' + brightness + ')'}"
+  >
+    <PosterP5 v-bind:style="{transform: 'scale(' + zoom + ')'}"></PosterP5>
   </div>
 </template>
 
@@ -11,6 +14,14 @@ export default {
   name: "Artboard",
   components: {
     PosterP5
+  },
+  computed: {
+    zoom() {
+      return this.$store.state.ui.zoom;
+    },
+    brightness() {
+      return this.$store.state.ui.brightness;
+    }
   }
 };
 </script>
@@ -22,5 +33,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  #poster {
+    box-shadow: 2px 2px 1px 0px rgba(0, 0, 0, 0.2);
+  }
 }
 </style>

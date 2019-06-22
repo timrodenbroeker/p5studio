@@ -16,8 +16,22 @@
       />
     </Group>
     <Group name="View">
-      <RangeSlider label="zoom" v-bind:update="doSomethingStupid"/>
-      <RangeSlider label="Brightness" v-bind:update="doSomethingStupid"/>
+      <RangeSlider
+        label="zoom"
+        v-bind:update="updateZoom"
+        v-bind:min="0.3"
+        v-bind:max="2"
+        v-bind:val="parseFloat(zoom)"
+        v-bind:step="0.01"
+      />
+      <RangeSlider
+        label="Brightness"
+        v-bind:update="updateBrightness"
+        v-bind:min="0"
+        v-bind:max="255"
+        v-bind:val="parseInt(brightness)"
+        v-bind:step="1"
+      />
       <!-- <Checkbox label="Dark Mode"></Checkbox> -->
     </Group>
     <Group name="Export">
@@ -65,6 +79,12 @@ export default {
     },
     textColor() {
       return this.$store.state.colors.text.selectedColor;
+    },
+    zoom() {
+      return this.$store.state.ui.zoom;
+    },
+    brightness() {
+      return this.$store.state.ui.brightness;
     }
   },
   created: function() {},
@@ -80,6 +100,12 @@ export default {
     },
     updateTextColor(index) {
       this.$store.commit("updateTextColor", index);
+    },
+    updateZoom(val) {
+      this.$store.commit("updateZoom", val);
+    },
+    updateBrightness(val) {
+      this.$store.commit("updateBrightness", val);
     }
   }
 };

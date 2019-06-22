@@ -138,3 +138,17 @@ select {
 		background: $uiSecondary;
 	}
 }
+
+.branding {
+	padding: $uiPadding;
+	h1 {
+		color: $uiFG;
+		// font-weight: normal;
+		font-size: 20px;
+
+		sup {
+			font-size: 12px;
+			font-weight: normal;
+		}
+	}
+}

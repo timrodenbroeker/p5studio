@@ -1,5 +1,12 @@
 <template>
   <div id="ui">
+    <div class="branding">
+      <h1>
+        p5studio
+        <sup>0.0.1</sup>
+      </h1>
+    </div>
+
     <Group name="Arrangement">
       <LayerList
         v-bind:update="updateSelectedLayer"
