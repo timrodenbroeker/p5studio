@@ -1,6 +1,6 @@
 {
 	"version": 2,
-	"name": "my-vue-project",
+	"name": "p5-studio",
 	"builds": [{ "src": "package.json", "use": "@now/static-build" }],
 	"routes": [
 		{ "src": "^/js/(.*)", "dest": "/js/$1" },
