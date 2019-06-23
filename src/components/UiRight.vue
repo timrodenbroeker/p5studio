@@ -14,6 +14,13 @@
         v-bind:selectedColor="textColor"
         v-bind:updateSelectedColor="updateTextColor"
       />
+
+      <ColorList
+        label="GRID"
+        v-bind:colors="gridColors"
+        v-bind:selectedColor="gridColor"
+        v-bind:updateSelectedColor="updateGridColor"
+      />
     </Group>
     <Group name="View">
       <RangeSlider
@@ -34,6 +41,25 @@
       />
       <!-- <Checkbox label="Dark Mode"></Checkbox> -->
     </Group>
+    <Group name="Grid">
+      <Checkbox label="Show Grid" v-bind:checked="gridVisible" v-bind:toggle="toggleGridVisibility"></Checkbox>
+      <RangeSlider
+        label="ROWS"
+        v-bind:update="updateGridRows"
+        v-bind:min="1"
+        v-bind:max="12"
+        v-bind:val="parseInt(1)"
+        v-bind:step="1"
+      />
+      <RangeSlider
+        label="COLS"
+        v-bind:update="updateGridCols"
+        v-bind:min="1"
+        v-bind:max="12"
+        v-bind:val="parseInt(1)"
+        v-bind:step="1"
+      />
+    </Group>
     <Group name="Export">
       <Checkbox label="Frame"></Checkbox>
       <Button v-bind:doThis="() => {}" label="PNG" text="SAVE"/>
@@ -44,7 +70,6 @@
 
 <script>
 import RangeSlider from "./ui/reusableComponents/slider/RangeSlider.vue";
-import TextArea from "./ui/reusableComponents/text/TextArea.vue";
 import Button from "./ui/reusableComponents/button/Button.vue";
 import DropDown from "./ui/reusableComponents/select/DropDown.vue";
 import ColorList from "./ui/reusableComponents/color/ColorList.vue";
@@ -56,7 +81,6 @@ export default {
   name: "UiRight",
   components: {
     RangeSlider,
-    TextArea,
     Button,
     Group,
     DropDown,
@@ -85,6 +109,15 @@ export default {
     },
     brightness() {
       return this.$store.state.ui.brightness;
+    },
+    gridVisible() {
+      return this.$store.state.grid.visible;
+    },
+    gridColors() {
+      return this.$store.state.colors.grid.colors;
+    },
+    gridColor() {
+      return this.$store.state.colors.grid.selectedColor;
     }
   },
   created: function() {},
@@ -106,6 +139,19 @@ export default {
     },
     updateBrightness(val) {
       this.$store.commit("updateBrightness", val);
+    },
+    updateGridCols(val) {
+      this.$store.commit("updateGridCols", val);
+    },
+    updateGridRows(val) {
+      this.$store.commit("updateGridRows", val);
+    },
+    toggleGridVisibility() {
+      console.log("HEY");
+      this.$store.commit("toggleGridVisibility");
+    },
+    updateGridColor(index) {
+      this.$store.commit("updateGridColor", index);
     }
   }
 };

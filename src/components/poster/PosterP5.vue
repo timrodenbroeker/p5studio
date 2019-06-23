@@ -95,6 +95,17 @@ export default {
     },
     updateFont() {
       return this.$store.state.headline.updateFont;
+    },
+
+    grid() {
+      return this.$store.state.grid;
+    },
+
+    gridColor() {
+      var c = this.$store.state.colors.grid.colors[
+        this.$store.state.colors.grid.selectedColor
+      ];
+      return c;
     }
 
     // LAYERS
@@ -110,6 +121,10 @@ export default {
       c.img = c.loadImage("images/6798728194_8967ebd8b2_o.jpg");
     },
     setup(c) {
+      // PGraphics: Image
+      c.pgImage = c.createGraphics(this.width, this.height);
+      c.pgText = c.createGraphics(this.width, this.height);
+      c.pgGrid = c.createGraphics(this.width, this.height);
       // c.frameRate(1);
       c.dragging = false;
       c.imageOffsetX = 0;
@@ -121,6 +136,15 @@ export default {
       // c.textFont(c.font);
     },
     draw(c) {
+      ////////////////////////////////////////////////////////
+      // BACKGROUND
+      ////////////////////////////////////////////////////////
+      c.background(this.selectedColor);
+
+      ////////////////////////////////////////////////////////
+      // LOAD NEW FONT
+      ////////////////////////////////////////////////////////
+
       if (this.updateFont == true) {
         c.currentFontPath = c.pathToFonts + this.currentFont;
         c.font = c.loadFont(c.currentFontPath);
@@ -128,7 +152,9 @@ export default {
         this.$store.commit("updateFontFalse");
       }
 
+      ////////////////////////////////////////////////////////
       // DRAGGING
+      ////////////////////////////////////////////////////////
       if (c.dragging) {
         if (this.selectedLayer == "TEXT") {
           var newPos = {
@@ -146,31 +172,66 @@ export default {
         }
       }
 
-      // / DRAGGING
+      ////////////////////////////////////////////////////////
+      // DISPLAY IMAGE
+      ////////////////////////////////////////////////////////
 
-      c.background(this.selectedColor);
-
-      // IMAGE
-      c.push();
-
+      // Calculate Aspect Ration
       var ratio = c.img.height / c.img.width;
+      c.pgImage.clear();
+      c.pgImage.imageMode(c.CENTER);
+      c.pgImage.push();
+      c.pgImage.translate(this.imagePos.x, this.imagePos.y);
+      c.pgImage.image(c.img, 0, 0, this.imageW, this.imageW * ratio);
+      c.pgImage.pop();
 
-      c.translate(this.imagePos.x, this.imagePos.y);
-      c.image(c.img, 0, 0, this.imageW, this.imageW * ratio);
-      c.pop();
+      ////////////////////////////////////////////////////////
+      // DISPLAY GRID
+      ////////////////////////////////////////////////////////
+      c.pgGrid.clear();
+      if (this.grid.visible === true) {
+        var cols = this.grid.cols;
+        var rows = this.grid.rows;
+        var stepX = c.width / cols;
+        var stepY = c.height / rows;
 
-      c.fill(this.textColor);
+        for (var y = 1; y < rows; y++) {
+          for (var x = 1; x < cols; x++) {
+            c.pgGrid.noFill();
+            c.pgGrid.stroke(this.gridColor);
+            c.pgGrid.strokeWeight(1);
+            c.pgGrid.push();
 
+            c.pgGrid.line(x * stepX, 0, x * stepX, c.height);
+            c.pgGrid.pop();
+            c.pgGrid.push();
+            c.pgGrid.line(0, y * stepY, c.width, y * stepY);
+            c.pgGrid.pop();
+          }
+        }
+      }
+
+      ////////////////////////////////////////////////////////
+      // DISPLAY TEXT
+      ////////////////////////////////////////////////////////
+      c.pgText.clear();
+      c.pgText.fill(this.textColor);
+      c.pgText.noStroke();
       var fs = Math.floor(this.fontSize);
       var lh = this.lineHeight;
-      c.textFont(c.font);
-      c.textSize(fs);
-      c.textLeading(fs * lh);
-      c.textAlign(c.LEFT, c.TOP);
-      c.push();
-      c.translate(this.headlinePos.x, this.headlinePos.y);
-      c.text(this.headline, 20, 20);
-      c.pop();
+      c.pgText.textFont(c.font);
+      c.pgText.textSize(fs);
+      c.pgText.textLeading(fs * lh);
+      c.pgText.textAlign(c.LEFT, c.TOP);
+      c.pgText.push();
+      c.pgText.translate(this.headlinePos.x, this.headlinePos.y);
+      c.pgText.text(this.headline, 20, 20);
+      c.pgText.pop();
+
+      // DRAW IMAGELAYER
+      c.image(c.pgImage, this.width / 2, this.height / 2);
+      c.image(c.pgGrid, this.width / 2, this.height / 2);
+      c.image(c.pgText, this.width / 2, this.height / 2);
     },
     mouseMoved(c) {},
     mouseDragged(c) {},

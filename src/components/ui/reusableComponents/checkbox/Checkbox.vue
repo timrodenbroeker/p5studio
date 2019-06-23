@@ -4,7 +4,8 @@
       <label>{{label}}</label>
     </div>
     <div class="controller-controller">
-      <div class="checkbox"></div>
+      <div v-on:click="toggle" v-if="checked" class="checkbox checked"></div>
+      <div v-else v-on:click="toggle" class="checkbox"></div>
     </div>
   </div>
 </template>
@@ -13,7 +14,9 @@
 export default {
   name: "Checkbox",
   props: {
-    label: String
+    label: String,
+    checked: Boolean,
+    toggle: Function
   }
 };
 </script>
@@ -24,5 +27,9 @@ export default {
   height: 15px;
   border: 1px solid $uiFG;
   cursor: pointer;
+
+  &.checked {
+    background: $uiSecondary;
+  }
 }
 </style>

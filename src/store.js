@@ -12,7 +12,9 @@ export default new Vuex.Store({
 			w: 586,
 			h: 810,
 		},
-		// THe Headline
+		////////////////////////////////////////////////////////
+		// HEADLINE
+		////////////////////////////////////////////////////////
 
 		headline: {
 			pos: {
@@ -40,11 +42,15 @@ export default new Vuex.Store({
 
 		colors: {
 			background: {
-				colors: ['#ff0000', '#2203a7', '#f1f1f1', '#111111'],
+				colors: ['#2203a7', '#f1f1f1', '#111111'],
 				selectedColor: 2,
 			},
 			text: {
-				colors: ['#ff0000', '#2203a7', '#f1f1f1', '#111111'],
+				colors: ['#2203a7', '#f1f1f1', '#111111'],
+				selectedColor: 0,
+			},
+			grid: {
+				colors: ['#2203a7', '#f1f1f1', '#111111'],
 				selectedColor: 0,
 			},
 		},
@@ -61,73 +67,44 @@ export default new Vuex.Store({
 			zoom: 1,
 			brightness: 0,
 		},
+
+		////////////////////////////////////////////////////////
+		// GRID
+		////////////////////////////////////////////////////////
+
+		grid: {
+			visible: true,
+			cols: 4,
+			rows: 4,
+		},
 	},
 
 	mutations: {
-		// HEADLINE-POSITION
+		////////////////////////////////////////////////////////
+		// HEADLINE
+		////////////////////////////////////////////////////////
 
 		updateHeadlinePos(state, newPos) {
 			state.headline.pos = newPos;
 		},
-
-		// IMAGE-POSITION
-
-		updateImagePos(state, newPos) {
-			state.image.pos = newPos;
-		},
-
-		// headline.fontSize
-
 		updateFontSize(state, fontSize) {
 			state.headline.fontSize = fontSize;
 		},
 		updateFont(state, font) {
 			state.headline.currentFont = font;
 		},
-
-		// headline.lineHeight
-
 		updateLineHeight(state, lineHeight) {
 			state.headline.lineHeight = lineHeight;
 		},
-
-		// headline.currentFont
-
 		updateCurrentFont(state, val) {
 			state.headline.currentFont = val;
 		},
 
-		// headline.headline
-
 		updateHeadline(state, headline) {
 			state.headline.headline = headline;
 		},
-
-		// headline.color
-
-		updateSelectedColor(state, selectedColor) {
-			state.colors.background.selectedColor = selectedColor;
-		},
-
 		updateTextColor(state, selectedColor) {
 			state.colors.text.selectedColor = selectedColor;
-		},
-
-		// ui.fontsModal
-
-		toggleFontsModal(state, val) {
-			state.ui.ModalSelectFont.visible = !state.ui.ModalSelectFont.visible;
-		},
-
-		updateSelectedLayer(state) {
-			if (state.ui.selectedLayer < state.ui.layers.length - 1) {
-				state.ui.selectedLayer++;
-			} else {
-				state.ui.selectedLayer = 0;
-			}
-		},
-		updateImageW(state, val) {
-			state.image.w = val;
 		},
 
 		updateFontTrue(state) {
@@ -136,11 +113,77 @@ export default new Vuex.Store({
 		updateFontFalse(state) {
 			state.headline.updateFont = false;
 		},
+
+		////////////////////////////////////////////////////////
+		// IMAGE
+		////////////////////////////////////////////////////////
+
+		updateImagePos(state, newPos) {
+			state.image.pos = newPos;
+		},
+		updateImageW(state, val) {
+			state.image.w = val;
+		},
+
+		////////////////////////////////////////////////////////
+		// IMAGE
+		////////////////////////////////////////////////////////
+
+		////////////////////////////////////////////////////////
+		// LAYERS
+		////////////////////////////////////////////////////////
+		updateSelectedLayer(state) {
+			if (state.ui.selectedLayer < state.ui.layers.length - 1) {
+				state.ui.selectedLayer++;
+			} else {
+				state.ui.selectedLayer = 0;
+			}
+		},
+
+		////////////////////////////////////////////////////////
+		// COLORS
+		////////////////////////////////////////////////////////
+
+		updateSelectedColor(state, selectedColor) {
+			state.colors.background.selectedColor = selectedColor;
+		},
+
+		////////////////////////////////////////////////////////
+		// GRID
+		////////////////////////////////////////////////////////
+
+		updateGridCols(state, val) {
+			state.grid.cols = val.target.value;
+		},
+		updateGridRows(state, val) {
+			state.grid.rows = val.target.value;
+		},
+
+		toggleGridVisibility(state) {
+			state.grid.visible = !state.grid.visible;
+		},
+		updateGridColor(state, selectedColor) {
+			state.colors.grid.selectedColor = selectedColor;
+		},
+		////////////////////////////////////////////////////////
+		// VIEW
+		////////////////////////////////////////////////////////
+
 		updateZoom(state, val) {
 			state.ui.zoom = val.target.value;
 		},
 		updateBrightness(state, val) {
 			state.ui.brightness = val.target.value;
 		},
+
+		////////////////////////////////////////////////////////
+		// MODALS
+		////////////////////////////////////////////////////////
+
+		toggleFontsModal(state, val) {
+			state.ui.ModalSelectFont.visible = !state.ui.ModalSelectFont.visible;
+		},
+
+		// ui.fontsModal
 	},
 });
