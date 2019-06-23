@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 import fontFiles from './assets/fonts.json';
+import imageFiles from './assets/images.json';
 
 export default new Vuex.Store({
 	state: {
@@ -30,12 +31,19 @@ export default new Vuex.Store({
 		},
 
 		image: {
+			imageFiles: imageFiles,
+			selectedImage: imageFiles[0],
+			updateImage: false,
 			pos: {
 				x: 586 / 2,
 				y: 810 / 2,
 			},
 			w: 500,
-			selectedImage: 'images/6798728194_8967ebd8b2_o.jpg',
+			rotation: {
+				x: 0,
+				y: 0,
+				z: 0,
+			},
 		},
 
 		// Colors
@@ -62,6 +70,9 @@ export default new Vuex.Store({
 
 			// Modals
 			ModalSelectFont: {
+				visible: false,
+			},
+			ModalSelectImage: {
 				visible: false,
 			},
 			zoom: 1,
@@ -124,10 +135,24 @@ export default new Vuex.Store({
 		updateImageW(state, val) {
 			state.image.w = val;
 		},
-
-		////////////////////////////////////////////////////////
-		// IMAGE
-		////////////////////////////////////////////////////////
+		updateImage(state, val) {
+			state.image.selectedImage = val;
+		},
+		updateImageTrue(state) {
+			state.image.updateImage = true;
+		},
+		updateImageFalse(state) {
+			state.image.updateImage = false;
+		},
+		updateImageRotationX(state, val) {
+			state.image.rotation.x = val;
+		},
+		updateImageRotationY(state, val) {
+			state.image.rotation.y = val;
+		},
+		updateImageRotationZ(state, val) {
+			state.image.rotation.z = val;
+		},
 
 		////////////////////////////////////////////////////////
 		// LAYERS
@@ -182,6 +207,10 @@ export default new Vuex.Store({
 
 		toggleFontsModal(state, val) {
 			state.ui.ModalSelectFont.visible = !state.ui.ModalSelectFont.visible;
+		},
+
+		toggleImagesModal(state, val) {
+			state.ui.ModalSelectImage.visible = !state.ui.ModalSelectImage.visible;
 		},
 
 		// ui.fontsModal

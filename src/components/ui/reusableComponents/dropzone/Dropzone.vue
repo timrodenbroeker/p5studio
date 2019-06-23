@@ -10,6 +10,7 @@
         @dragenter="dragging=true"
         @dragend="uploadFile"
         @dragleave="dragging=false"
+        @drop="dragging=false"
       >{{text}}</div>
     </div>
   </div>
@@ -22,6 +23,7 @@ export default {
     label: String,
     text: String
   },
+  mounted() {},
   data() {
     return {
       image: "",

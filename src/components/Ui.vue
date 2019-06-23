@@ -46,19 +46,44 @@
 
       <DisplayString label="FONT" v-bind:text="currentFont"></DisplayString>
 
-      <Button v-bind:doThis="toggleVisibility" label="Select Font" text="Open Library"/>
+      <Button v-bind:doThis="toggleFontsModal" label="Select Font" text="Open Library"/>
     </Group>
     <Group name="Image">
       <Dropzone label="upload" text="drop a file"></Dropzone>
       <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
-      <Button label="Select" text="Open Library" v-bind:doThis="doSomethingStupid"/>
+      <Button label="Select" text="Open Library" v-bind:doThis="toggleImagesModal"/>
       <RangeSlider
         label="Width"
         v-bind:min="0"
-        v-bind:max="1000"
+        v-bind:max="1700"
         v-bind:val="parseInt(imageW)"
         v-bind:step="1"
         v-bind:update="updateImageW"
+      />
+
+      <RangeSlider
+        label="Rotate X"
+        v-bind:min="0"
+        v-bind:max="360"
+        v-bind:val="parseInt(imageRotationX)"
+        v-bind:step="1"
+        v-bind:update="updateImageRotationX"
+      />
+      <RangeSlider
+        label="Rotate Y"
+        v-bind:min="0"
+        v-bind:max="360"
+        v-bind:val="parseInt(imageRotationY)"
+        v-bind:step="1"
+        v-bind:update="updateImageRotationY"
+      />
+      <RangeSlider
+        label="Rotate Z"
+        v-bind:min="0"
+        v-bind:max="360"
+        v-bind:val="parseInt(imageRotationZ)"
+        v-bind:step="1"
+        v-bind:update="updateImageRotationZ"
       />
     </Group>
   </div>
@@ -133,6 +158,15 @@ export default {
     currentFont() {
       var cf = this.$store.state.headline.currentFont;
       return cf;
+    },
+    imageRotationX() {
+      var r = this.$store.state.image.rotation.x;
+    },
+    imageRotationY() {
+      var r = this.$store.state.image.rotation.y;
+    },
+    imageRotationZ() {
+      var r = this.$store.state.image.rotation.z;
     }
   },
   created: function() {},
@@ -155,14 +189,27 @@ export default {
     updateSelectedLayer() {
       this.$store.commit("updateSelectedLayer");
     },
-    toggleVisibility() {
+    toggleFontsModal() {
       this.$store.commit("toggleFontsModal");
+    },
+    toggleImagesModal() {
+      this.$store.commit("toggleImagesModal");
     },
     updateCurrentFont(val) {
       this.$store.commit("updateCurrentFont", val);
     },
     updateImageW(e) {
       this.$store.commit("updateImageW", e.target.value);
+    },
+
+    updateImageRotationX(e) {
+      this.$store.commit("updateImageRotationX", e.target.value);
+    },
+    updateImageRotationY(e) {
+      this.$store.commit("updateImageRotationY", e.target.value);
+    },
+    updateImageRotationZ(e) {
+      this.$store.commit("updateImageRotationZ", e.target.value);
     }
   }
 };

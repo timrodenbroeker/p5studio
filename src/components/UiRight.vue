@@ -65,6 +65,7 @@
       <Button v-bind:doThis="() => {}" label="PNG" text="SAVE"/>
       <Button v-bind:doThis="() => {}" label="JPG" text="SAVE"/>
     </Group>
+    <Group name="video"></Group>
   </div>
 </template>
 

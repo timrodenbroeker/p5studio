@@ -2,21 +2,27 @@
   <div id="modals">
     <transition name="slide-fade">
       <modal-select-font v-if="ModalSelectFontVisible == true"></modal-select-font>
+      <modal-select-image v-if="ModalSelectImageVisible == true"></modal-select-image>
     </transition>
   </div>
 </template>
 
 <script>
 import ModalSelectFont from "./selectFont/SelectFont.vue";
+import ModalSelectImage from "./selectImage/SelectImage.vue";
 
 export default {
   name: "Modals",
   components: {
-    ModalSelectFont
+    ModalSelectFont,
+    ModalSelectImage
   },
   computed: {
     ModalSelectFontVisible() {
       return this.$store.state.ui.ModalSelectFont.visible;
+    },
+    ModalSelectImageVisible() {
+      return this.$store.state.ui.ModalSelectImage.visible;
     }
   }
 };

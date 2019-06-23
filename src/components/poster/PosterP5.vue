@@ -42,6 +42,15 @@ export default {
     imagePos() {
       return this.$store.state.image.pos;
     },
+    imageRotationX() {
+      return this.$store.state.image.rotation.x;
+    },
+    imageRotationY() {
+      return this.$store.state.image.rotation.y;
+    },
+    imageRotationZ() {
+      return this.$store.state.image.rotation.z;
+    },
 
     imageW() {
       return this.$store.state.image.w;
@@ -65,6 +74,12 @@ export default {
     },
     currentFont() {
       var result = this.$store.state.headline.currentFont;
+      return result;
+    },
+
+    currentImage() {
+      var result = this.$store.state.image.selectedImage;
+
       return result;
     },
 
@@ -97,6 +112,10 @@ export default {
       return this.$store.state.headline.updateFont;
     },
 
+    updateImage() {
+      return this.$store.state.image.updateImage;
+    },
+
     grid() {
       return this.$store.state.grid;
     },
@@ -118,11 +137,13 @@ export default {
       c.currentFontPath = c.pathToFonts + this.currentFont;
       c.font = c.loadFont(c.currentFontPath);
 
-      c.img = c.loadImage("images/6798728194_8967ebd8b2_o.jpg");
+      c.pathToImages = "images/";
+      c.currentImagePath = c.pathToImages + this.currentImage;
+      c.img = c.loadImage(c.currentImagePath);
     },
     setup(c) {
       // PGraphics: Image
-      c.pgImage = c.createGraphics(this.width, this.height);
+      c.pgImage = c.createGraphics(this.width, this.height, c.WEBGL);
       c.pgText = c.createGraphics(this.width, this.height);
       c.pgGrid = c.createGraphics(this.width, this.height);
       // c.frameRate(1);
@@ -150,6 +171,18 @@ export default {
         c.font = c.loadFont(c.currentFontPath);
 
         this.$store.commit("updateFontFalse");
+      }
+      ////////////////////////////////////////////////////////
+      // LOAD NEW IMAGE
+      ////////////////////////////////////////////////////////
+      if (this.updateImage == true) {
+        c.currentImagePath = c.pathToImages + this.currentImage;
+
+        console.log(c.currentImagePath);
+
+        c.img = c.loadImage(c.currentImagePath);
+
+        this.$store.commit("updateImageFalse");
       }
 
       ////////////////////////////////////////////////////////
@@ -179,10 +212,23 @@ export default {
       // Calculate Aspect Ration
       var ratio = c.img.height / c.img.width;
       c.pgImage.clear();
+
+      // c.pgImage.directionalLight(255, 255, 255, 1, -1, 0);
       c.pgImage.imageMode(c.CENTER);
       c.pgImage.push();
       c.pgImage.translate(this.imagePos.x, this.imagePos.y);
-      c.pgImage.image(c.img, 0, 0, this.imageW, this.imageW * ratio);
+      c.pgImage.translate(-c.width / 2, -c.height / 2);
+      // c.pgImage.rotate();
+
+      c.pgImage.texture(c.img);
+      c.pgImage.rotateX(c.radians(this.imageRotationX));
+      c.pgImage.rotateY(c.radians(this.imageRotationY));
+      c.pgImage.rotateZ(c.radians(this.imageRotationZ));
+      c.pgImage.plane(this.imageW, this.imageW * ratio);
+      // c.pgImage.image(c.img, 0, 0, this.imageW, this.imageW * ratio);
+
+      c.img.filter(c.GRAY);
+      // c.pgImage.tint(0, 153, 204); // Tint blue
       c.pgImage.pop();
 
       ////////////////////////////////////////////////////////

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div id="silk" v-on:click="toggleVisibility"></div>
+    <div id="silk" v-on:click="toggleFontsModal"></div>
     <div class="modal">
-      <div v-on:click="toggleVisibility" class="close"></div>
+      <div v-on:click="toggleFontsModal" class="close"></div>
       <div class="fontList">
         <div
           class="font"
@@ -25,7 +25,7 @@ export default {
     }
   },
   methods: {
-    toggleVisibility() {
+    toggleFontsModal() {
       this.$store.commit("toggleFontsModal");
     },
     updateFont: function(font) {
