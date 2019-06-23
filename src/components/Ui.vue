@@ -49,6 +49,7 @@
       <Button v-bind:doThis="toggleVisibility" label="Select Font" text="Open Library"/>
     </Group>
     <Group name="Image">
+      <Dropzone label="upload" text="drop a file"></Dropzone>
       <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
       <Button label="Select" text="Open Library" v-bind:doThis="doSomethingStupid"/>
       <RangeSlider
@@ -73,6 +74,7 @@ import Position from "./ui/reusableComponents/position/Position.vue";
 import Group from "./ui/reusableComponents/group/Group.vue";
 import LayerList from "./ui/reusableComponents/layerlist/LayerList.vue";
 import DisplayString from "./ui/reusableComponents/display/DisplayString.vue";
+import Dropzone from "./ui/reusableComponents/dropzone/Dropzone.vue";
 
 export default {
   name: "Ui",
@@ -85,7 +87,8 @@ export default {
     ColorList,
     Position,
     LayerList,
-    DisplayString
+    DisplayString,
+    Dropzone
   },
 
   // computed
