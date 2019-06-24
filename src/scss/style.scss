@@ -118,12 +118,20 @@ body {
 	}
 }
 
-// ::-moz-selection {
-// 	background: transparent;
-// }
-// ::selection {
-// 	background: transparent;
-// }
+::-moz-selection {
+	background: transparent;
+}
+::selection {
+	background: transparent;
+}
+
+textarea::-moz-selection {
+	background: yellow;
+}
+textarea::selection {
+	background: $uiSecondary;
+	color: $uiBG;
+}
 
 button,
 select {

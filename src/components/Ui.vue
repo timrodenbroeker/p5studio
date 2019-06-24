@@ -16,7 +16,7 @@
       ></LayerList>
     </Group>
 
-    <Group name="headline">
+    <Group name="headline" v-if="layers[selectedLayer] == 'TEXT'">
       <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
       <RangeSlider
         label="fontsize"
@@ -35,7 +35,7 @@
       />
 
       <TextArea
-        v-bind:rows="4"
+        v-bind:rows="3"
         label="headline"
         :value="headline"
         v-bind:text="headline"
@@ -47,8 +47,20 @@
       <DisplayString label="FONT" v-bind:text="currentFont"></DisplayString>
 
       <Button v-bind:doThis="toggleFontsModal" label="Select Font" text="Open Library"/>
+
+      <TextAlign label="Align"/>
     </Group>
-    <Group name="Image">
+
+    <Group name="Subline" v-if="layers[selectedLayer] == 'TEXT'">
+      <TextArea
+        v-bind:rows="3"
+        label="subline"
+        :value="subline"
+        v-bind:text="subline"
+        v-bind:update="updateSubline"
+      />
+    </Group>
+    <Group name="Image" v-if="layers[selectedLayer] == 'IMAGE'">
       <Dropzone label="upload" text="drop a file"></Dropzone>
       <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
       <Button label="Select" text="Open Library" v-bind:doThis="toggleImagesModal"/>
@@ -100,6 +112,7 @@ import Group from "./ui/reusableComponents/group/Group.vue";
 import LayerList from "./ui/reusableComponents/layerlist/LayerList.vue";
 import DisplayString from "./ui/reusableComponents/display/DisplayString.vue";
 import Dropzone from "./ui/reusableComponents/dropzone/Dropzone.vue";
+import TextAlign from "./ui/reusableComponents/textalign/TextAlign.vue";
 
 export default {
   name: "Ui",
@@ -113,7 +126,8 @@ export default {
     Position,
     LayerList,
     DisplayString,
-    Dropzone
+    Dropzone,
+    TextAlign
   },
 
   // computed
@@ -144,6 +158,9 @@ export default {
     },
     headline() {
       return this.$store.state.headline.headline;
+    },
+    subline() {
+      return this.$store.state.subline.text;
     },
     fontFiles() {
       return this.$store.state.headline.fontFiles;
@@ -185,6 +202,9 @@ export default {
     },
     updateHeadline(e) {
       this.$store.commit("updateHeadline", e.target.value);
+    },
+    updateSubline(e) {
+      this.$store.commit("updateSubline", e.target.value);
     },
     updateSelectedLayer() {
       this.$store.commit("updateSelectedLayer");

@@ -61,7 +61,6 @@
       />
     </Group>
     <Group name="RENDER">
-      <Checkbox label="Frame"></Checkbox>
       <Button v-bind:doThis="doSomethingStupid" label="PNG" text="SAVE"/>
       <Button v-bind:doThis="doSomethingStupid" label="JPG" text="SAVE"/>
       <VideoRecorder

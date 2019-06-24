@@ -59,6 +59,10 @@ export default {
       return this.$store.state.headline.headline;
     },
 
+    subline() {
+      return this.$store.state.subline.text;
+    },
+
     fontSize() {
       return this.$store.state.headline.fontSize;
     },
@@ -127,9 +131,6 @@ export default {
     },
     recording() {
       return this.$store.state.render.record;
-    },
-    brightness() {
-      return this.$store.state.ui.brightness;
     }
 
     // LAYERS
@@ -141,6 +142,7 @@ export default {
       c.pathToFonts = "fonts/";
       c.currentFontPath = c.pathToFonts + this.currentFont;
       c.font = c.loadFont(c.currentFontPath);
+      c.fontSecondary = c.loadFont(c.pathToFonts + "SpaceMono-Bold.ttf");
 
       c.pathToImages = "images/";
       c.currentImagePath = c.pathToImages + this.currentImage;
@@ -149,7 +151,6 @@ export default {
     setup(c) {
       // PGraphics: Image
       c.pgImage = c.createGraphics(this.width, this.height, c.WEBGL);
-      c.stack = c.createGraphics(this.width, this.height);
       c.pgText = c.createGraphics(this.width, this.height);
       c.pgGrid = c.createGraphics(this.width, this.height);
       // c.frameRate(1);
@@ -158,7 +159,7 @@ export default {
       c.imageOffsetY = 0;
       c.headlineOffsetX = 0;
       c.headlineOffsetY = 0;
-      c.createCanvas(900, 900);
+      c.createCanvas(586, 810);
       c.imageMode(c.CENTER);
 
       c.recordingStarted = false;
@@ -172,11 +173,7 @@ export default {
       ////////////////////////////////////////////////////////
       // BACKGROUND
       ////////////////////////////////////////////////////////
-
-      c.background(parseInt(this.brightness));
-      c.stack.background(this.selectedColor);
-      c.stack.imageMode(c.CENTER);
-      c.imageMode(c.CENTER);
+      c.background(this.selectedColor);
 
       ////////////////////////////////////////////////////////
       // LOAD NEW FONT
@@ -273,7 +270,7 @@ export default {
       }
 
       ////////////////////////////////////////////////////////
-      // DISPLAY TEXT
+      // DISPLAY HEADLINE
       ////////////////////////////////////////////////////////
       c.pgText.clear();
       c.pgText.fill(this.textColor);
@@ -289,11 +286,25 @@ export default {
       c.pgText.text(this.headline, 20, 20);
       c.pgText.pop();
 
-      // DRAW IMAGELAYER
-      c.stack.image(c.pgImage, c.stack.width / 2, c.stack.height / 2);
-      c.stack.image(c.pgGrid, c.stack.width / 2, c.stack.height / 2);
-      c.stack.image(c.pgText, c.stack.width / 2, c.stack.height / 2);
-      c.image(c.stack, c.width / 2, c.height / 2);
+      ////////////////////////////////////////////////////////
+      // DISPLAY SUBLINE
+      ////////////////////////////////////////////////////////
+      c.pgText.textFont(c.fontSecondary);
+      c.pgText.textSize(10);
+      c.pgText.textLeading(10);
+      c.pgText.textAlign(c.CENTER, c.CENTER);
+      c.pgText.push();
+      c.pgText.translate(c.width / 2, c.height - 60);
+      c.pgText.text(this.subline.toUpperCase(), 0, 0);
+      c.pgText.pop();
+
+      ////////////////////////////////////////////////////////
+      // THE IMAGE-STACK
+      ////////////////////////////////////////////////////////
+
+      c.image(c.pgImage, this.width / 2, this.height / 2);
+      c.image(c.pgGrid, this.width / 2, this.height / 2);
+      c.image(c.pgText, this.width / 2, this.height / 2);
 
       ////////////////////////////////////////////////////////
       // RECORD CANVAS

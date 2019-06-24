@@ -20,7 +20,7 @@ export default {
 
 <style scoped lang="scss">
 .controller-group {
-  margin-bottom: 25px;
+  margin-bottom: 5px;
 }
 
 .group-controllers {

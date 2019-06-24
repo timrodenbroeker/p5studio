@@ -30,6 +30,10 @@ export default new Vuex.Store({
 			updateFont: false,
 		},
 
+		subline: {
+			text: '',
+		},
+
 		image: {
 			imageFiles: imageFiles,
 			selectedImage: imageFiles[0],
@@ -129,6 +133,14 @@ export default new Vuex.Store({
 		},
 
 		////////////////////////////////////////////////////////
+		// SUBLINE
+		////////////////////////////////////////////////////////
+
+		updateSubline(state, text) {
+			state.subline.text = text;
+		},
+
+		////////////////////////////////////////////////////////
 		// IMAGE
 		////////////////////////////////////////////////////////
 
@@ -218,8 +230,6 @@ export default new Vuex.Store({
 
 		toggleRecord(state) {
 			state.render.record = !state.render.record;
-
-			console.log(state.render.record);
 		},
 
 		// ui.fontsModal

@@ -27,14 +27,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.layers {
+  width: 100%;
+  display: flex;
+}
 .layer {
   .inner {
     text-transform: uppercase;
     font-size: $uiText;
-    padding: 3px;
+    padding: 3px 10px;
     margin-bottom: 1px;
     width: 100%;
-    max-width: $uiButtonWidth;
+
     background: $uiFG;
     cursor: pointer;
 
