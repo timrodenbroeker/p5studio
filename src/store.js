@@ -89,7 +89,7 @@ export default new Vuex.Store({
 			rows: 4,
 		},
 		render: {
-			record: true,
+			record: false,
 		},
 	},
 
