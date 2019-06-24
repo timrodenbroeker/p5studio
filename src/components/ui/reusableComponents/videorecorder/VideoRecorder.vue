@@ -4,7 +4,7 @@
       <label>{{label}}</label>
     </div>
     <div class="controller-controller">
-      <div v-for="option in options" v-bind:key="option">{{option}}</div>
+      <button>RECORD</button>
     </div>
   </div>
 </template>
@@ -15,18 +15,11 @@ export default {
   props: {
     label: String
   },
-  data: {
-    options: ["LEFT", "CENTER", "RIGHT"]
-  },
+
   computed: {},
   methods: {}
 };
 </script>
 
 <style scoped lang="scss">
-input {
-  background: #d3d3d3;
-  color: white;
-  border: 0;
-}
 </style>

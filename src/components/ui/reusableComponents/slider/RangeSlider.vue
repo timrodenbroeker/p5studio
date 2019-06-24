@@ -4,7 +4,7 @@
       <label>{{label}}</label>
     </div>
     <div class="controller-controller">
-      <input type="range" :min="min" :max="max" :value="val" :step="step" @input="update">
+      <input type="range" :min="min" :max="max" v-model="val" :step="step" @input="update">
     </div>
   </div>
 </template>
@@ -59,8 +59,5 @@ export default {
   &:hover input {
     opacity: 1; /* Fully shown on mouse-over */
   }
-}
-
-.controller-controller:hover input {
 }
 </style>

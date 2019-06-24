@@ -7,10 +7,10 @@
       </h1>
     </div>
 
-    <Group name="Arrangement">
+    <Group name="SELECT">
       <LayerList
         v-bind:update="updateSelectedLayer"
-        label="layers"
+        label="layer"
         v-bind:options="layers"
         v-bind:selected="selectedLayer"
       ></LayerList>

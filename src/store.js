@@ -65,7 +65,7 @@ export default new Vuex.Store({
 
 		ui: {
 			// SelectedLayer
-			layers: ['TEXT', 'IMAGE'],
+			layers: ['IMAGE', 'TEXT'],
 			selectedLayer: 0,
 
 			// Modals

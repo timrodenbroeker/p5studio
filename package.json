@@ -10,6 +10,7 @@
 		"now-build": "vue-cli-service build"
 	},
 	"dependencies": {
+		"ccapture.js": "^1.1.0",
 		"core-js": "^2.6.5",
 		"p5": "^0.8.0",
 		"vue": "^2.6.10",

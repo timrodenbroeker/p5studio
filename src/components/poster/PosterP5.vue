@@ -5,8 +5,6 @@
         @setup="setup"
         @draw="draw"
         @preload="preload"
-        @mousemoved="mouseMoved"
-        @mousedragged="mouseDragged"
         @mousepressed="mousePressed"
         @mousereleased="mouseReleased"
         v-once
@@ -17,6 +15,7 @@
 
 <script>
 import VueP5 from "vue-p5";
+import CanvasRecorder from "../../utils/canvasRecorder";
 
 export default {
   name: "PosterP5",
@@ -155,6 +154,10 @@ export default {
       c.createCanvas(586, 810);
       c.imageMode(c.CENTER);
       // c.textFont(c.font);
+
+      // Create a capturer that exports a WebM video
+      // c.capturer = new CCapture({ format: "webm" });
+      c.recorder = new CanvasRecorder(c.canvas);
     },
     draw(c) {
       ////////////////////////////////////////////////////////
@@ -178,8 +181,6 @@ export default {
       if (this.updateImage == true) {
         c.currentImagePath = c.pathToImages + this.currentImage;
 
-        console.log(c.currentImagePath);
-
         c.img = c.loadImage(c.currentImagePath);
 
         this.$store.commit("updateImageFalse");
@@ -189,14 +190,15 @@ export default {
       // DRAGGING
       ////////////////////////////////////////////////////////
       if (c.dragging) {
+        var newPos;
         if (this.selectedLayer == "TEXT") {
-          var newPos = {
+          newPos = {
             x: Math.floor(c.mouseX + c.headlineOffsetX),
             y: Math.floor(c.mouseY + c.headlineOffsetY)
           };
           this.$store.commit("updateHeadlinePos", newPos);
         } else if (this.selectedLayer == "IMAGE") {
-          var newPos = {
+          newPos = {
             x: Math.floor(c.mouseX + c.imageOffsetX),
             y: Math.floor(c.mouseY + c.imageOffsetY)
           };
@@ -278,9 +280,21 @@ export default {
       c.image(c.pgImage, this.width / 2, this.height / 2);
       c.image(c.pgGrid, this.width / 2, this.height / 2);
       c.image(c.pgText, this.width / 2, this.height / 2);
+
+      ////////////////////////////////////////////////////////
+      // RECORD CANVAS
+      ////////////////////////////////////////////////////////
+
+      if (c.frameCount == 10) {
+        c.recorder.start();
+      }
+      if (c.frameCount == 60) {
+        c.recorder.stop();
+        c.recorder.save("busy_motion.webm");
+      }
     },
-    mouseMoved(c) {},
-    mouseDragged(c) {},
+    // mouseMoved(c) {},
+    // mouseDragged(c) {},
     mouseReleased(c) {
       // Quit dragging
       c.dragging = false;
@@ -310,6 +324,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-</style>
