@@ -94,6 +94,8 @@ export default new Vuex.Store({
 		},
 		render: {
 			record: false,
+			savePNG: false,
+			saveJPG: false,
 		},
 	},
 
@@ -230,6 +232,16 @@ export default new Vuex.Store({
 
 		toggleRecord(state) {
 			state.render.record = !state.render.record;
+		},
+		savePNG(state) {
+			state.render.savePNG = true;
+		},
+		saveJPG(state) {
+			state.render.saveJPG = true;
+		},
+		stopSaving(state) {
+			state.render.saveJPG = false;
+			state.render.savePNG = false;
 		},
 
 		// ui.fontsModal

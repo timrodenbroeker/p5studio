@@ -61,8 +61,8 @@
       />
     </Group>
     <Group name="RENDER">
-      <Button v-bind:doThis="doSomethingStupid" label="PNG" text="SAVE"/>
-      <Button v-bind:doThis="doSomethingStupid" label="JPG" text="SAVE"/>
+      <Button v-bind:doThis="savePNG" label="PNG" text="SAVE"/>
+      <Button v-bind:doThis="saveJPG" label="JPG" text="SAVE"/>
       <VideoRecorder
         v-bind:recording="recording"
         v-bind:doThis="toggleRecord"
@@ -165,6 +165,12 @@ export default {
     },
     toggleRecord() {
       this.$store.commit("toggleRecord");
+    },
+    savePNG() {
+      this.$store.commit("savePNG");
+    },
+    saveJPG() {
+      this.$store.commit("saveJPG");
     }
   }
 };

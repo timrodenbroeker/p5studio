@@ -131,6 +131,12 @@ export default {
     },
     recording() {
       return this.$store.state.render.record;
+    },
+    savePNG() {
+      return this.$store.state.render.savePNG;
+    },
+    saveJPG() {
+      return this.$store.state.render.saveJPG;
     }
 
     // LAYERS
@@ -317,8 +323,21 @@ export default {
 
       if (c.recordingStarted === true && this.recording === false) {
         c.recorder.stop();
-        c.recorder.save("busy_motion.webm");
+        c.recorder.save("p5studioExport.webm");
         c.recordingStarted = false;
+      }
+
+      ////////////////////////////////////////////////////////
+      // SAVE PNG / JPG
+      ////////////////////////////////////////////////////////
+
+      if (this.savePNG === true) {
+        c.save("poster.png");
+        this.$store.commit("stopSaving");
+      }
+      if (this.saveJPG === true) {
+        c.save("poster.jpg");
+        this.$store.commit("stopSaving");
       }
     },
     // mouseMoved(c) {},
