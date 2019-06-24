@@ -127,6 +127,9 @@ export default {
     },
     recording() {
       return this.$store.state.render.record;
+    },
+    brightness() {
+      return this.$store.state.ui.brightness;
     }
 
     // LAYERS
@@ -146,6 +149,7 @@ export default {
     setup(c) {
       // PGraphics: Image
       c.pgImage = c.createGraphics(this.width, this.height, c.WEBGL);
+      c.stack = c.createGraphics(this.width, this.height);
       c.pgText = c.createGraphics(this.width, this.height);
       c.pgGrid = c.createGraphics(this.width, this.height);
       // c.frameRate(1);
@@ -154,7 +158,7 @@ export default {
       c.imageOffsetY = 0;
       c.headlineOffsetX = 0;
       c.headlineOffsetY = 0;
-      c.createCanvas(586, 810);
+      c.createCanvas(900, 900);
       c.imageMode(c.CENTER);
 
       c.recordingStarted = false;
@@ -168,7 +172,11 @@ export default {
       ////////////////////////////////////////////////////////
       // BACKGROUND
       ////////////////////////////////////////////////////////
-      c.background(this.selectedColor);
+
+      c.background(parseInt(this.brightness));
+      c.stack.background(this.selectedColor);
+      c.stack.imageMode(c.CENTER);
+      c.imageMode(c.CENTER);
 
       ////////////////////////////////////////////////////////
       // LOAD NEW FONT
@@ -282,9 +290,10 @@ export default {
       c.pgText.pop();
 
       // DRAW IMAGELAYER
-      c.image(c.pgImage, this.width / 2, this.height / 2);
-      c.image(c.pgGrid, this.width / 2, this.height / 2);
-      c.image(c.pgText, this.width / 2, this.height / 2);
+      c.stack.image(c.pgImage, c.stack.width / 2, c.stack.height / 2);
+      c.stack.image(c.pgGrid, c.stack.width / 2, c.stack.height / 2);
+      c.stack.image(c.pgText, c.stack.width / 2, c.stack.height / 2);
+      c.image(c.stack, c.width / 2, c.height / 2);
 
       ////////////////////////////////////////////////////////
       // RECORD CANVAS
