@@ -4,7 +4,7 @@
       <label>{{label}}</label>
     </div>
     <div class="controller-controller">
-      <input type="range" :min="min" :max="max" v-model="val" :step="step" @input="update">
+      <input type="range" :min="min" :max="max" v-bind:value="val" :step="step" @input="update">
     </div>
   </div>
 </template>
