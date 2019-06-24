@@ -124,6 +124,9 @@ export default {
         this.$store.state.colors.grid.selectedColor
       ];
       return c;
+    },
+    recording() {
+      return this.$store.state.render.record;
     }
 
     // LAYERS
@@ -153,6 +156,8 @@ export default {
       c.headlineOffsetY = 0;
       c.createCanvas(586, 810);
       c.imageMode(c.CENTER);
+
+      c.recordingStarted = false;
       // c.textFont(c.font);
 
       // Create a capturer that exports a WebM video
@@ -285,12 +290,15 @@ export default {
       // RECORD CANVAS
       ////////////////////////////////////////////////////////
 
-      if (c.frameCount == 10) {
+      if (this.recording === true && c.recordingStarted === false) {
         c.recorder.start();
+        c.recordingStarted = true;
       }
-      if (c.frameCount == 60) {
+
+      if (c.recordingStarted === true && this.recording === false) {
         c.recorder.stop();
         c.recorder.save("busy_motion.webm");
+        c.recordingStarted = false;
       }
     },
     // mouseMoved(c) {},

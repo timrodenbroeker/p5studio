@@ -88,6 +88,9 @@ export default new Vuex.Store({
 			cols: 4,
 			rows: 4,
 		},
+		render: {
+			record: true,
+		},
 	},
 
 	mutations: {
@@ -211,6 +214,12 @@ export default new Vuex.Store({
 
 		toggleImagesModal(state, val) {
 			state.ui.ModalSelectImage.visible = !state.ui.ModalSelectImage.visible;
+		},
+
+		toggleRecord(state) {
+			state.render.record = !state.render.record;
+
+			console.log(state.render.record);
 		},
 
 		// ui.fontsModal

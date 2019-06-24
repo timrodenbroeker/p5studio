@@ -60,12 +60,17 @@
         v-bind:step="1"
       />
     </Group>
-    <Group name="Export">
+    <Group name="RENDER">
       <Checkbox label="Frame"></Checkbox>
-      <Button v-bind:doThis="() => {}" label="PNG" text="SAVE"/>
-      <Button v-bind:doThis="() => {}" label="JPG" text="SAVE"/>
+      <Button v-bind:doThis="doSomethingStupid" label="PNG" text="SAVE"/>
+      <Button v-bind:doThis="doSomethingStupid" label="JPG" text="SAVE"/>
+      <VideoRecorder
+        v-bind:recording="recording"
+        v-bind:doThis="toggleRecord"
+        label="VIDEO"
+        text="RECORD"
+      />
     </Group>
-    <Group name="video"></Group>
   </div>
 </template>
 
@@ -77,6 +82,7 @@ import ColorList from "./ui/reusableComponents/color/ColorList.vue";
 import Position from "./ui/reusableComponents/position/Position.vue";
 import Group from "./ui/reusableComponents/group/Group.vue";
 import Checkbox from "./ui/reusableComponents/checkbox/Checkbox.vue";
+import VideoRecorder from "./ui/reusableComponents/videorecorder/VideoRecorder.vue";
 
 export default {
   name: "UiRight",
@@ -87,7 +93,8 @@ export default {
     DropDown,
     ColorList,
     Position,
-    Checkbox
+    Checkbox,
+    VideoRecorder
   },
 
   // computed
@@ -119,6 +126,9 @@ export default {
     },
     gridColor() {
       return this.$store.state.colors.grid.selectedColor;
+    },
+    recording() {
+      return this.$store.state.render.record;
     }
   },
   created: function() {},
@@ -153,6 +163,9 @@ export default {
     },
     updateGridColor(index) {
       this.$store.commit("updateGridColor", index);
+    },
+    toggleRecord() {
+      this.$store.commit("toggleRecord");
     }
   }
 };
