@@ -1,18 +1,11 @@
 <template>
   <div id="uiRight">
-    <Group name="Colors">
+    <Group name="Colors" headline>
       <ColorList
         label="Background"
         v-bind:colors="colors"
         v-bind:selectedColor="selectedColor"
         v-bind:updateSelectedColor="updateSelectedColor"
-      />
-
-      <ColorList
-        label="Text"
-        v-bind:colors="textColors"
-        v-bind:selectedColor="textColor"
-        v-bind:updateSelectedColor="updateTextColor"
       />
 
       <ColorList
@@ -22,7 +15,7 @@
         v-bind:updateSelectedColor="updateGridColor"
       />
     </Group>
-    <Group name="View">
+    <Group name="View" headline border>
       <RangeSlider
         label="zoom"
         v-bind:update="updateZoom"
@@ -41,7 +34,7 @@
       />
       <!-- <Checkbox label="Dark Mode"></Checkbox> -->
     </Group>
-    <Group name="Grid">
+    <Group name="Grid" headline border>
       <Checkbox label="Show Grid" v-bind:checked="gridVisible" v-bind:toggle="toggleGridVisibility"></Checkbox>
       <RangeSlider
         label="ROWS"
@@ -60,7 +53,7 @@
         v-bind:step="1"
       />
     </Group>
-    <Group name="RENDER">
+    <Group name="SAVE" headline border>
       <Button v-bind:doThis="savePNG" label="PNG" text="SAVE"/>
       <Button v-bind:doThis="saveJPG" label="JPG" text="SAVE"/>
       <VideoRecorder
@@ -179,6 +172,7 @@ export default {
 <style scoped lang="scss">
 #uiRight {
   position: fixed;
+  z-index: 99999;
   top: 0;
   right: 0;
   width: $uiWidth;

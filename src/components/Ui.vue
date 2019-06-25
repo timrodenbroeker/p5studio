@@ -1,23 +1,31 @@
 <template>
   <div id="ui">
-    <div class="branding">
+    <div class="branding" style="margin-bottom: 30px;">
       <h1>
         p5studio
         <sup>0.0.1</sup>
       </h1>
     </div>
 
-    <Group name="SELECT">
-      <LayerList
-        v-bind:update="updateSelectedLayer"
-        label="layer"
-        v-bind:options="layers"
-        v-bind:selected="selectedLayer"
-      ></LayerList>
-    </Group>
+    <LayerList
+      v-bind:update="updateSelectedLayer"
+      label="layer"
+      v-bind:options="layers"
+      v-bind:selected="selectedLayer"
+    ></LayerList>
+
+    <!-- <Tabs v-model="layers"></Tabs> -->
 
     <Group name="headline" v-if="layers[selectedLayer] == 'TEXT'">
       <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
+      <TextArea
+        v-bind:rows="3"
+        label="headline"
+        :value="headline"
+        v-bind:text="headline"
+        v-bind:update="updateHeadline"
+      />
+
       <RangeSlider
         label="fontsize"
         v-bind:min="10"
@@ -33,13 +41,11 @@
         v-bind:step="0.01"
         v-bind:update="updateLineHeight"
       />
-
-      <TextArea
-        v-bind:rows="3"
-        label="headline"
-        :value="headline"
-        v-bind:text="headline"
-        v-bind:update="updateHeadline"
+      <ColorList
+        label="COLOR"
+        v-bind:colors="textColors"
+        v-bind:selectedColor="textColor"
+        v-bind:updateSelectedColor="updateTextColor"
       />
 
       <!-- <DropDown label="Font" v-bind:options="fontFiles" :update="updateCurrentFont()"/> -->
@@ -50,7 +56,7 @@
 
       <TextAlign label="Align"/>
     </Group>
-
+    <!-- 
     <Group name="Subline" v-if="layers[selectedLayer] == 'TEXT'">
       <TextArea
         v-bind:rows="3"
@@ -59,7 +65,7 @@
         v-bind:text="subline"
         v-bind:update="updateSubline"
       />
-    </Group>
+    </Group>-->
     <Group name="Image" v-if="layers[selectedLayer] == 'IMAGE'">
       <Dropzone label="upload" text="drop a file"></Dropzone>
       <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
@@ -105,9 +111,7 @@
 import RangeSlider from "./ui/reusableComponents/slider/RangeSlider.vue";
 import TextArea from "./ui/reusableComponents/text/TextArea.vue";
 import Button from "./ui/reusableComponents/button/Button.vue";
-import DropDown from "./ui/reusableComponents/select/DropDown.vue";
 import ColorList from "./ui/reusableComponents/color/ColorList.vue";
-import Position from "./ui/reusableComponents/position/Position.vue";
 import Group from "./ui/reusableComponents/group/Group.vue";
 import LayerList from "./ui/reusableComponents/layerlist/LayerList.vue";
 import DisplayString from "./ui/reusableComponents/display/DisplayString.vue";
@@ -121,18 +125,28 @@ export default {
     TextArea,
     Button,
     Group,
-    DropDown,
-    ColorList,
-    Position,
     LayerList,
     DisplayString,
     Dropzone,
-    TextAlign
+    TextAlign,
+    ColorList
   },
 
   // computed
 
   computed: {
+    colors() {
+      return this.$store.state.colors.background.colors;
+    },
+    selectedColor() {
+      return this.$store.state.colors.background.selectedColor;
+    },
+    textColors() {
+      return this.$store.state.colors.text.colors;
+    },
+    textColor() {
+      return this.$store.state.colors.text.selectedColor;
+    },
     layers() {
       var layers = this.$store.state.ui.layers;
 
@@ -178,12 +192,15 @@ export default {
     },
     imageRotationX() {
       var r = this.$store.state.image.rotation.x;
+      return r;
     },
     imageRotationY() {
       var r = this.$store.state.image.rotation.y;
+      return r;
     },
     imageRotationZ() {
       var r = this.$store.state.image.rotation.z;
+      return r;
     }
   },
   created: function() {},
@@ -191,6 +208,9 @@ export default {
   // Methods
 
   methods: {
+    updateTextColor(index) {
+      this.$store.commit("updateTextColor", index);
+    },
     doSomethingStupid() {
       console.log("i've boiled your dog");
     },
@@ -238,6 +258,7 @@ export default {
 <style scoped lang="scss">
 #ui {
   position: fixed;
+  z-index: 99999;
   left: 0;
   top: 0;
   width: $uiWidth;

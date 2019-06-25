@@ -104,7 +104,7 @@ body {
 	display: grid;
 	grid-template-columns: 1fr 2fr;
 	margin-top: 15px;
-	margin-bottom: 25px;
+	margin-bottom: 30px;
 
 	.controller-label {
 		font-family: 'Roboto', sans-serif;
@@ -149,11 +149,24 @@ select {
 
 .branding {
 	padding: $uiPadding;
+	@keyframes blink {
+		0% {
+			opacity: 0;
+		}
+		70% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
+	}
+
 	h1 {
+		// animation: blink 1s linear infinite;
 		font-family: 'roboto', sans-serif;
 		color: $uiFG;
 		// font-weight: normal;
-		font-size: 20px;
+		font-size: 30px;
 
 		sup {
 			font-size: 12px;

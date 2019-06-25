@@ -1,5 +1,5 @@
 <template>
-  <div class="controller-group">
+  <div class="controller-group" v-bind:class="{ border: border, headline: headline }">
     <div class="group-header">
       <h2>{{name}}</h2>
     </div>
@@ -13,7 +13,9 @@
 export default {
   name: "Group",
   props: {
-    name: String
+    name: String,
+    border: Boolean,
+    headline: Boolean
   }
 };
 </script>
@@ -21,25 +23,34 @@ export default {
 <style scoped lang="scss">
 .controller-group {
   margin-bottom: 5px;
+
+  .group-header {
+    cursor: pointer;
+    padding-top: $uiPadding;
+    padding-left: $uiPadding;
+    /* border-top: 1px solid $uiMix; */
+    margin-bottom: 1px;
+    h2 {
+      display: none;
+      font-family: "Roboto", sans-serif;
+      font-weight: bold;
+      color: $uiFG;
+      font-size: $uiGroupHead;
+      text-transform: uppercase;
+      margin: 0;
+    }
+  }
+  &.headline {
+    h2 {
+      display: block;
+    }
+  }
+  &.border {
+    border-top: 1px solid $uiMix;
+  }
 }
 
 .group-controllers {
   padding: $uiPadding;
-}
-
-.group-header {
-  cursor: pointer;
-  padding-top: $uiPadding;
-  padding-left: $uiPadding;
-  border-top: 1px solid $uiMix;
-  margin-bottom: 1px;
-  h2 {
-    font-family: "Roboto", sans-serif;
-    font-weight: normal;
-    color: $uiFG;
-    font-size: $uiGroupHead;
-    text-transform: uppercase;
-    margin: 0;
-  }
 }
 </style>

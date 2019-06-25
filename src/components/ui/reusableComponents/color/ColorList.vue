@@ -48,7 +48,7 @@ export default {
   .color {
     width: 26px;
     height: 26px;
-
+    border-radius: 100%;
     border-width: 4px;
     border-style: solid;
     border-color: $uiSecondary;

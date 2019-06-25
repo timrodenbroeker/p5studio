@@ -29,7 +29,7 @@ export default {
     -webkit-appearance: none; /* Override default CSS styles */
     appearance: none;
     width: 100%; /* Full-width */
-    height: 3px; /* Specified height */
+    height: 1px; /* Specified height */
     background: $uiMix; /* Grey background */
     outline: none; /* Remove outline */
     opacity: 1; /* Set transparency (for mouse-over effects on hover) */

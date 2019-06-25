@@ -1,14 +1,9 @@
 <template>
-  <div class="controller">
-    <div class="controller-label">
-      <label>{{ label }}</label>
-    </div>
-    <div class="controller-controller">
-      <div class="layers" v-on:click="update()">
-        <div class="layer" v-for="(option, index) in options">
-          <div v-if="selected == index" class="inner active">{{option}}</div>
-          <div v-else class="inner">{{option}}</div>
-        </div>
+  <div>
+    <div class="layers" v-on:click="update()">
+      <div class="layer" v-for="(option, index) in options">
+        <div v-if="selected == index" class="inner active">{{option}}</div>
+        <div v-else class="inner">{{option}}</div>
       </div>
     </div>
   </div>
@@ -30,16 +25,21 @@ export default {
 .layers {
   width: 100%;
   display: flex;
+  padding-left: $uiPadding;
 }
 .layer {
+  margin-right: 2px;
   .inner {
+    font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     font-size: $uiText;
-    padding: 3px 10px;
-    margin-bottom: 1px;
+    color: $uiMix;
+    padding: 5px 10px;
+    font-weight: bold;
     width: 100%;
-
-    background: $uiFG;
+    background: $uiMix;
+    color: $uiBG;
+    /* background: $uiMix; */
     cursor: pointer;
 
     &.active {
