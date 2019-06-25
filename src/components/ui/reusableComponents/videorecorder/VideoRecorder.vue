@@ -42,6 +42,7 @@ button {
   &.recording {
     animation: blink 1s linear infinite;
     background: red;
+    border-color: red;
   }
 }
 </style>

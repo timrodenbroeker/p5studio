@@ -33,9 +33,10 @@ export default {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     font-size: $uiText;
+
     color: $uiMix;
     padding: 5px 10px;
-    font-weight: bold;
+
     width: 100%;
     background: $uiMix;
     color: $uiBG;

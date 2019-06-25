@@ -27,14 +27,15 @@ export default {
 textarea {
   resize: none;
   width: 100%;
-  background: $uiMix;
-  color: $uiBG;
-  border: 1px solid $uiBG;
+  background: $uiBG;
+  color: $uiFG;
+  border: 1px solid $uiFG;
   font-weight: bold;
   font-size: 12px;
   padding: 5px;
 
   &:focus {
+    color: $uiSecondary;
     outline: none !important;
     border: 1px solid $uiSecondary;
   }

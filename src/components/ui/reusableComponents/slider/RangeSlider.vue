@@ -29,12 +29,14 @@ export default {
     -webkit-appearance: none; /* Override default CSS styles */
     appearance: none;
     width: 100%; /* Full-width */
-    height: 1px; /* Specified height */
+    height: 2px; /* Specified height */
     background: $uiMix; /* Grey background */
     outline: none; /* Remove outline */
     opacity: 1; /* Set transparency (for mouse-over effects on hover) */
     -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
     transition: opacity 0.2s;
+    box-shadow: 0;
+    border: 0;
     margin: 0;
 
     /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */

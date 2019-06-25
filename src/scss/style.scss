@@ -136,13 +136,16 @@ textarea::selection {
 button,
 select {
 	width: 100% !important;
-	border: 0;
+	border: 1px solid $uiFG;
 	border-radius: 0;
-	background: $uiMix;
+	color: $uiFG;
+	background: $uiBG;
 	transition: all 0.5s ease;
 	cursor: pointer;
 	text-transform: uppercase;
 	&:hover {
+		color: $uiBG;
+		border-color: $uiSecondary;
 		background: $uiSecondary;
 	}
 }
