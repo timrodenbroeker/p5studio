@@ -16,7 +16,7 @@
             v-else
             v-on:click="updateSelectedColor(index)"
             class="color active"
-            v-bind:style="{background: color, borderColor: color}"
+            v-bind:style="{background: color}"
           ></div>
         </div>
       </div>
@@ -49,13 +49,13 @@ export default {
     width: 26px;
     height: 26px;
     border-radius: 100%;
-    border-width: 4px;
+    border-width: 2px;
     border-style: solid;
     border-color: $uiSecondary;
     cursor: pointer;
 
     &.active {
-      border-color: $uiBG;
+      border-color: $uiMix;
     }
   }
 }

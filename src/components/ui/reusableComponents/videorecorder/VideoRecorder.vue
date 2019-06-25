@@ -41,8 +41,9 @@ button {
 
   &.recording {
     animation: blink 1s linear infinite;
-    background: red;
-    border-color: red;
+    background: $uiRecording;
+    border-color: $uiRecording;
+    color: $uiBG;
   }
 }
 </style>

@@ -28,8 +28,8 @@ textarea {
   resize: none;
   width: 100%;
   background: $uiBG;
-  color: $uiFG;
-  border: 1px solid $uiFG;
+  color: $uiSecondary;
+  border: 1px solid $uiMix;
   font-weight: bold;
   font-size: 12px;
   padding: 5px;

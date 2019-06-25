@@ -30,6 +30,7 @@ export default {
 
   &.checked {
     background: $uiSecondary;
+    border-color: $uiSecondary;
   }
 }
 </style>

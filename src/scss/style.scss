@@ -136,9 +136,9 @@ textarea::selection {
 button,
 select {
 	width: 100% !important;
-	border: 1px solid $uiFG;
+	border: 1px solid $uiMix;
 	border-radius: 0;
-	color: $uiFG;
+	color: $uiSecondary;
 	background: $uiBG;
 	transition: all 0.5s ease;
 	cursor: pointer;
@@ -167,7 +167,7 @@ select {
 	h1 {
 		// animation: blink 1s linear infinite;
 		font-family: 'roboto', sans-serif;
-		color: $uiFG;
+		color: $uiSecondary;
 		// font-weight: normal;
 		font-size: 30px;
 

@@ -28,11 +28,22 @@ export default new Vuex.Store({
 			fontFiles: fontFiles,
 			currentFont: fontFiles[0],
 			updateFont: false,
+			alignment: {
+				options: ['LEFT', 'CENTER', 'RIGHT'],
+				alignment: 'LEFT',
+			},
 		},
+		////////////////////////////////////////////////////////
+		// SUBLINE
+		////////////////////////////////////////////////////////
 
 		subline: {
 			text: '',
 		},
+
+		////////////////////////////////////////////////////////
+		// IMAGE
+		////////////////////////////////////////////////////////
 
 		image: {
 			imageFiles: imageFiles,
@@ -50,7 +61,24 @@ export default new Vuex.Store({
 			},
 		},
 
-		// Colors
+		////////////////////////////////////////////////////////
+		// GRID
+		////////////////////////////////////////////////////////
+
+		grid: {
+			visible: true,
+			cols: 4,
+			rows: 4,
+		},
+		render: {
+			record: false,
+			savePNG: false,
+			saveJPG: false,
+		},
+
+		////////////////////////////////////////////////////////
+		// COLORS
+		////////////////////////////////////////////////////////
 
 		colors: {
 			background: {
@@ -67,6 +95,10 @@ export default new Vuex.Store({
 			},
 		},
 
+		////////////////////////////////////////////////////////
+		// UI
+		////////////////////////////////////////////////////////
+
 		ui: {
 			// SelectedLayer
 			layers: ['TEXT', 'IMAGE', 'GRID'],
@@ -81,21 +113,6 @@ export default new Vuex.Store({
 			},
 			zoom: 1,
 			brightness: 0,
-		},
-
-		////////////////////////////////////////////////////////
-		// GRID
-		////////////////////////////////////////////////////////
-
-		grid: {
-			visible: true,
-			cols: 4,
-			rows: 4,
-		},
-		render: {
-			record: false,
-			savePNG: false,
-			saveJPG: false,
 		},
 	},
 

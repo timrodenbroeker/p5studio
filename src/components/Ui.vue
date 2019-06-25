@@ -104,6 +104,31 @@
         v-bind:update="updateImageRotationZ"
       />
     </Group>
+    <Group name="GRID" v-if="layers[selectedLayer] == 'GRID'">
+      <ColorList
+        label="GRID"
+        v-bind:colors="gridColors"
+        v-bind:selectedColor="gridColor"
+        v-bind:updateSelectedColor="updateGridColor"
+      />
+      <Checkbox label="Show Grid" v-bind:checked="gridVisible" v-bind:toggle="toggleGridVisibility"></Checkbox>
+      <RangeSlider
+        label="ROWS"
+        v-bind:update="updateGridRows"
+        v-bind:min="1"
+        v-bind:max="12"
+        v-bind:val="parseInt(1)"
+        v-bind:step="1"
+      />
+      <RangeSlider
+        label="COLS"
+        v-bind:update="updateGridCols"
+        v-bind:min="1"
+        v-bind:max="12"
+        v-bind:val="parseInt(1)"
+        v-bind:step="1"
+      />
+    </Group>
   </div>
 </template>
 
@@ -117,6 +142,7 @@ import LayerList from "./ui/reusableComponents/layerlist/LayerList.vue";
 import DisplayString from "./ui/reusableComponents/display/DisplayString.vue";
 import Dropzone from "./ui/reusableComponents/dropzone/Dropzone.vue";
 import TextAlign from "./ui/reusableComponents/textalign/TextAlign.vue";
+import Checkbox from "./ui/reusableComponents/checkbox/Checkbox.vue";
 
 export default {
   name: "Ui",
@@ -128,6 +154,7 @@ export default {
     LayerList,
     DisplayString,
     Dropzone,
+    Checkbox,
     TextAlign,
     ColorList
   },
@@ -201,6 +228,15 @@ export default {
     imageRotationZ() {
       var r = this.$store.state.image.rotation.z;
       return r;
+    },
+    gridVisible() {
+      return this.$store.state.grid.visible;
+    },
+    gridColors() {
+      return this.$store.state.colors.grid.colors;
+    },
+    gridColor() {
+      return this.$store.state.colors.grid.selectedColor;
     }
   },
   created: function() {},
@@ -250,6 +286,19 @@ export default {
     },
     updateImageRotationZ(e) {
       this.$store.commit("updateImageRotationZ", e.target.value);
+    },
+    updateGridCols(val) {
+      this.$store.commit("updateGridCols", val);
+    },
+    updateGridColor(index) {
+      this.$store.commit("updateGridColor", index);
+    },
+    updateGridRows(val) {
+      this.$store.commit("updateGridRows", val);
+    },
+    toggleGridVisibility() {
+      console.log("HEY");
+      this.$store.commit("toggleGridVisibility");
     }
   }
 };

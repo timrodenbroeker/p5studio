@@ -7,13 +7,6 @@
         v-bind:selectedColor="selectedColor"
         v-bind:updateSelectedColor="updateSelectedColor"
       />
-
-      <ColorList
-        label="GRID"
-        v-bind:colors="gridColors"
-        v-bind:selectedColor="gridColor"
-        v-bind:updateSelectedColor="updateGridColor"
-      />
     </Group>
     <Group name="View" headline border>
       <RangeSlider
@@ -34,25 +27,7 @@
       />
       <!-- <Checkbox label="Dark Mode"></Checkbox> -->
     </Group>
-    <Group name="Grid" headline border>
-      <Checkbox label="Show Grid" v-bind:checked="gridVisible" v-bind:toggle="toggleGridVisibility"></Checkbox>
-      <RangeSlider
-        label="ROWS"
-        v-bind:update="updateGridRows"
-        v-bind:min="1"
-        v-bind:max="12"
-        v-bind:val="parseInt(1)"
-        v-bind:step="1"
-      />
-      <RangeSlider
-        label="COLS"
-        v-bind:update="updateGridCols"
-        v-bind:min="1"
-        v-bind:max="12"
-        v-bind:val="parseInt(1)"
-        v-bind:step="1"
-      />
-    </Group>
+
     <Group name="SAVE" headline border>
       <Button v-bind:doThis="savePNG" label="PNG" text="SAVE"/>
       <Button v-bind:doThis="saveJPG" label="JPG" text="SAVE"/>
@@ -110,15 +85,7 @@ export default {
     brightness() {
       return this.$store.state.ui.brightness;
     },
-    gridVisible() {
-      return this.$store.state.grid.visible;
-    },
-    gridColors() {
-      return this.$store.state.colors.grid.colors;
-    },
-    gridColor() {
-      return this.$store.state.colors.grid.selectedColor;
-    },
+
     recording() {
       return this.$store.state.render.record;
     }
@@ -143,19 +110,7 @@ export default {
     updateBrightness(val) {
       this.$store.commit("updateBrightness", val);
     },
-    updateGridCols(val) {
-      this.$store.commit("updateGridCols", val);
-    },
-    updateGridRows(val) {
-      this.$store.commit("updateGridRows", val);
-    },
-    toggleGridVisibility() {
-      console.log("HEY");
-      this.$store.commit("toggleGridVisibility");
-    },
-    updateGridColor(index) {
-      this.$store.commit("updateGridColor", index);
-    },
+
     toggleRecord() {
       this.$store.commit("toggleRecord");
     },
