@@ -69,6 +69,7 @@ textarea::selection {
 
 button,
 select {
+	height: 30px;
 	width: 100% !important;
 	border: 1px solid $uiMix;
 	border-radius: 0;
