@@ -30,7 +30,7 @@ export default {
 .layer {
   margin-right: 2px;
   .inner {
-    font-family: "Roboto", sans-serif;
+    font-family: $uiFontSans, sans-serif;
     text-transform: uppercase;
     font-size: $uiText;
 
