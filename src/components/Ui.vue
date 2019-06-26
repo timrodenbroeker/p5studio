@@ -17,7 +17,7 @@
     <!-- <Tabs v-model="layers"></Tabs> -->
 
     <Group name="headline" v-if="layers[selectedLayer] == 'TEXT'">
-      <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
+      <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/>
       <TextArea
         v-bind:rows="3"
         label="headline"
@@ -67,6 +67,7 @@
       />
     </Group>-->
     <Group name="Image" v-if="layers[selectedLayer] == 'IMAGE'">
+      <Position label="Position" v-bind:posX="imagePosX" v-bind:posY="imagePosY"/>
       <Dropzone label="upload" text="drop a file"></Dropzone>
       <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
       <Button label="Select" text="Open Library" v-bind:doThis="toggleImagesModal"/>
@@ -143,6 +144,7 @@ import DisplayString from "./ui/reusableComponents/display/DisplayString.vue";
 import Dropzone from "./ui/reusableComponents/dropzone/Dropzone.vue";
 import TextAlign from "./ui/reusableComponents/textalign/TextAlign.vue";
 import Checkbox from "./ui/reusableComponents/checkbox/Checkbox.vue";
+import Position from "./ui/reusableComponents/position/Position.vue";
 
 export default {
   name: "Ui",
@@ -156,7 +158,8 @@ export default {
     Dropzone,
     Checkbox,
     TextAlign,
-    ColorList
+    ColorList,
+    Position
   },
 
   // computed
@@ -189,10 +192,17 @@ export default {
       return this.$store.state.headline.fontSize;
     },
     posX() {
-      return this.$store.state.headline.posX;
+      return this.$store.state.headline.pos.x;
     },
     posY() {
-      return this.$store.state.headline.posY;
+      return this.$store.state.headline.pos.y;
+    },
+
+    imagePosX() {
+      return this.$store.state.image.pos.x;
+    },
+    imagePosY() {
+      return this.$store.state.image.pos.y;
     },
     lineHeight() {
       return this.$store.state.headline.lineHeight;

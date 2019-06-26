@@ -30,7 +30,7 @@ textarea {
   background: $uiBG;
   color: $uiSecondary;
   border: 1px solid $uiMix;
-  font-weight: bold;
+
   font-size: 12px;
   padding: 5px;
 
