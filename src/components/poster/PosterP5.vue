@@ -137,6 +137,9 @@ export default {
     },
     saveJPG() {
       return this.$store.state.render.saveJPG;
+    },
+    textAlign() {
+      return this.$store.state.headline.align;
     }
 
     // LAYERS
@@ -279,6 +282,14 @@ export default {
       // DISPLAY HEADLINE
       ////////////////////////////////////////////////////////
       c.pgText.clear();
+
+      if (this.textAlign == "LEFT") {
+        c.pgText.textAlign(c.LEFT, c.TOP);
+      } else if (this.textAlign == "CENTER") {
+        c.pgText.textAlign(c.CENTER, c.TOP);
+      } else if (this.textAlign == "RIGHT") {
+        c.pgText.textAlign(c.RIGHT, c.TOP);
+      }
       c.pgText.fill(this.textColor);
       c.pgText.noStroke();
       var fs = Math.floor(this.fontSize);
@@ -286,7 +297,7 @@ export default {
       c.pgText.textFont(c.font);
       c.pgText.textSize(fs);
       c.pgText.textLeading(fs * lh);
-      c.pgText.textAlign(c.LEFT, c.TOP);
+
       c.pgText.push();
       c.pgText.translate(this.headlinePos.x, this.headlinePos.y);
       c.pgText.text(this.headline, 20, 20);

@@ -1,9 +1,16 @@
 <template>
   <div id="modals">
-    <transition name="slide-fade">
-      <modal-select-font v-if="ModalSelectFontVisible == true"></modal-select-font>
-      <modal-select-image v-if="ModalSelectImageVisible == true"></modal-select-image>
-    </transition>
+    <div
+      id="silk"
+      @click="closeAllModals"
+      v-bind:class="{'visible': ModalSelectFontVisible === true || ModalSelectImageVisible === true}"
+    >
+      <div class="silk-close">
+        <h2>close</h2>
+      </div>
+    </div>
+    <modal-select-font v-bind:class="{'inViewport': ModalSelectFontVisible === true}"></modal-select-font>
+    <modal-select-image v-bind:class="{'inViewport': ModalSelectImageVisible === true}"></modal-select-image>
   </div>
 </template>
 
@@ -24,6 +31,11 @@ export default {
     ModalSelectImageVisible() {
       return this.$store.state.ui.ModalSelectImage.visible;
     }
+  },
+  methods: {
+    closeAllModals() {
+      this.$store.commit("closeAllModals");
+    }
   }
 };
 </script>
@@ -37,6 +49,27 @@ export default {
   width: 100%;
   height: 100vh;
   cursor: pointer;
+  z-index: 9999999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .silk-close {
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 30px;
+    color: white;
+    h2 {
+      font-weight: normal;
+    }
+  }
 }
 
 .close {
@@ -70,11 +103,17 @@ export default {
 .modal {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -50vw;
   background: white;
   width: 50%;
   height: 100vh;
   overflow-y: scroll;
+  z-index: 99999991;
+  transition: right 0.5s ease;
+
+  &.inViewport {
+    right: 0;
+  }
 }
 
 /* Enter and leave animations can use different */

@@ -4,19 +4,31 @@
       <label>{{label}}</label>
     </div>
     <div class="controller-controller align-options">
-      <div class="align-option align-option-left active">
+      <div
+        class="align-option align-option-left"
+        @click="setAlignment('LEFT')"
+        v-bind:class="{  'active': alignment === 'LEFT'}"
+      >
         <div class="align-option-row-1"></div>
         <div class="align-option-row-2"></div>
         <div class="align-option-row-2"></div>
         <div class="align-option-row-3"></div>
       </div>
-      <div class="align-option align-option-center">
+      <div
+        class="align-option align-option-center"
+        @click="setAlignment('CENTER')"
+        v-bind:class="{  'active': alignment === 'CENTER'}"
+      >
         <div class="align-option-row-1"></div>
         <div class="align-option-row-2"></div>
         <div class="align-option-row-2"></div>
         <div class="align-option-row-3"></div>
       </div>
-      <div class="align-option align-option-right">
+      <div
+        class="align-option align-option-right"
+        @click="setAlignment('RIGHT')"
+        v-bind:class="{  'active': alignment === 'RIGHT'}"
+      >
         <div class="align-option-row-1"></div>
         <div class="align-option-row-2"></div>
         <div class="align-option-row-2"></div>
@@ -30,10 +42,9 @@
 export default {
   name: "TextAlign",
   props: {
-    label: String
-  },
-  data: {
-    options: ["LEFT", "CENTER", "RIGHT"]
+    label: String,
+    setAlignment: Function,
+    alignment: String
   },
   computed: {},
   methods: {}
@@ -54,9 +65,9 @@ export default {
     width: 20px;
     height: 1px;
     background: $uiMix;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
     &.align-option-row-3 {
-      width: 13px;
+      width: 11px;
     }
   }
   &.active {

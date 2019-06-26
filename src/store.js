@@ -28,10 +28,7 @@ export default new Vuex.Store({
 			fontFiles: fontFiles,
 			currentFont: fontFiles[0],
 			updateFont: false,
-			alignment: {
-				options: ['LEFT', 'CENTER', 'RIGHT'],
-				alignment: 'LEFT',
-			},
+			align: 'LEFT',
 		},
 		////////////////////////////////////////////////////////
 		// SUBLINE
@@ -259,6 +256,16 @@ export default new Vuex.Store({
 		stopSaving(state) {
 			state.render.saveJPG = false;
 			state.render.savePNG = false;
+		},
+
+		textAlign(state, val) {
+			state.headline.align = val;
+			console.log(state.headline.align);
+		},
+
+		closeAllModals(state) {
+			state.ui.ModalSelectImage.visible = false;
+			state.ui.ModalSelectFont.visible = false;
 		},
 
 		// ui.fontsModal

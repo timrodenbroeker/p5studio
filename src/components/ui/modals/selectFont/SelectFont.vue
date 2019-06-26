@@ -1,16 +1,13 @@
 <template>
-  <div>
-    <div id="silk" v-on:click="toggleFontsModal"></div>
-    <div class="modal">
-      <div v-on:click="toggleFontsModal" class="close"></div>
-      <div class="fontList">
-        <div
-          class="font"
-          v-for="font in fontFiles"
-          v-bind:key="font"
-          @click="updateFont(font)"
-        >{{font}}</div>
-      </div>
+  <div class="modal">
+    <div v-on:click="toggleFontsModal" class="close"></div>
+    <div class="fontList">
+      <div
+        class="font"
+        v-for="font in fontFiles"
+        v-bind:key="font"
+        @click="updateFont(font)"
+      >{{font}}</div>
     </div>
   </div>
 </template>

@@ -43,6 +43,7 @@ export default {
 body,
 html {
   margin: 0;
+  overflow: hidden;
 }
 #app {
   width: 100%;

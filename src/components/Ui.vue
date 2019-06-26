@@ -54,7 +54,7 @@
 
       <Button v-bind:doThis="toggleFontsModal" label="Select Font" text="Open Library"/>
 
-      <TextAlign label="Align"/>
+      <TextAlign label="Align" v-bind:setAlignment="textAlign" v-bind:alignment="align"/>
     </Group>
     <!-- 
     <Group name="Subline" v-if="layers[selectedLayer] == 'TEXT'">
@@ -237,6 +237,9 @@ export default {
     },
     gridColor() {
       return this.$store.state.colors.grid.selectedColor;
+    },
+    align() {
+      return this.$store.state.headline.align;
     }
   },
   created: function() {},
@@ -299,6 +302,9 @@ export default {
     toggleGridVisibility() {
       console.log("HEY");
       this.$store.commit("toggleGridVisibility");
+    },
+    textAlign(val) {
+      this.$store.commit("textAlign", val);
     }
   }
 };

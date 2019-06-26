@@ -1,16 +1,13 @@
 <template>
-  <div>
-    <div id="silk" v-on:click="toggleImagesModal"></div>
-    <div class="modal">
-      <div v-on:click="toggleImagesModal" class="close"></div>
-      <div class="imageList">
-        <img
-          v-for="(image, index) in imageFiles"
-          v-bind:src="'images/' + image"
-          v-bind:key="image"
-          @click="updateImage(image)"
-        >
-      </div>
+  <div class="modal">
+    <div v-on:click="toggleImagesModal" class="close"></div>
+    <div class="imageList">
+      <img
+        v-for="(image, index) in imageFiles"
+        v-bind:src="'images/' + image"
+        v-bind:key="image"
+        @click="updateImage(image)"
+      >
     </div>
   </div>
 </template>
