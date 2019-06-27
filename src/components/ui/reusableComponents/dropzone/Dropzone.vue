@@ -5,12 +5,13 @@
     </div>
     <div class="controller-controller">
       <div
+        id="imageDropzone"
         :class="['dropzone-area', dragging ? 'dragenterClass' : '']"
         drag-over="handleDragOver"
         @dragenter="dragging=true"
-        @dragend="uploadFile"
+        @dragend="dragging=false"
         @dragleave="dragging=false"
-        @drop="dragging=false"
+        @drop="uploadFile"
       >{{text}}</div>
     </div>
   </div>
@@ -31,10 +32,9 @@ export default {
     };
   },
   methods: {
-    uploadFile(e) {
-      e.preventDeafult();
-      dragging = false;
-      console.log("dddd");
+    uploadFile() {
+      // e.preventDeafult();
+      this.dragging = false;
     }
   }
 };

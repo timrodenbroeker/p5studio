@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"serve": "node prepData && vue-cli-service serve",
+		"serve": "node listImages && node listFonts && vue-cli-service serve",
 		"build": "vue-cli-service build",
 		"lint": "vue-cli-service lint",
 		"now-dev": "vue-cli-service serve  --port=$PORT",
@@ -12,6 +12,7 @@
 	"dependencies": {
 		"ccapture.js": "^1.1.0",
 		"core-js": "^2.6.5",
+		"fs-promise": "^2.0.3",
 		"p5": "^0.8.0",
 		"vue": "^2.6.10",
 		"vue-p5": "^0.7.1",

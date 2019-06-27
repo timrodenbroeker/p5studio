@@ -1,13 +1,19 @@
 <template>
   <div class="modal">
     <div v-on:click="toggleImagesModal" class="close"></div>
-    <div class="imageList">
-      <img
-        v-for="(image, index) in imageFiles"
-        v-bind:src="'images/' + image"
-        v-bind:key="image"
-        @click="updateImage(image)"
-      >
+
+    <div>
+      <div v-for="(collection, i) in imageCollections" v-bind:key="i">
+        <h2>{{collection.dir}}</h2>
+        <div class="imageList">
+          <img
+            v-for="(image, j) in collection.files"
+            v-bind:key="j"
+            v-bind:src="'images/' + collection.dir + '/' + image"
+            @click="updateImage(collection.dir, image)"
+          >
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -17,16 +23,16 @@ export default {
   name: "ModalSelectImage",
 
   computed: {
-    imageFiles() {
-      return this.$store.state.image.imageFiles;
+    imageCollections() {
+      return this.$store.state.image.imageCollections;
     }
   },
   methods: {
     toggleImagesModal() {
       this.$store.commit("toggleImagesModal");
     },
-    updateImage: function(image) {
-      this.$store.commit("updateImage", image);
+    updateImage: function(dir, image) {
+      this.$store.commit("updateImage", dir + "/" + image);
       this.$store.commit("toggleImagesModal");
       this.$store.commit("updateImageTrue");
     }
@@ -47,6 +53,7 @@ export default {
     width: 100%;
     cursor: pointer;
   }
+  margin-bottom: 25px;
 }
 .image {
   cursor: pointer;

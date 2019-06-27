@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 import fontFiles from './assets/fonts.json';
-import imageFiles from './assets/images.json';
+import imageCollections from './assets/images.json';
 
 export default new Vuex.Store({
 	state: {
@@ -43,8 +43,8 @@ export default new Vuex.Store({
 		////////////////////////////////////////////////////////
 
 		image: {
-			imageFiles: imageFiles,
-			selectedImage: imageFiles[0],
+			imageCollections: imageCollections,
+			selectedImage: 'technology/28093851899_dfeb9407b3_o.jpg',
 			updateImage: false,
 			pos: {
 				x: 586 / 2,
@@ -78,6 +78,7 @@ export default new Vuex.Store({
 		////////////////////////////////////////////////////////
 
 		colors: {
+			colors: ['#9E5105', '#2203a7', '#f1f1f1', '#111111'],
 			background: {
 				colors: ['#2203a7', '#f1f1f1', '#111111'],
 				selectedColor: 2,
@@ -166,8 +167,9 @@ export default new Vuex.Store({
 		updateImageW(state, val) {
 			state.image.w = val;
 		},
-		updateImage(state, val) {
-			state.image.selectedImage = val;
+		updateImage(state, loc) {
+			state.image.selectedImage = loc;
+			console.log(loc);
 		},
 		updateImageTrue(state) {
 			state.image.updateImage = true;

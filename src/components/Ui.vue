@@ -43,7 +43,7 @@
       />
       <ColorList
         label="COLOR"
-        v-bind:colors="textColors"
+        v-bind:colors="allColors"
         v-bind:selectedColor="textColor"
         v-bind:updateSelectedColor="updateTextColor"
       />
@@ -108,7 +108,7 @@
     <Group name="GRID" v-if="layers[selectedLayer] == 'GRID'">
       <ColorList
         label="GRID"
-        v-bind:colors="gridColors"
+        v-bind:colors="allColors"
         v-bind:selectedColor="gridColor"
         v-bind:updateSelectedColor="updateGridColor"
       />
@@ -167,6 +167,9 @@ export default {
   computed: {
     colors() {
       return this.$store.state.colors.background.colors;
+    },
+    allColors() {
+      return this.$store.state.colors.colors;
     },
     selectedColor() {
       return this.$store.state.colors.background.selectedColor;

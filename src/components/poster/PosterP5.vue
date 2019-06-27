@@ -15,7 +15,12 @@
 
 <script>
 import VueP5 from "vue-p5";
+// import VueP5 from "./VueP5";
 import CanvasRecorder from "../../utils/canvasRecorder";
+// import "p5/lib/addons/p5.sound";
+// import * as p5moduleDom from "p5/lib/addons/p5.dom";
+// import p5 from "p5";
+// import "p5/lib/addons/p5.sound";
 
 export default {
   name: "PosterP5",
@@ -182,6 +187,7 @@ export default {
       ////////////////////////////////////////////////////////
       // BACKGROUND
       ////////////////////////////////////////////////////////
+
       c.background(this.selectedColor);
 
       ////////////////////////////////////////////////////////
@@ -237,6 +243,7 @@ export default {
       // c.pgImage.directionalLight(255, 255, 255, 1, -1, 0);
       c.pgImage.imageMode(c.CENTER);
       c.pgImage.push();
+      c.pgImage.noStroke();
       c.pgImage.translate(this.imagePos.x, this.imagePos.y);
       c.pgImage.translate(-c.width / 2, -c.height / 2);
       // c.pgImage.rotate();
@@ -350,6 +357,10 @@ export default {
         c.save("poster.jpg");
         this.$store.commit("stopSaving");
       }
+
+      ////////////////////////////////////////////////////////
+      // HANDLE UPLOAD
+      ////////////////////////////////////////////////////////
     },
     // mouseMoved(c) {},
     // mouseDragged(c) {},

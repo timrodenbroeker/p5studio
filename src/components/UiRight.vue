@@ -3,7 +3,7 @@
     <Group name="Colors" headline>
       <ColorList
         label="Background"
-        v-bind:colors="colors"
+        v-bind:colors="allColors"
         v-bind:selectedColor="selectedColor"
         v-bind:updateSelectedColor="updateSelectedColor"
       />
@@ -67,6 +67,9 @@ export default {
   // computed
 
   computed: {
+    allColors() {
+      return this.$store.state.colors.colors;
+    },
     colors() {
       return this.$store.state.colors.background.colors;
     },
