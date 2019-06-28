@@ -4,6 +4,7 @@
       p5studio
       <sup>{{version}}</sup>
     </h1>
+    <h2>LOADING RESOURCES</h2>
   </div>
 </template>
 
@@ -32,6 +33,7 @@ export default {
   left: 0;
   background: $uiBG;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 99999999;
@@ -46,11 +48,17 @@ export default {
       opacity: 0;
     }
   }
-
+  h2 {
+    color: $uiSecondary;
+    animation: blink-animation 2s steps(5, start) infinite;
+    font-weight: normal;
+    font-size: 13px;
+  }
   h1 {
     color: $uiSecondary;
     font-size: calc(16px + 4vw);
-
+    margin: 0;
+    padding: 0;
     animation: blink-animation 2s steps(5, start) infinite;
     sup {
       font-size: calc(9px + 1vw);

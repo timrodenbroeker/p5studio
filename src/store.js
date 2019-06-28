@@ -9,7 +9,7 @@ import imageCollections from './assets/images.json';
 export default new Vuex.Store({
 	state: {
 		info: {
-			version: '0.1.0',
+			version: '0.1.1',
 		},
 		// General Poster-settings
 		poster: {
