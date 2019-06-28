@@ -9,7 +9,7 @@ import imageCollections from './assets/images.json';
 export default new Vuex.Store({
 	state: {
 		info: {
-			version: '0.0.2',
+			version: '0.1.0',
 		},
 		// General Poster-settings
 		poster: {
@@ -22,14 +22,14 @@ export default new Vuex.Store({
 
 		headline: {
 			pos: {
-				x: 0,
-				y: -40,
+				x: 11,
+				y: -25,
 			},
-			fontSize: 220,
-			lineHeight: 0.92,
-			content: 'ABC\nDEF',
+			fontSize: 230,
+			lineHeight: 0.79,
+			content: 'NAM\nJUNE\nPAIK',
 			fontFiles: fontFiles,
-			currentFont: fontFiles[0],
+			currentFont: 'Roboto-Light.ttf',
 			updateFont: false,
 			align: 'LEFT',
 			rotation: {
@@ -64,17 +64,17 @@ export default new Vuex.Store({
 
 		image: {
 			imageCollections: imageCollections,
-			selectedImage: 'technology/28093851899_dfeb9407b3_o.jpg',
+			selectedImage: 'technology/9460224502_3ca204a02b_o.jpg',
 			updateImage: false,
 			pos: {
-				x: 586 / 2,
-				y: 810 / 2,
+				x: 367,
+				y: 467,
 			},
-			w: 500,
+			w: 787,
 			rotation: {
-				x: 0,
-				y: 0,
-				z: 0,
+				x: 139,
+				y: 133,
+				z: 37,
 			},
 		},
 
@@ -84,8 +84,8 @@ export default new Vuex.Store({
 
 		grid: {
 			visible: true,
-			cols: 4,
-			rows: 4,
+			cols: 5,
+			rows: 10,
 		},
 		render: {
 			record: false,
@@ -100,10 +100,10 @@ export default new Vuex.Store({
 		colors: {
 			colors: ['#f1f1f1', '#111111', '#f43530', '#2203a7'],
 			background: {
-				selectedColor: '#111111',
+				selectedColor: '#f1f1f1',
 			},
 			text: {
-				selectedColor: '#f1f1f1',
+				selectedColor: '#f43530',
 			},
 			grid: {
 				selectedColor: '#f43530',

@@ -20,7 +20,8 @@
       <!-- <Checkbox label="Dark Mode"></Checkbox> -->
     </Group>
 
-    <Group name="SAVE" headline border>
+    <Group name="OUTPUT" headline border>
+      <Button v-bind:doThis="logState" label="STATE" text="LOG TO CONSOLE"/>
       <Button v-bind:doThis="savePNG" label="PNG" text="SAVE"/>
       <Button v-bind:doThis="saveJPG" label="JPG" text="SAVE"/>
       <VideoRecorder
@@ -75,6 +76,9 @@ export default {
   // Methods
 
   methods: {
+    logState() {
+      this.$store.commit("logState");
+    },
     doSomethingStupid() {
       console.log("i've boiled your dog");
     },
