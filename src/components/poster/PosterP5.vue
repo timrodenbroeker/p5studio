@@ -331,9 +331,14 @@ export default {
       c.pgImage.pop();
 
       ////////////////////////////////////////////////////////
+      // DISPLAY HEADLINE
+      ////////////////////////////////////////////////////////
+      c.pgText.clear();
+
+      ////////////////////////////////////////////////////////
       // DISPLAY GRID
       ////////////////////////////////////////////////////////
-      c.pgGrid.clear();
+
       if (this.grid.visible === true) {
         var cols = this.grid.cols;
         var rows = this.grid.rows;
@@ -342,25 +347,22 @@ export default {
 
         for (var y = 1; y < rows; y++) {
           for (var x = 1; x < cols; x++) {
-            c.pgGrid.noFill();
-            c.pgGrid.stroke(this.gridColor);
-            c.pgGrid.strokeWeight(1);
-            c.pgGrid.push();
+            c.pgText.noFill();
+            c.pgText.stroke(this.gridColor);
+            c.pgText.strokeWeight(1);
+            c.pgText.push();
 
-            c.pgGrid.line(x * stepX, 0, x * stepX, c.height);
-            c.pgGrid.pop();
-            c.pgGrid.push();
-            c.pgGrid.line(0, y * stepY, c.width, y * stepY);
-            c.pgGrid.pop();
+            c.pgText.line(x * stepX, 0, x * stepX, c.height);
+            c.pgText.pop();
+            c.pgText.push();
+            c.pgText.line(0, y * stepY, c.width, y * stepY);
+            c.pgText.pop();
           }
         }
       }
-
       ////////////////////////////////////////////////////////
       // DISPLAY HEADLINE
       ////////////////////////////////////////////////////////
-      c.pgText.clear();
-
       if (this.headlineTextAlign == "LEFT") {
         c.pgText.textAlign(c.LEFT, c.TOP);
       } else if (this.headlineTextAlign == "CENTER") {
@@ -412,7 +414,7 @@ export default {
       ////////////////////////////////////////////////////////
 
       c.image(c.pgImage, this.width / 2, this.height / 2);
-      c.image(c.pgGrid, this.width / 2, this.height / 2);
+      // c.image(c.pgGrid, this.width / 2, this.height / 2);
       c.image(c.pgText, this.width / 2, this.height / 2);
 
       ////////////////////////////////////////////////////////
@@ -442,6 +444,12 @@ export default {
         c.save("poster.jpg");
         this.$store.commit("stopSaving");
       }
+
+      ////////////////////////////////////////////////////////
+      // LOG FRAMERATE
+      ////////////////////////////////////////////////////////
+
+      // console.log(c.getFrameRate());
 
       ////////////////////////////////////////////////////////
       // HANDLE UPLOAD
