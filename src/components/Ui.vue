@@ -61,6 +61,51 @@
       />
     </Group>
 
+    <Group name="SUBLINE" v-if="selectedLayer == 'SUBLINE'">
+      <Position label="Position" v-bind:posX="sublinePosX" v-bind:posY="sublinePosY"/>
+      <TextArea
+        v-bind:rows="3"
+        label="text"
+        :value="sublineContent"
+        v-bind:text="sublineContent"
+        v-bind:update="updateSublineContent"
+      />
+
+      <RangeSlider
+        label="fontsize"
+        v-bind:min="10"
+        v-bind:max="350"
+        v-bind:val="parseInt(sublineFontSize)"
+        v-bind:update="updateSublineFontSize"
+      />
+      <RangeSlider
+        label="lineheight"
+        v-bind:min="0"
+        v-bind:max="2"
+        v-bind:val="parseFloat(sublineLineHeight)"
+        v-bind:step="0.01"
+        v-bind:update="updateSublineLineHeight"
+      />
+      <!-- <ColorList
+        label="COLOR"
+        v-bind:colors="colors"
+        v-bind:selectedColor="sublineTextColor"
+        v-bind:updateSelectedColor="updateSublineColor"
+      />-->
+
+      <!-- <DropDown label="Font" v-bind:options="fontFiles" :update="updateCurrentFont()"/> -->
+
+      <DisplayString label="FONT" v-bind:text="sublineCurrentFont"></DisplayString>
+
+      <!-- <Button v-bind:doThis="toggleFontsModal" label="Select Font" text="Open Library"/> -->
+
+      <TextAlign
+        label="Align"
+        v-bind:setAlignment="updateSublineTextAlign"
+        v-bind:alignment="sublineTextAlign"
+      />
+    </Group>
+
     <Group name="Image" v-if="selectedLayer == 'IMAGE'">
       <Position label="Position" v-bind:posX="imagePosX" v-bind:posY="imagePosY"/>
       <Dropzone label="upload" text="drop a file"></Dropzone>
@@ -220,37 +265,37 @@ export default {
     },
 
     ////////////////////////////////////////////////////////
-    // TEXT
+    // SUBLINE
     ////////////////////////////////////////////////////////
 
-    textTextColor() {
+    sublineTextColor() {
       return this.$store.state.colors.text.selectedColor;
     },
 
-    textFontSize() {
-      return this.$store.state.headline.fontSize;
+    sublineFontSize() {
+      return this.$store.state.subline.fontSize;
     },
-    textPosX() {
-      return this.$store.state.headline.pos.x;
+    sublinePosX() {
+      return this.$store.state.subline.pos.x;
     },
-    textPosY() {
-      return this.$store.state.headline.pos.y;
-    },
-
-    textLineHeight() {
-      return this.$store.state.headline.lineHeight;
-    },
-    textContent() {
-      return this.$store.state.headline.content;
+    sublinePosY() {
+      return this.$store.state.subline.pos.y;
     },
 
-    textCurrentFont() {
-      var cf = this.$store.state.headline.currentFont;
+    sublineLineHeight() {
+      return this.$store.state.subline.lineHeight;
+    },
+    sublineContent() {
+      return this.$store.state.subline.content;
+    },
+
+    sublineCurrentFont() {
+      var cf = this.$store.state.subline.currentFont;
       return cf;
     },
 
-    textTextAlign() {
-      return this.$store.state.headline.align;
+    sublineTextAlign() {
+      return this.$store.state.subline.align;
     },
 
     ////////////////////////////////////////////////////////
@@ -336,6 +381,33 @@ export default {
 
     ////////////////////////////////////////////////////////
     // / HEADLINE
+    ////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////
+    // SUBLINE
+    ////////////////////////////////////////////////////////
+
+    updateSublineColor(val) {
+      this.$store.commit("updateSublineColor", val);
+    },
+    updateSublineFontSize(e) {
+      this.$store.commit("updateSublineFontSize", e.target.value);
+    },
+    updateSublineLineHeight(e) {
+      this.$store.commit("updateSublineLineHeight", e.target.value);
+    },
+    updateSublineContent(e) {
+      this.$store.commit("updateSublineContent", e.target.value);
+    },
+    updateSublineCurrentFont(val) {
+      this.$store.commit("updateSublineCurrentFont", val);
+    },
+    updateSublineTextAlign(val) {
+      this.$store.commit("updateSublineTextAlign", val);
+    },
+
+    ////////////////////////////////////////////////////////
+    // / SUBLINE
     ////////////////////////////////////////////////////////
 
     updateSelectedColor(index) {

@@ -26,25 +26,31 @@ export default {
   width: 100%;
   display: flex;
   padding-left: $uiPadding;
+  &:hover {
+    .layer {
+      .inner {
+        background: $uiFG;
+      }
+    }
+  }
 }
 .layer {
   margin-right: 2px;
+
   .inner {
     font-family: $uiFontSans, sans-serif;
     text-transform: uppercase;
     font-size: $uiText;
-
     color: $uiMix;
     padding: 5px 10px;
-
     width: 100%;
-    background: $uiFG;
+    background: $uiMix;
     color: $uiBG;
-    /* background: $uiMix; */
     cursor: pointer;
+    transition: background 0.2s ease;
 
     &.active {
-      background: $uiSecondary;
+      background: $uiSecondary !important;
     }
   }
 }

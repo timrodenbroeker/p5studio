@@ -28,7 +28,87 @@ export default {
     "vue-p5": VueP5
   },
   computed: {
-    // DIMENSIONS
+    fontfiles() {
+      return this.$store.state.headline.fontFiles;
+    },
+
+    ////////////////////////////////////////////////////////
+    // HEADLINE
+    ////////////////////////////////////////////////////////
+
+    headlinePos() {
+      return this.$store.state.headline.pos;
+    },
+
+    headlineContent() {
+      return this.$store.state.headline.content;
+    },
+
+    headlineFontSize() {
+      return this.$store.state.headline.fontSize;
+    },
+    headlineLineHeight() {
+      return this.$store.state.headline.lineHeight;
+    },
+
+    headlineTextAlign() {
+      return this.$store.state.headline.align;
+    },
+
+    headlineCurrentFont() {
+      var result = this.$store.state.headline.currentFont;
+      return result;
+    },
+
+    headlineTextColor() {
+      var c = this.$store.state.colors.text.selectedColor;
+
+      return c;
+    },
+    headlineUpdateFont() {
+      return this.$store.state.headline.updateFont;
+    },
+
+    ////////////////////////////////////////////////////////
+    // SUBLINE
+    ////////////////////////////////////////////////////////
+
+    sublinePos() {
+      return this.$store.state.subline.pos;
+    },
+
+    sublineContent() {
+      return this.$store.state.subline.content;
+    },
+
+    sublineFontSize() {
+      return this.$store.state.subline.fontSize;
+    },
+    sublineLineHeight() {
+      return this.$store.state.subline.lineHeight;
+    },
+
+    sublineTextAlign() {
+      return this.$store.state.subline.align;
+    },
+
+    sublineCurrentFont() {
+      var result = this.$store.state.subline.currentFont;
+      return result;
+    },
+
+    sublineTextColor() {
+      var c = this.$store.state.colors.text.selectedColor;
+
+      return c;
+    },
+    sublineUpdateFont() {
+      return this.$store.state.subline.updateFont;
+    },
+
+    ////////////////////////////////////////////////////////
+    // GENERAL
+    ////////////////////////////////////////////////////////
 
     width() {
       return this.$store.state.poster.w;
@@ -38,10 +118,6 @@ export default {
     },
 
     // HEADLINE
-
-    headlinePos() {
-      return this.$store.state.headline.pos;
-    },
 
     imagePos() {
       return this.$store.state.image.pos;
@@ -55,40 +131,12 @@ export default {
     imageRotationZ() {
       return this.$store.state.image.rotation.z;
     },
-    textRotationX() {
-      return this.$store.state.headline.rotation.x;
-    },
-    textRotationY() {
-      return this.$store.state.headline.rotation.y;
-    },
-    textRotationZ() {
-      return this.$store.state.headline.rotation.z;
-    },
 
     imageW() {
       return this.$store.state.image.w;
     },
 
-    headline() {
-      return this.$store.state.headline.content;
-    },
-
-    fontSize() {
-      return this.$store.state.headline.fontSize;
-    },
-    lineHeight() {
-      return this.$store.state.headline.lineHeight;
-    },
-
     // FONTS
-
-    fontfiles() {
-      return this.$store.state.headline.fontFiles;
-    },
-    currentFont() {
-      var result = this.$store.state.headline.currentFont;
-      return result;
-    },
 
     currentImage() {
       var result = this.$store.state.image.selectedImage;
@@ -99,12 +147,6 @@ export default {
     // COLORS
     selectedColor() {
       var c = this.$store.state.colors.background.selectedColor;
-
-      return c;
-    },
-
-    textColor() {
-      var c = this.$store.state.colors.text.selectedColor;
 
       return c;
     },
@@ -120,9 +162,6 @@ export default {
     draggable() {
       var selectedLayer = this.$store.state.ui.selectedLayer;
       if (selectedLayer == "TEXT" || selectedLayer == "IMAGE") return draggable;
-    },
-    updateFont() {
-      return this.$store.state.headline.updateFont;
     },
 
     updateImage() {
@@ -145,9 +184,6 @@ export default {
     },
     saveJPG() {
       return this.$store.state.render.saveJPG;
-    },
-    textAlign() {
-      return this.$store.state.headline.align;
     }
 
     // LAYERS
@@ -157,9 +193,19 @@ export default {
   methods: {
     preload(c) {
       c.pathToFonts = "fonts/";
-      c.currentFontPath = c.pathToFonts + this.currentFont;
+
+      // HEADLINE
+
+      c.currentFontPath = c.pathToFonts + this.headlineCurrentFont;
       c.font = c.loadFont(c.currentFontPath);
       c.fontSecondary = c.loadFont(c.pathToFonts + "SpaceMono-Bold.ttf");
+
+      // SUBLINE
+
+      c.sublineFontPath = c.pathToFonts + this.sublineCurrentFont;
+      c.sublineFont = c.loadFont(c.sublineFontPath);
+
+      // IMAGES
 
       c.pathToImages = "images/";
       c.currentImagePath = c.pathToImages + this.currentImage;
@@ -177,6 +223,8 @@ export default {
       c.imageOffsetY = 0;
       c.headlineOffsetX = 0;
       c.headlineOffsetY = 0;
+      c.sublineOffsetX = 0;
+      c.sublineOffsetY = 0;
       c.createCanvas(586, 810);
       c.imageMode(c.CENTER);
 
@@ -198,8 +246,8 @@ export default {
       // LOAD NEW FONT
       ////////////////////////////////////////////////////////
 
-      if (this.updateFont == true) {
-        c.currentFontPath = c.pathToFonts + this.currentFont;
+      if (this.headlineUpdateFont == true) {
+        c.currentFontPath = c.pathToFonts + this.headlineCurrentFont;
         console.log(c.currentFontPath);
         c.font = c.loadFont(c.currentFontPath);
 
@@ -220,19 +268,33 @@ export default {
       // DRAGGING
       ////////////////////////////////////////////////////////
       if (c.dragging) {
-        var newPos;
+        // HEADLINE
         if (this.selectedLayer == "HEADLINE") {
+          var newPos;
           newPos = {
             x: Math.floor(c.mouseX + c.headlineOffsetX),
             y: Math.floor(c.mouseY + c.headlineOffsetY)
           };
           this.$store.commit("updateHeadlinePos", newPos);
-        } else if (this.selectedLayer == "IMAGE") {
+        }
+
+        // SUBLINE
+        else if (this.selectedLayer == "SUBLINE") {
+          var newPos;
+          newPos = {
+            x: Math.floor(c.mouseX + c.sublineOffsetX),
+            y: Math.floor(c.mouseY + c.sublineOffsetY)
+          };
+          this.$store.commit("updateSublinePos", newPos);
+        }
+
+        // IMAGE
+        else if (this.selectedLayer == "IMAGE") {
+          var newPos;
           newPos = {
             x: Math.floor(c.mouseX + c.imageOffsetX),
             y: Math.floor(c.mouseY + c.imageOffsetY)
           };
-
           this.$store.commit("updateImagePos", newPos);
         }
       }
@@ -295,25 +357,50 @@ export default {
       ////////////////////////////////////////////////////////
       c.pgText.clear();
 
-      if (this.textAlign == "LEFT") {
+      if (this.headlineTextAlign == "LEFT") {
         c.pgText.textAlign(c.LEFT, c.TOP);
-      } else if (this.textAlign == "CENTER") {
+      } else if (this.headlineTextAlign == "CENTER") {
         c.pgText.textAlign(c.CENTER, c.TOP);
-      } else if (this.textAlign == "RIGHT") {
+      } else if (this.headlineTextAlign == "RIGHT") {
         c.pgText.textAlign(c.RIGHT, c.TOP);
       }
-      c.pgText.fill(this.textColor);
+      c.pgText.fill(this.headlineTextColor);
       c.pgText.noStroke();
-      var fs = Math.floor(this.fontSize);
-      var lh = this.lineHeight;
+      var fs = Math.floor(this.headlineFontSize);
+      var lh = this.headlineLineHeight;
       c.pgText.textFont(c.font);
       c.pgText.textSize(fs);
       c.pgText.textLeading(fs * lh);
 
       c.pgText.push();
-      c.pgText.translate(this.headlinePos.x, this.headlinePos.y - c.width / 2);
+      c.pgText.translate(this.headlinePos.x, this.headlinePos.y);
 
-      c.pgText.text(this.headline, 20, 20);
+      c.pgText.text(this.headlineContent, 0, 0);
+      c.pgText.pop();
+
+      ////////////////////////////////////////////////////////
+      // DISPLAY SUBLINE
+      ////////////////////////////////////////////////////////
+
+      if (this.sublineTextAlign == "LEFT") {
+        c.pgText.textAlign(c.LEFT, c.TOP);
+      } else if (this.sublineTextAlign == "CENTER") {
+        c.pgText.textAlign(c.CENTER, c.TOP);
+      } else if (this.sublineTextAlign == "RIGHT") {
+        c.pgText.textAlign(c.RIGHT, c.TOP);
+      }
+      c.pgText.fill(this.headlineTextColor);
+      c.pgText.noStroke();
+      var fs = Math.floor(this.sublineFontSize);
+      var lh = this.sublineLineHeight;
+      c.pgText.textFont(c.sublineFont);
+      c.pgText.textSize(fs);
+      c.pgText.textLeading(fs * lh);
+
+      c.pgText.push();
+      c.pgText.translate(this.sublinePos.x, this.sublinePos.y);
+
+      c.pgText.text(this.sublineContent, 0, 0);
       c.pgText.pop();
 
       ////////////////////////////////////////////////////////
@@ -372,13 +459,13 @@ export default {
         c.dragging = true;
         // If so, keep track of relative location of click to corner of rectangle
 
-        if (this.selectedLayer == "TEXT") {
-          c.headlineOffsetX = this.headlinePos.x - c.mouseX;
-          c.headlineOffsetY = this.headlinePos.y - c.mouseY;
-        } else if (this.selectedLayer == "IMAGE") {
-          c.imageffsetX = this.imagePosX - c.mouseX;
-          c.imageffsetY = this.imagePosY - c.mouseY;
-        }
+        // if (this.selectedLayer == "TEXT") {
+        //   c.headlineOffsetX = this.headlinePos.x - c.mouseX;
+        //   c.headlineOffsetY = this.headlinePos.y - c.mouseY;
+        // } else if (this.selectedLayer == "IMAGE") {
+        //   c.imageffsetX = this.imagePosX - c.mouseX;
+        //   c.imageffsetY = this.imagePosY - c.mouseY;
+        // }
       }
     }
   },

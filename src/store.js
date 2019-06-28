@@ -38,30 +38,24 @@ export default new Vuex.Store({
 				z: 0,
 			},
 		},
-		text2: {
+		subline: {
 			pos: {
-				x: 0,
-				y: -40,
+				x: 586 / 2,
+				y: 730,
 			},
-			fontSize: 220,
+			fontSize: 30,
 			lineHeight: 0.92,
-			headline: 'ABC\nDEF',
-			fontFiles: fontFiles,
-			currentFont: fontFiles[0],
-			updateFont: false,
-			align: 'LEFT',
+			content: 'Subline',
+			// fontFiles: fontFiles,
+			// currentFont: fontFiles[0],
+			// updateFont: false,
+			currentFont: 'Roboto-Medium.ttf',
+			align: 'CENTER',
 			rotation: {
 				x: 0,
 				y: 0,
 				z: 0,
 			},
-		},
-		////////////////////////////////////////////////////////
-		// SUBLINE
-		////////////////////////////////////////////////////////
-
-		subline: {
-			text: '',
 		},
 
 		////////////////////////////////////////////////////////
@@ -122,7 +116,7 @@ export default new Vuex.Store({
 
 		ui: {
 			// SelectedLayer
-			layers: ['BASE', 'HEADLINE', 'IMAGE', 'GRID'],
+			layers: ['BASE', 'HEADLINE', 'SUBLINE', 'IMAGE', 'GRID'],
 			selectedLayer: 'HEADLINE',
 
 			// Modals
@@ -178,6 +172,48 @@ export default new Vuex.Store({
 
 		updateHeadlineTextAlign(state, val) {
 			state.headline.align = val;
+		},
+
+		////////////////////////////////////////////////////////
+		// SUBLINE
+		////////////////////////////////////////////////////////
+
+		updateSublineFont(state, val) {
+			state.subline.currentFont = val;
+		},
+
+		updateSublineColor(state, selectedColor) {
+			state.colors.text.selectedColor = selectedColor;
+		},
+
+		updateSublineFontSize(state, fontSize) {
+			state.subline.fontSize = fontSize;
+		},
+		updateSublinePos(state, newPos) {
+			state.subline.pos = newPos;
+		},
+
+		updateSublineLineHeight(state, lineHeight) {
+			state.subline.lineHeight = lineHeight;
+		},
+
+		updateSublineContent(state, subline) {
+			state.subline.content = subline;
+		},
+
+		updateSublineCurrentFont(state, font) {
+			state.subline.currentFont = font;
+		},
+
+		updateSublineFontTrue(state) {
+			state.subline.updateFont = true;
+		},
+		updateSublineFontFalse(state) {
+			state.subline.updateFont = false;
+		},
+
+		updateSublineTextAlign(state, val) {
+			state.subline.align = val;
 		},
 
 		////////////////////////////////////////////////////////
@@ -285,5 +321,9 @@ export default new Vuex.Store({
 		},
 
 		// ui.fontsModal
+
+		logState(state) {
+			console.log(state);
+		},
 	},
 });
