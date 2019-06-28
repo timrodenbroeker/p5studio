@@ -157,7 +157,7 @@
         label="ROWS"
         v-bind:update="updateGridRows"
         v-bind:min="1"
-        v-bind:max="12"
+        v-bind:max="48"
         v-bind:val="parseInt(1)"
         v-bind:step="1"
       />
@@ -165,7 +165,7 @@
         label="COLS"
         v-bind:update="updateGridCols"
         v-bind:min="1"
-        v-bind:max="12"
+        v-bind:max="48"
         v-bind:val="parseInt(1)"
         v-bind:step="1"
       />

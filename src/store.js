@@ -42,9 +42,9 @@ export default new Vuex.Store({
 		subline: {
 			pos: {
 				x: 586 / 2,
-				y: 730,
+				y: 770,
 			},
-			fontSize: 30,
+			fontSize: 22,
 			lineHeight: 0.92,
 			content: 'Subline',
 			// fontFiles: fontFiles,
@@ -85,8 +85,8 @@ export default new Vuex.Store({
 
 		grid: {
 			visible: true,
-			cols: 5,
-			rows: 10,
+			cols: 48,
+			rows: 12,
 		},
 		render: {
 			record: false,
@@ -104,7 +104,7 @@ export default new Vuex.Store({
 				selectedColor: '#f1f1f1',
 			},
 			text: {
-				selectedColor: '#f43530',
+				selectedColor: '#111111',
 			},
 			grid: {
 				selectedColor: '#f43530',
