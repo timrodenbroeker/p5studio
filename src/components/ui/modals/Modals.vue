@@ -104,7 +104,7 @@ export default {
   position: absolute;
   top: 0;
   right: -50vw;
-  background: white;
+  background: $uiFG;
   width: 50%;
   height: 100vh;
   overflow-y: scroll;

@@ -1,13 +1,5 @@
 <template>
   <div id="uiRight">
-    <Group name="Colors" headline>
-      <ColorList
-        label="Background"
-        v-bind:colors="allColors"
-        v-bind:selectedColor="selectedColor"
-        v-bind:updateSelectedColor="updateSelectedColor"
-      />
-    </Group>
     <Group name="View" headline border>
       <RangeSlider
         label="zoom"
@@ -67,21 +59,6 @@ export default {
   // computed
 
   computed: {
-    allColors() {
-      return this.$store.state.colors.colors;
-    },
-    colors() {
-      return this.$store.state.colors.background.colors;
-    },
-    selectedColor() {
-      return this.$store.state.colors.background.selectedColor;
-    },
-    textColors() {
-      return this.$store.state.colors.text.colors;
-    },
-    textColor() {
-      return this.$store.state.colors.text.selectedColor;
-    },
     zoom() {
       return this.$store.state.ui.zoom;
     },
@@ -101,9 +78,7 @@ export default {
     doSomethingStupid() {
       console.log("i've boiled your dog");
     },
-    updateSelectedColor(index) {
-      this.$store.commit("updateSelectedColor", index);
-    },
+
     updateTextColor(index) {
       this.$store.commit("updateTextColor", index);
     },

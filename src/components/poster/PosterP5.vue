@@ -1,6 +1,6 @@
 <template>
   <div id="wrapper">
-    <div id="poster">
+    <div id="poster" v-bind:class="{ draggable: draggable }">
       <vue-p5
         @setup="setup"
         @draw="draw"
@@ -121,6 +121,10 @@ export default {
       var selectedLayer = this.$store.state.ui.selectedLayer;
       return selectedLayer;
     },
+    draggable() {
+      var selectedLayer = this.$store.state.ui.selectedLayer;
+      if (selectedLayer == "TEXT" || selectedLayer == "IMAGE") return draggable;
+    },
     updateFont() {
       return this.$store.state.headline.updateFont;
     },
@@ -166,6 +170,7 @@ export default {
       c.img = c.loadImage(c.currentImagePath);
     },
     setup(c) {
+      // c.pixelDensity(3);
       // PGraphics: Image
       c.pgImage = c.createGraphics(this.width, this.height, c.WEBGL);
       c.pgText = c.createGraphics(this.width, this.height, c.WEBGL);

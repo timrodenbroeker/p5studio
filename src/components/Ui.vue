@@ -3,7 +3,7 @@
     <div class="branding" style="margin-bottom: 30px;">
       <h1>
         p5studio
-        <sup>0.0.1</sup>
+        <sup>{{version}}</sup>
       </h1>
     </div>
 
@@ -155,6 +155,15 @@
         v-bind:step="1"
       />
     </Group>
+
+    <Group name="BASE" v-if="selectedLayer == 'BASE'">
+      <ColorList
+        label="Background"
+        v-bind:colors="colors"
+        v-bind:selectedColor="selectedColor"
+        v-bind:updateSelectedColor="updateSelectedColor"
+      />
+    </Group>
   </div>
 </template>
 
@@ -190,6 +199,10 @@ export default {
   // computed
 
   computed: {
+    version() {
+      return this.$store.state.info.version;
+    },
+
     colors() {
       return this.$store.state.colors.colors;
     },
@@ -289,6 +302,9 @@ export default {
   // Methods
 
   methods: {
+    updateSelectedColor(index) {
+      this.$store.commit("updateSelectedColor", index);
+    },
     updateTextColor(val) {
       this.$store.commit("updateTextColor", val);
     },

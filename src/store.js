@@ -8,6 +8,9 @@ import imageCollections from './assets/images.json';
 
 export default new Vuex.Store({
 	state: {
+		info: {
+			version: '0.0.2',
+		},
 		// General Poster-settings
 		poster: {
 			w: 586,
@@ -101,7 +104,7 @@ export default new Vuex.Store({
 
 		ui: {
 			// SelectedLayer
-			layers: ['TEXT', 'IMAGE', 'GRID'],
+			layers: ['BASE', 'TEXT', 'IMAGE', 'GRID'],
 			selectedLayer: 'TEXT',
 
 			// Modals

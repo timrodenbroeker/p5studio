@@ -112,3 +112,34 @@ select {
 		}
 	}
 }
+
+/*	
+ =========================================
+ Scrollbar
+ =========================================
+*/
+
+/* width */
+::-webkit-scrollbar {
+	width: 5px;
+
+	background: transparent;
+	/* background: #cccccc;  */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: $uiFG;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	z-index: 10 !important;
+	background: $uiBG;
+	cursor: pointer;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: $uiMix;
+}

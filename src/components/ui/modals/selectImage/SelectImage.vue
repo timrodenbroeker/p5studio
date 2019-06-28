@@ -4,7 +4,7 @@
 
     <div>
       <div v-for="(collection, i) in imageCollections" v-bind:key="i">
-        <h2>{{collection.dir}}</h2>
+        <h2 style="font-size: calc(16px + 2vw)">{{collection.dir}}</h2>
         <div class="imageList">
           <img
             v-for="(image, j) in collection.files"
