@@ -38,6 +38,22 @@
     ]
   },
   {
+    "dir": "scenes",
+    "files": [
+      "14033060807_2a45cf536c_o.jpg",
+      "25842353618_183e321b7c_o.jpg",
+      "34435322541_0b0bc572ce_o.jpg",
+      "5225537993_a331650099_o.jpg",
+      "5226144136_aee937b223_o.jpg",
+      "5228007715_8f17bdc6d0_o.jpg",
+      "6796057418_d573b949d8_o.jpg",
+      "7126354557_5c83ed9f83_o.jpg",
+      "7155311590_30e2e6843c_o.jpg",
+      "8049072995_be445e15b4_o.jpg",
+      "8207436654_fc4b1a016c_o.jpg"
+    ]
+  },
+  {
     "dir": "science",
     "files": [
       "16035994463_03cc9c4d86_o.jpg",
@@ -53,22 +69,6 @@
       "9416948964_ee2cd5cb02_o.jpg",
       "GPN-2002-000226.jpg",
       "PIA09244_modest-browse.jpg"
-    ]
-  },
-  {
-    "dir": "scenes",
-    "files": [
-      "14033060807_2a45cf536c_o.jpg",
-      "25842353618_183e321b7c_o.jpg",
-      "34435322541_0b0bc572ce_o.jpg",
-      "5225537993_a331650099_o.jpg",
-      "5226144136_aee937b223_o.jpg",
-      "5228007715_8f17bdc6d0_o.jpg",
-      "6796057418_d573b949d8_o.jpg",
-      "7126354557_5c83ed9f83_o.jpg",
-      "7155311590_30e2e6843c_o.jpg",
-      "8049072995_be445e15b4_o.jpg",
-      "8207436654_fc4b1a016c_o.jpg"
     ]
   },
   {
@@ -88,75 +88,6 @@
       "PIA07666-br500.jpg",
       "PIA08919-br500.jpg",
       "PIA08986-br500.jpg"
-    ]
-  },
-  {
-    "dir": "art",
-    "files": [
-      "118553.jpg",
-      "21V_CAT092R3.jpg",
-      "21V_CAT096R3.jpg",
-      "262112.jpg",
-      "CT_16744.jpg",
-      "DP115769.jpg",
-      "DP119671.jpg",
-      "DP153959.jpg",
-      "DP224656.jpg",
-      "DP246605.jpg",
-      "DP248142.jpg",
-      "DP253642.jpg",
-      "DP277772.jpg",
-      "DT11514.jpg",
-      "DT263.jpg"
-    ]
-  },
-  {
-    "dir": "technology",
-    "files": [
-      "15881529824_f907d07b5f_o.jpg",
-      "15883933193_453e9c77e0_o.jpg",
-      "16317092587_563164e9a9_o.jpg",
-      "25524892462_62dd3ee199_o.jpg",
-      "26031177082_1364cb24e3_o.jpg",
-      "28093851899_dfeb9407b3_o.jpg",
-      "29383264345_55ca2f440d_o.jpg",
-      "29435919551_2761118a86_o.jpg",
-      "29435919791_4c92c79e87_o.jpg",
-      "29436846066_d486a180ec_o.jpg",
-      "29526403110_539146d4fb_o.jpg",
-      "30650725796_48d8744078_o.jpg",
-      "36363427386_4f6c92ff66_o.jpg",
-      "38726916160_305daa79b6_o.jpg",
-      "42785491270_991ef0ac59_o.jpg",
-      "4857946791_4bd6b171f1_o.jpg",
-      "4858568740_901503edff_o.jpg",
-      "9413276711_7da359b256_o.jpg",
-      "9457450347_3f1673c6e2_o.jpg",
-      "9457838749_a7d2646ecf_o.jpg",
-      "9460224502_3ca204a02b_o.jpg",
-      "9464634939_41a1e69ed3_o.jpg",
-      "9464637131_18a642830f_o.jpg",
-      "PIA04347.jpg"
-    ]
-  },
-  {
-    "dir": "private",
-    "files": [
-      "35facd5a-d050-41b1-be91-04eb741d8167.jpg",
-      "6.jpg",
-      "Bildschirmfoto-2019-05-11-um-18.18.54.jpg",
-      "Fotogarmme005-Kopie.jpg",
-      "L1190820-1.jpg",
-      "L1190820.jpg",
-      "L1190874.jpg",
-      "LISBOA.jpg",
-      "PSX_20181008_173439.jpg",
-      "PSX_20181008_174033.jpg",
-      "b9b866dc-2fd4-43fa-bdb2-d5ebe418ccd6.jpg",
-      "eusharp.gif",
-      "eusharp.jpg",
-      "nn.jpg",
-      "szenepb-Kopie.jpg"
     ]
   },
   {
@@ -212,6 +143,76 @@
       "8674134804_4e544d106c_o.jpg",
       "9074391596_1bf88a54a8_o.jpg",
       "9704878013_5e6a5df8a2_o.jpg"
+    ]
+  },
+  {
+    "dir": "art",
+    "files": [
+      "118553.jpg",
+      "21V_CAT092R3.jpg",
+      "21V_CAT096R3.jpg",
+      "262112.jpg",
+      "CT_16744.jpg",
+      "DP115769.jpg",
+      "DP119671.jpg",
+      "DP153959.jpg",
+      "DP224656.jpg",
+      "DP246605.jpg",
+      "DP248142.jpg",
+      "DP253642.jpg",
+      "DP277772.jpg",
+      "DT11514.jpg",
+      "DT263.jpg"
+    ]
+  },
+  {
+    "dir": "private",
+    "files": [
+      "35facd5a-d050-41b1-be91-04eb741d8167.jpg",
+      "6.jpg",
+      "Bildschirmfoto-2019-05-11-um-18.18.54.jpg",
+      "Fotogarmme005-Kopie.jpg",
+      "L1190820-1.jpg",
+      "L1190820.jpg",
+      "L1190874.jpg",
+      "LISBOA.jpg",
+      "PSX_20181008_173439.jpg",
+      "PSX_20181008_174033.jpg",
+      "b9b866dc-2fd4-43fa-bdb2-d5ebe418ccd6.jpg",
+      "eusharp.gif",
+      "eusharp.jpg",
+      "nn.jpg",
+      "szenepb-Kopie.jpg"
+    ]
+  },
+  {
+    "dir": "technology",
+    "files": [
+      "15881529824_f907d07b5f_o.jpg",
+      "15883933193_453e9c77e0_o.jpg",
+      "16317092587_563164e9a9_o.jpg",
+      "25524892462_62dd3ee199_o.jpg",
+      "26031177082_1364cb24e3_o.jpg",
+      "28093851899_dfeb9407b3_o.jpg",
+      "29383264345_55ca2f440d_o.jpg",
+      "29435919551_2761118a86_o.jpg",
+      "29435919791_4c92c79e87_o.jpg",
+      "29436846066_d486a180ec_o.jpg",
+      "29526403110_539146d4fb_o.jpg",
+      "30650725796_48d8744078_o.jpg",
+      "36363427386_4f6c92ff66_o.jpg",
+      "38726916160_305daa79b6_o.jpg",
+      "42785491270_991ef0ac59_o.jpg",
+      "4857946791_4bd6b171f1_o.jpg",
+      "4858568740_901503edff_o.jpg",
+      "9413276711_7da359b256_o.jpg",
+      "9457450347_3f1673c6e2_o.jpg",
+      "9457838749_a7d2646ecf_o.jpg",
+      "9460224502_3ca204a02b_o.jpg",
+      "9460224502_3ca204a02b_o_kl.jpg",
+      "9464634939_41a1e69ed3_o.jpg",
+      "9464637131_18a642830f_o.jpg",
+      "PIA04347.jpg"
     ]
   }
 ]

@@ -31,7 +31,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  background: $uiBG;
+  background: black;
   display: flex;
   flex-direction: column;
   justify-content: center;

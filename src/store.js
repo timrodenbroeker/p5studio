@@ -65,7 +65,7 @@ export default new Vuex.Store({
 
 		image: {
 			imageCollections: imageCollections,
-			selectedImage: 'technology/9460224502_3ca204a02b_o.jpg',
+			selectedImage: 'technology/9460224502_3ca204a02b_o_kl.jpg',
 			updateImage: false,
 			pos: {
 				x: 367,
@@ -104,10 +104,10 @@ export default new Vuex.Store({
 				selectedColor: '#f1f1f1',
 			},
 			text: {
-				selectedColor: '#111111',
+				selectedColor: '#f43530',
 			},
 			grid: {
-				selectedColor: '#f43530',
+				selectedColor: '#2203a7',
 			},
 		},
 
