@@ -1,6 +1,6 @@
 <template>
   <div id="wrapper">
-    <div id="poster" v-bind:class="{ draggable: draggable }">
+    <div id="poster">
       <vue-p5
         @setup="setup"
         @draw="draw"
