@@ -38,6 +38,24 @@ export default new Vuex.Store({
 				z: 0,
 			},
 		},
+		text2: {
+			pos: {
+				x: 0,
+				y: -40,
+			},
+			fontSize: 220,
+			lineHeight: 0.92,
+			headline: 'ABC\nDEF',
+			fontFiles: fontFiles,
+			currentFont: fontFiles[0],
+			updateFont: false,
+			align: 'LEFT',
+			rotation: {
+				x: 0,
+				y: 0,
+				z: 0,
+			},
+		},
 		////////////////////////////////////////////////////////
 		// SUBLINE
 		////////////////////////////////////////////////////////

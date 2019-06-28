@@ -107,6 +107,18 @@ fs.readdir(loc + 'technology', (err, files) => {
 	finalArray.push(dirObj);
 });
 
+fs.readdir(loc + 'private', (err, files) => {
+	var dirObj = {};
+	dirObj.dir = 'private';
+	dirObj.files = [];
+	files.forEach(file => {
+		if (file !== '.DS_Store') {
+			dirObj.files.push(file);
+		}
+	});
+	finalArray.push(dirObj);
+});
+
 setTimeout(function() {
 	const data = JSON.stringify(finalArray, null, 2);
 

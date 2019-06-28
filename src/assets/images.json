@@ -54,43 +54,6 @@
     ]
   },
   {
-    "dir": "science",
-    "files": [
-      "16035994463_03cc9c4d86_o.jpg",
-      "16307098620_419b489844_o.jpg",
-      "30648890161_a9067dbd54_o.jpg",
-      "5278071900_c040282c2d_o.jpg",
-      "5553350875_8f6d1b995f_o.jpg",
-      "5553433977_3918ea5722_o.jpg",
-      "7544561648_cf0844fd10_o.jpg",
-      "7544561942_1126b3dac1_o.jpg",
-      "7651155116_847368da12_o.jpg",
-      "9416830800_1c5d7dfc7d_o.jpg",
-      "9416948964_ee2cd5cb02_o.jpg",
-      "GPN-2002-000226.jpg",
-      "PIA09244_modest-browse.jpg"
-    ]
-  },
-  {
-    "dir": "space",
-    "files": [
-      "17125224860_dfdc354bd4_o.jpg",
-      "29191069313_fa8a36262f_o.jpg",
-      "29524633970_7d8e7e4e81_o.jpg",
-      "29693390724_f2f574b08c_o.jpg",
-      "30207603892_f46e653bce_o.jpg",
-      "44483072052_f874a6b7f4_o.jpg",
-      "5052744416_353f737db7_o.jpg",
-      "8981696164_c459cc3095_o.jpg",
-      "Jupiter_Eclipse.jpg",
-      "PIA00342.jpg",
-      "PIA00545.jpg",
-      "PIA07666-br500.jpg",
-      "PIA08919-br500.jpg",
-      "PIA08986-br500.jpg"
-    ]
-  },
-  {
     "dir": "people",
     "files": [
       "10183072994_a3e6e12f30_o.jpg",
@@ -146,6 +109,43 @@
     ]
   },
   {
+    "dir": "science",
+    "files": [
+      "16035994463_03cc9c4d86_o.jpg",
+      "16307098620_419b489844_o.jpg",
+      "30648890161_a9067dbd54_o.jpg",
+      "5278071900_c040282c2d_o.jpg",
+      "5553350875_8f6d1b995f_o.jpg",
+      "5553433977_3918ea5722_o.jpg",
+      "7544561648_cf0844fd10_o.jpg",
+      "7544561942_1126b3dac1_o.jpg",
+      "7651155116_847368da12_o.jpg",
+      "9416830800_1c5d7dfc7d_o.jpg",
+      "9416948964_ee2cd5cb02_o.jpg",
+      "GPN-2002-000226.jpg",
+      "PIA09244_modest-browse.jpg"
+    ]
+  },
+  {
+    "dir": "space",
+    "files": [
+      "17125224860_dfdc354bd4_o.jpg",
+      "29191069313_fa8a36262f_o.jpg",
+      "29524633970_7d8e7e4e81_o.jpg",
+      "29693390724_f2f574b08c_o.jpg",
+      "30207603892_f46e653bce_o.jpg",
+      "44483072052_f874a6b7f4_o.jpg",
+      "5052744416_353f737db7_o.jpg",
+      "8981696164_c459cc3095_o.jpg",
+      "Jupiter_Eclipse.jpg",
+      "PIA00342.jpg",
+      "PIA00545.jpg",
+      "PIA07666-br500.jpg",
+      "PIA08919-br500.jpg",
+      "PIA08986-br500.jpg"
+    ]
+  },
+  {
     "dir": "art",
     "files": [
       "118553.jpg",
@@ -192,6 +192,25 @@
       "9464634939_41a1e69ed3_o.jpg",
       "9464637131_18a642830f_o.jpg",
       "PIA04347.jpg"
+    ]
+  },
+  {
+    "dir": "private",
+    "files": [
+      "35facd5a-d050-41b1-be91-04eb741d8167.jpg",
+      "6.jpg",
+      "Bildschirmfoto-2019-05-11-um-18.18.54.jpg",
+      "Fotogarmme005-Kopie.jpg",
+      "L1190820-1.jpg",
+      "L1190820.jpg",
+      "L1190874.jpg",
+      "LISBOA.jpg",
+      "PSX_20181008_173439.jpg",
+      "PSX_20181008_174033.jpg",
+      "b9b866dc-2fd4-43fa-bdb2-d5ebe418ccd6.jpg",
+      "eusharp.gif",
+      "nn.jpg",
+      "szenepb-Kopie.jpg"
     ]
   }
 ]
