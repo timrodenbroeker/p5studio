@@ -29,6 +29,11 @@ export default new Vuex.Store({
 			currentFont: fontFiles[0],
 			updateFont: false,
 			align: 'LEFT',
+			rotation: {
+				x: 0,
+				y: 0,
+				z: 0,
+			},
 		},
 		////////////////////////////////////////////////////////
 		// SUBLINE
@@ -78,18 +83,15 @@ export default new Vuex.Store({
 		////////////////////////////////////////////////////////
 
 		colors: {
-			colors: ['#9E5105', '#2203a7', '#f1f1f1', '#111111'],
+			colors: ['#f1f1f1', '#111111', '#f43530', '#2203a7'],
 			background: {
-				colors: ['#2203a7', '#f1f1f1', '#111111'],
-				selectedColor: 2,
+				selectedColor: '#111111',
 			},
 			text: {
-				colors: ['#2203a7', '#f1f1f1', '#111111'],
-				selectedColor: 0,
+				selectedColor: '#f1f1f1',
 			},
 			grid: {
-				colors: ['#2203a7', '#f1f1f1', '#111111'],
-				selectedColor: 0,
+				selectedColor: '#f43530',
 			},
 		},
 
@@ -100,7 +102,7 @@ export default new Vuex.Store({
 		ui: {
 			// SelectedLayer
 			layers: ['TEXT', 'IMAGE', 'GRID'],
-			selectedLayer: 0,
+			selectedLayer: 'TEXT',
 
 			// Modals
 			ModalSelectFont: {
@@ -148,6 +150,18 @@ export default new Vuex.Store({
 		updateFontFalse(state) {
 			state.headline.updateFont = false;
 		},
+		updateTextRotationX(state, val) {
+			state.headline.rotation.x = val;
+			console.log(val);
+		},
+		updateTextRotationY(state, val) {
+			state.headline.rotation.y = val;
+			console.log(val);
+		},
+		updateTextRotationZ(state, val) {
+			state.headline.rotation.z = val;
+			console.log(val);
+		},
 
 		////////////////////////////////////////////////////////
 		// SUBLINE
@@ -169,7 +183,6 @@ export default new Vuex.Store({
 		},
 		updateImage(state, loc) {
 			state.image.selectedImage = loc;
-			console.log(loc);
 		},
 		updateImageTrue(state) {
 			state.image.updateImage = true;
@@ -190,12 +203,8 @@ export default new Vuex.Store({
 		////////////////////////////////////////////////////////
 		// LAYERS
 		////////////////////////////////////////////////////////
-		updateSelectedLayer(state) {
-			if (state.ui.selectedLayer < state.ui.layers.length - 1) {
-				state.ui.selectedLayer++;
-			} else {
-				state.ui.selectedLayer = 0;
-			}
+		updateSelectedLayer(state, val) {
+			state.ui.selectedLayer = val;
 		},
 
 		////////////////////////////////////////////////////////

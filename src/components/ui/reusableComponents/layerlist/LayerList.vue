@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="layers" v-on:click="update()">
-      <div class="layer" v-for="(option, index) in options">
-        <div v-if="selected == index" class="inner active">{{option}}</div>
+    <div class="layers">
+      <div class="layer" v-for="(option, index) in options" v-on:click="update(option)">
+        <div v-if="selectedLayer == option" class="inner active">{{option}}</div>
         <div v-else class="inner">{{option}}</div>
       </div>
     </div>
@@ -15,7 +15,7 @@ export default {
   props: {
     label: String,
     options: Array,
-    selected: Number,
+    selectedLayer: String,
     update: Function
   }
 };
@@ -38,7 +38,7 @@ export default {
     padding: 5px 10px;
 
     width: 100%;
-    background: $uiMix;
+    background: $uiFG;
     color: $uiBG;
     /* background: $uiMix; */
     cursor: pointer;

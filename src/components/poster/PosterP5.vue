@@ -55,6 +55,15 @@ export default {
     imageRotationZ() {
       return this.$store.state.image.rotation.z;
     },
+    textRotationX() {
+      return this.$store.state.headline.rotation.x;
+    },
+    textRotationY() {
+      return this.$store.state.headline.rotation.y;
+    },
+    textRotationZ() {
+      return this.$store.state.headline.rotation.z;
+    },
 
     imageW() {
       return this.$store.state.image.w;
@@ -93,16 +102,14 @@ export default {
 
     // COLORS
     selectedColor() {
-      var c = this.$store.state.colors.background.colors[
-        this.$store.state.colors.background.selectedColor
-      ];
+      var c = this.$store.state.colors.background.selectedColor;
+
       return c;
     },
 
     textColor() {
-      var c = this.$store.state.colors.text.colors[
-        this.$store.state.colors.text.selectedColor
-      ];
+      var c = this.$store.state.colors.text.selectedColor;
+
       return c;
     },
 
@@ -111,9 +118,7 @@ export default {
       return layers;
     },
     selectedLayer() {
-      var layers = this.$store.state.ui.layers;
-      var layerIndex = this.$store.state.ui.selectedLayer;
-      var selectedLayer = layers[layerIndex];
+      var selectedLayer = this.$store.state.ui.selectedLayer;
       return selectedLayer;
     },
     updateFont() {
@@ -129,9 +134,7 @@ export default {
     },
 
     gridColor() {
-      var c = this.$store.state.colors.grid.colors[
-        this.$store.state.colors.grid.selectedColor
-      ];
+      var c = this.$store.state.colors.grid.selectedColor;
       return c;
     },
     recording() {
@@ -165,7 +168,7 @@ export default {
     setup(c) {
       // PGraphics: Image
       c.pgImage = c.createGraphics(this.width, this.height, c.WEBGL);
-      c.pgText = c.createGraphics(this.width, this.height);
+      c.pgText = c.createGraphics(this.width, this.height, c.WEBGL);
       c.pgGrid = c.createGraphics(this.width, this.height);
       // c.frameRate(1);
       c.dragging = false;
@@ -306,7 +309,13 @@ export default {
       c.pgText.textLeading(fs * lh);
 
       c.pgText.push();
-      c.pgText.translate(this.headlinePos.x, this.headlinePos.y);
+      c.pgText.translate(
+        this.headlinePos.x - c.width / 2,
+        this.headlinePos.y - c.width / 2
+      );
+      c.pgText.rotateX(c.radians(this.textRotationX));
+      c.pgText.rotateY(c.radians(this.textRotationY));
+      c.pgText.rotateZ(c.radians(this.textRotationZ));
       c.pgText.text(this.headline, 20, 20);
       c.pgText.pop();
 

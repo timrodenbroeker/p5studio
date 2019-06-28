@@ -7,14 +7,14 @@
       <div class="colorWrapper">
         <div v-for="(color, index) in colors" class="color-border">
           <div
-            v-if="selectedColor == index"
-            v-on:click="updateSelectedColor(index)"
+            v-if="selectedColor == color"
+            v-on:click="updateSelectedColor(color)"
             class="color"
             v-bind:style="{background: color}"
           ></div>
           <div
             v-else
-            v-on:click="updateSelectedColor(index)"
+            v-on:click="updateSelectedColor(color)"
             class="color active"
             v-bind:style="{background: color}"
           ></div>
@@ -30,7 +30,7 @@ export default {
   props: {
     label: String,
     colors: Array,
-    selectedColor: Number,
+    selectedColor: String,
     updateSelectedColor: Function
   }
 };

@@ -11,12 +11,12 @@
       v-bind:update="updateSelectedLayer"
       label="layer"
       v-bind:options="layers"
-      v-bind:selected="selectedLayer"
+      v-bind:selectedLayer="selectedLayer"
     ></LayerList>
 
     <!-- <Tabs v-model="layers"></Tabs> -->
 
-    <Group name="headline" v-if="layers[selectedLayer] == 'TEXT'">
+    <Group name="headline" v-if="selectedLayer == 'TEXT'">
       <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/>
       <TextArea
         v-bind:rows="3"
@@ -43,7 +43,7 @@
       />
       <ColorList
         label="COLOR"
-        v-bind:colors="allColors"
+        v-bind:colors="colors"
         v-bind:selectedColor="textColor"
         v-bind:updateSelectedColor="updateTextColor"
       />
@@ -55,6 +55,31 @@
       <Button v-bind:doThis="toggleFontsModal" label="Select Font" text="Open Library"/>
 
       <TextAlign label="Align" v-bind:setAlignment="textAlign" v-bind:alignment="align"/>
+      <!-- 
+      <RangeSlider
+        label="Rotate X"
+        v-bind:min="0"
+        v-bind:max="360"
+        v-bind:val="parseInt(textRotationX)"
+        v-bind:step="1"
+        v-bind:update="updateTextRotationX"
+      />
+      <RangeSlider
+        label="Rotate Y"
+        v-bind:min="0"
+        v-bind:max="360"
+        v-bind:val="parseInt(textRotationY)"
+        v-bind:step="1"
+        v-bind:update="updateTextRotationY"
+      />
+      <RangeSlider
+        label="Rotate Z"
+        v-bind:min="0"
+        v-bind:max="360"
+        v-bind:val="parseInt(textRotationZ)"
+        v-bind:step="1"
+        v-bind:update="updateTextRotationZ"
+      />-->
     </Group>
     <!-- 
     <Group name="Subline" v-if="layers[selectedLayer] == 'TEXT'">
@@ -66,7 +91,7 @@
         v-bind:update="updateSubline"
       />
     </Group>-->
-    <Group name="Image" v-if="layers[selectedLayer] == 'IMAGE'">
+    <Group name="Image" v-if="selectedLayer == 'IMAGE'">
       <Position label="Position" v-bind:posX="imagePosX" v-bind:posY="imagePosY"/>
       <Dropzone label="upload" text="drop a file"></Dropzone>
       <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
@@ -105,10 +130,10 @@
         v-bind:update="updateImageRotationZ"
       />
     </Group>
-    <Group name="GRID" v-if="layers[selectedLayer] == 'GRID'">
+    <Group name="GRID" v-if="selectedLayer  == 'GRID'">
       <ColorList
         label="GRID"
-        v-bind:colors="allColors"
+        v-bind:colors="colors"
         v-bind:selectedColor="gridColor"
         v-bind:updateSelectedColor="updateGridColor"
       />
@@ -166,17 +191,13 @@ export default {
 
   computed: {
     colors() {
-      return this.$store.state.colors.background.colors;
-    },
-    allColors() {
       return this.$store.state.colors.colors;
     },
+
     selectedColor() {
       return this.$store.state.colors.background.selectedColor;
     },
-    textColors() {
-      return this.$store.state.colors.text.colors;
-    },
+
     textColor() {
       return this.$store.state.colors.text.selectedColor;
     },
@@ -186,9 +207,7 @@ export default {
       return layers;
     },
     selectedLayer() {
-      var layer = this.$store.state.ui.selectedLayer;
-
-      return layer;
+      return this.$store.state.ui.selectedLayer;
     },
 
     headlineFontSize() {
@@ -242,12 +261,22 @@ export default {
       var r = this.$store.state.image.rotation.z;
       return r;
     },
+    textRotationX() {
+      var r = this.$store.state.headline.rotation.x;
+      return r;
+    },
+    textRotationY() {
+      var r = this.$store.state.headline.rotation.y;
+      return r;
+    },
+    textRotationZ() {
+      var r = this.$store.state.headline.rotation.z;
+      return r;
+    },
     gridVisible() {
       return this.$store.state.grid.visible;
     },
-    gridColors() {
-      return this.$store.state.colors.grid.colors;
-    },
+
     gridColor() {
       return this.$store.state.colors.grid.selectedColor;
     },
@@ -260,8 +289,8 @@ export default {
   // Methods
 
   methods: {
-    updateTextColor(index) {
-      this.$store.commit("updateTextColor", index);
+    updateTextColor(val) {
+      this.$store.commit("updateTextColor", val);
     },
     doSomethingStupid() {
       console.log("i've boiled your dog");
@@ -278,8 +307,8 @@ export default {
     updateSubline(e) {
       this.$store.commit("updateSubline", e.target.value);
     },
-    updateSelectedLayer() {
-      this.$store.commit("updateSelectedLayer");
+    updateSelectedLayer(val) {
+      this.$store.commit("updateSelectedLayer", val);
     },
     toggleFontsModal() {
       this.$store.commit("toggleFontsModal");
@@ -303,17 +332,26 @@ export default {
     updateImageRotationZ(e) {
       this.$store.commit("updateImageRotationZ", e.target.value);
     },
+
+    updateTextRotationX(e) {
+      this.$store.commit("updateTextRotationX", e.target.value);
+    },
+    updateTextRotationY(e) {
+      this.$store.commit("updateTextRotationY", e.target.value);
+    },
+    updateTextRotationZ(e) {
+      this.$store.commit("updateTextRotationZ", e.target.value);
+    },
     updateGridCols(val) {
       this.$store.commit("updateGridCols", val);
     },
-    updateGridColor(index) {
-      this.$store.commit("updateGridColor", index);
+    updateGridColor(val) {
+      this.$store.commit("updateGridColor", val);
     },
     updateGridRows(val) {
       this.$store.commit("updateGridRows", val);
     },
     toggleGridVisibility() {
-      console.log("HEY");
       this.$store.commit("toggleGridVisibility");
     },
     textAlign(val) {
