@@ -27,7 +27,7 @@ export default new Vuex.Store({
 			},
 			fontSize: 220,
 			lineHeight: 0.92,
-			headline: 'ABC\nDEF',
+			content: 'ABC\nDEF',
 			fontFiles: fontFiles,
 			currentFont: fontFiles[0],
 			updateFont: false,
@@ -122,8 +122,8 @@ export default new Vuex.Store({
 
 		ui: {
 			// SelectedLayer
-			layers: ['BASE', 'TEXT', 'IMAGE', 'GRID'],
-			selectedLayer: 'TEXT',
+			layers: ['BASE', 'HEADLINE', 'IMAGE', 'GRID'],
+			selectedLayer: 'HEADLINE',
 
 			// Modals
 			ModalSelectFont: {
@@ -142,54 +142,42 @@ export default new Vuex.Store({
 		// HEADLINE
 		////////////////////////////////////////////////////////
 
-		updateHeadlinePos(state, newPos) {
-			state.headline.pos = newPos;
-		},
-		updateFontSize(state, fontSize) {
-			state.headline.fontSize = fontSize;
-		},
-		updateFont(state, font) {
-			state.headline.currentFont = font;
-		},
-		updateLineHeight(state, lineHeight) {
-			state.headline.lineHeight = lineHeight;
-		},
-		updateCurrentFont(state, val) {
+		updateHeadlineFont(state, val) {
 			state.headline.currentFont = val;
 		},
 
-		updateHeadline(state, headline) {
-			state.headline.headline = headline;
-		},
-		updateTextColor(state, selectedColor) {
+		updateHeadlineColor(state, selectedColor) {
 			state.colors.text.selectedColor = selectedColor;
 		},
 
-		updateFontTrue(state) {
+		updateHeadlineFontSize(state, fontSize) {
+			state.headline.fontSize = fontSize;
+		},
+		updateHeadlinePos(state, newPos) {
+			state.headline.pos = newPos;
+		},
+
+		updateHeadlineLineHeight(state, lineHeight) {
+			state.headline.lineHeight = lineHeight;
+		},
+
+		updateHeadlineContent(state, headline) {
+			state.headline.content = headline;
+		},
+
+		updateHeadlineCurrentFont(state, font) {
+			state.headline.currentFont = font;
+		},
+
+		updateHeadlineFontTrue(state) {
 			state.headline.updateFont = true;
 		},
-		updateFontFalse(state) {
+		updateHeadlineFontFalse(state) {
 			state.headline.updateFont = false;
 		},
-		updateTextRotationX(state, val) {
-			state.headline.rotation.x = val;
-			console.log(val);
-		},
-		updateTextRotationY(state, val) {
-			state.headline.rotation.y = val;
-			console.log(val);
-		},
-		updateTextRotationZ(state, val) {
-			state.headline.rotation.z = val;
-			console.log(val);
-		},
 
-		////////////////////////////////////////////////////////
-		// SUBLINE
-		////////////////////////////////////////////////////////
-
-		updateSubline(state, text) {
-			state.subline.text = text;
+		updateHeadlineTextAlign(state, val) {
+			state.headline.align = val;
 		},
 
 		////////////////////////////////////////////////////////
@@ -253,6 +241,7 @@ export default new Vuex.Store({
 		updateGridColor(state, selectedColor) {
 			state.colors.grid.selectedColor = selectedColor;
 		},
+
 		////////////////////////////////////////////////////////
 		// VIEW
 		////////////////////////////////////////////////////////
@@ -288,11 +277,6 @@ export default new Vuex.Store({
 		stopSaving(state) {
 			state.render.saveJPG = false;
 			state.render.savePNG = false;
-		},
-
-		textAlign(state, val) {
-			state.headline.align = val;
-			console.log(state.headline.align);
 		},
 
 		closeAllModals(state) {

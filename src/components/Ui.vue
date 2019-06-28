@@ -16,14 +16,14 @@
 
     <!-- <Tabs v-model="layers"></Tabs> -->
 
-    <Group name="headline" v-if="selectedLayer == 'TEXT'">
-      <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/>
+    <Group name="HEADLINE" v-if="selectedLayer == 'HEADLINE'">
+      <Position label="Position" v-bind:posX="headlinePosX" v-bind:posY="headlinePosY"/>
       <TextArea
         v-bind:rows="3"
-        label="headline"
-        :value="headline"
-        v-bind:text="headline"
-        v-bind:update="updateHeadline"
+        label="text"
+        :value="headlineContent"
+        v-bind:text="headlineContent"
+        v-bind:update="updateHeadlineContent"
       />
 
       <RangeSlider
@@ -31,66 +31,36 @@
         v-bind:min="10"
         v-bind:max="350"
         v-bind:val="parseInt(headlineFontSize)"
-        v-bind:update="updateFontSize"
+        v-bind:update="updateHeadlineFontSize"
       />
       <RangeSlider
         label="lineheight"
         v-bind:min="0"
         v-bind:max="2"
-        v-bind:val="parseFloat(lineHeight)"
+        v-bind:val="parseFloat(headlineLineHeight)"
         v-bind:step="0.01"
-        v-bind:update="updateLineHeight"
+        v-bind:update="updateHeadlineLineHeight"
       />
       <ColorList
         label="COLOR"
         v-bind:colors="colors"
-        v-bind:selectedColor="textColor"
-        v-bind:updateSelectedColor="updateTextColor"
+        v-bind:selectedColor="headlineTextColor"
+        v-bind:updateSelectedColor="updateHeadlineColor"
       />
 
       <!-- <DropDown label="Font" v-bind:options="fontFiles" :update="updateCurrentFont()"/> -->
 
-      <DisplayString label="FONT" v-bind:text="currentFont"></DisplayString>
+      <DisplayString label="FONT" v-bind:text="headlineCurrentFont"></DisplayString>
 
       <Button v-bind:doThis="toggleFontsModal" label="Select Font" text="Open Library"/>
 
-      <TextAlign label="Align" v-bind:setAlignment="textAlign" v-bind:alignment="align"/>
-      <!-- 
-      <RangeSlider
-        label="Rotate X"
-        v-bind:min="0"
-        v-bind:max="360"
-        v-bind:val="parseInt(textRotationX)"
-        v-bind:step="1"
-        v-bind:update="updateTextRotationX"
+      <TextAlign
+        label="Align"
+        v-bind:setAlignment="updateHeadlineTextAlign"
+        v-bind:alignment="headlineTextAlign"
       />
-      <RangeSlider
-        label="Rotate Y"
-        v-bind:min="0"
-        v-bind:max="360"
-        v-bind:val="parseInt(textRotationY)"
-        v-bind:step="1"
-        v-bind:update="updateTextRotationY"
-      />
-      <RangeSlider
-        label="Rotate Z"
-        v-bind:min="0"
-        v-bind:max="360"
-        v-bind:val="parseInt(textRotationZ)"
-        v-bind:step="1"
-        v-bind:update="updateTextRotationZ"
-      />-->
     </Group>
-    <!-- 
-    <Group name="Subline" v-if="layers[selectedLayer] == 'TEXT'">
-      <TextArea
-        v-bind:rows="3"
-        label="subline"
-        :value="subline"
-        v-bind:text="subline"
-        v-bind:update="updateSubline"
-      />
-    </Group>-->
+
     <Group name="Image" v-if="selectedLayer == 'IMAGE'">
       <Position label="Position" v-bind:posX="imagePosX" v-bind:posY="imagePosY"/>
       <Dropzone label="upload" text="drop a file"></Dropzone>
@@ -211,45 +181,98 @@ export default {
       return this.$store.state.colors.background.selectedColor;
     },
 
-    textColor() {
+    fontFiles() {
+      return this.$store.state.headline.fontFiles;
+    },
+
+    ////////////////////////////////////////////////////////
+    // HEADLINE
+    ////////////////////////////////////////////////////////
+
+    headlineTextColor() {
       return this.$store.state.colors.text.selectedColor;
     },
+
+    headlineFontSize() {
+      return this.$store.state.headline.fontSize;
+    },
+    headlinePosX() {
+      return this.$store.state.headline.pos.x;
+    },
+    headlinePosY() {
+      return this.$store.state.headline.pos.y;
+    },
+
+    headlineLineHeight() {
+      return this.$store.state.headline.lineHeight;
+    },
+    headlineContent() {
+      return this.$store.state.headline.content;
+    },
+
+    headlineCurrentFont() {
+      var cf = this.$store.state.headline.currentFont;
+      return cf;
+    },
+
+    headlineTextAlign() {
+      return this.$store.state.headline.align;
+    },
+
+    ////////////////////////////////////////////////////////
+    // TEXT
+    ////////////////////////////////////////////////////////
+
+    textTextColor() {
+      return this.$store.state.colors.text.selectedColor;
+    },
+
+    textFontSize() {
+      return this.$store.state.headline.fontSize;
+    },
+    textPosX() {
+      return this.$store.state.headline.pos.x;
+    },
+    textPosY() {
+      return this.$store.state.headline.pos.y;
+    },
+
+    textLineHeight() {
+      return this.$store.state.headline.lineHeight;
+    },
+    textContent() {
+      return this.$store.state.headline.content;
+    },
+
+    textCurrentFont() {
+      var cf = this.$store.state.headline.currentFont;
+      return cf;
+    },
+
+    textTextAlign() {
+      return this.$store.state.headline.align;
+    },
+
+    ////////////////////////////////////////////////////////
+    // LAYERS
+    ////////////////////////////////////////////////////////
+
     layers() {
       var layers = this.$store.state.ui.layers;
-
       return layers;
     },
     selectedLayer() {
       return this.$store.state.ui.selectedLayer;
     },
 
-    headlineFontSize() {
-      return this.$store.state.headline.fontSize;
-    },
-    posX() {
-      return this.$store.state.headline.pos.x;
-    },
-    posY() {
-      return this.$store.state.headline.pos.y;
-    },
-
+    ////////////////////////////////////////////////////////
+    // IMAGE
+    ////////////////////////////////////////////////////////
     imagePosX() {
       return this.$store.state.image.pos.x;
     },
     imagePosY() {
       return this.$store.state.image.pos.y;
-    },
-    lineHeight() {
-      return this.$store.state.headline.lineHeight;
-    },
-    headline() {
-      return this.$store.state.headline.headline;
-    },
-    subline() {
-      return this.$store.state.subline.text;
-    },
-    fontFiles() {
-      return this.$store.state.headline.fontFiles;
     },
 
     ModalSelectFontVisible() {
@@ -258,10 +281,7 @@ export default {
     imageW() {
       return this.$store.state.image.w;
     },
-    currentFont() {
-      var cf = this.$store.state.headline.currentFont;
-      return cf;
-    },
+
     imageRotationX() {
       var r = this.$store.state.image.rotation.x;
       return r;
@@ -274,27 +294,16 @@ export default {
       var r = this.$store.state.image.rotation.z;
       return r;
     },
-    textRotationX() {
-      var r = this.$store.state.headline.rotation.x;
-      return r;
-    },
-    textRotationY() {
-      var r = this.$store.state.headline.rotation.y;
-      return r;
-    },
-    textRotationZ() {
-      var r = this.$store.state.headline.rotation.z;
-      return r;
-    },
+    ////////////////////////////////////////////////////////
+    // GRID
+    ////////////////////////////////////////////////////////
+
     gridVisible() {
       return this.$store.state.grid.visible;
     },
 
     gridColor() {
       return this.$store.state.colors.grid.selectedColor;
-    },
-    align() {
-      return this.$store.state.headline.align;
     }
   },
   created: function() {},
@@ -302,27 +311,41 @@ export default {
   // Methods
 
   methods: {
+    ////////////////////////////////////////////////////////
+    // HEADLINE
+    ////////////////////////////////////////////////////////
+
+    updateHeadlineColor(val) {
+      this.$store.commit("updateHeadlineColor", val);
+    },
+    updateHeadlineFontSize(e) {
+      this.$store.commit("updateHeadlineFontSize", e.target.value);
+    },
+    updateHeadlineLineHeight(e) {
+      this.$store.commit("updateHeadlineLineHeight", e.target.value);
+    },
+    updateHeadlineContent(e) {
+      this.$store.commit("updateHeadlineContent", e.target.value);
+    },
+    updateHeadlineCurrentFont(val) {
+      this.$store.commit("updateHeadlineCurrentFont", val);
+    },
+    updateHeadlineTextAlign(val) {
+      this.$store.commit("updateHeadlineTextAlign", val);
+    },
+
+    ////////////////////////////////////////////////////////
+    // / HEADLINE
+    ////////////////////////////////////////////////////////
+
     updateSelectedColor(index) {
       this.$store.commit("updateSelectedColor", index);
     },
-    updateTextColor(val) {
-      this.$store.commit("updateTextColor", val);
-    },
+
     doSomethingStupid() {
       console.log("i've boiled your dog");
     },
-    updateFontSize(e) {
-      this.$store.commit("updateFontSize", e.target.value);
-    },
-    updateLineHeight(e) {
-      this.$store.commit("updateLineHeight", e.target.value);
-    },
-    updateHeadline(e) {
-      this.$store.commit("updateHeadline", e.target.value);
-    },
-    updateSubline(e) {
-      this.$store.commit("updateSubline", e.target.value);
-    },
+
     updateSelectedLayer(val) {
       this.$store.commit("updateSelectedLayer", val);
     },
@@ -332,9 +355,7 @@ export default {
     toggleImagesModal() {
       this.$store.commit("toggleImagesModal");
     },
-    updateCurrentFont(val) {
-      this.$store.commit("updateCurrentFont", val);
-    },
+
     updateImageW(e) {
       this.$store.commit("updateImageW", e.target.value);
     },
@@ -349,15 +370,6 @@ export default {
       this.$store.commit("updateImageRotationZ", e.target.value);
     },
 
-    updateTextRotationX(e) {
-      this.$store.commit("updateTextRotationX", e.target.value);
-    },
-    updateTextRotationY(e) {
-      this.$store.commit("updateTextRotationY", e.target.value);
-    },
-    updateTextRotationZ(e) {
-      this.$store.commit("updateTextRotationZ", e.target.value);
-    },
     updateGridCols(val) {
       this.$store.commit("updateGridCols", val);
     },
@@ -369,9 +381,6 @@ export default {
     },
     toggleGridVisibility() {
       this.$store.commit("toggleGridVisibility");
-    },
-    textAlign(val) {
-      this.$store.commit("textAlign", val);
     }
   }
 };

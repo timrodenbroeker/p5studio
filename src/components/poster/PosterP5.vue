@@ -70,11 +70,7 @@ export default {
     },
 
     headline() {
-      return this.$store.state.headline.headline;
-    },
-
-    subline() {
-      return this.$store.state.subline.text;
+      return this.$store.state.headline.content;
     },
 
     fontSize() {
@@ -173,7 +169,7 @@ export default {
       // c.pixelDensity(3);
       // PGraphics: Image
       c.pgImage = c.createGraphics(this.width, this.height, c.WEBGL);
-      c.pgText = c.createGraphics(this.width, this.height, c.WEBGL);
+      c.pgText = c.createGraphics(this.width, this.height);
       c.pgGrid = c.createGraphics(this.width, this.height);
       // c.frameRate(1);
       c.dragging = false;
@@ -204,9 +200,10 @@ export default {
 
       if (this.updateFont == true) {
         c.currentFontPath = c.pathToFonts + this.currentFont;
+        console.log(c.currentFontPath);
         c.font = c.loadFont(c.currentFontPath);
 
-        this.$store.commit("updateFontFalse");
+        this.$store.commit("updateHeadlineFontFalse");
       }
       ////////////////////////////////////////////////////////
       // LOAD NEW IMAGE
@@ -224,7 +221,7 @@ export default {
       ////////////////////////////////////////////////////////
       if (c.dragging) {
         var newPos;
-        if (this.selectedLayer == "TEXT") {
+        if (this.selectedLayer == "HEADLINE") {
           newPos = {
             x: Math.floor(c.mouseX + c.headlineOffsetX),
             y: Math.floor(c.mouseY + c.headlineOffsetY)
@@ -314,26 +311,9 @@ export default {
       c.pgText.textLeading(fs * lh);
 
       c.pgText.push();
-      c.pgText.translate(
-        this.headlinePos.x - c.width / 2,
-        this.headlinePos.y - c.width / 2
-      );
-      c.pgText.rotateX(c.radians(this.textRotationX));
-      c.pgText.rotateY(c.radians(this.textRotationY));
-      c.pgText.rotateZ(c.radians(this.textRotationZ));
-      c.pgText.text(this.headline, 20, 20);
-      c.pgText.pop();
+      c.pgText.translate(this.headlinePos.x, this.headlinePos.y - c.width / 2);
 
-      ////////////////////////////////////////////////////////
-      // DISPLAY SUBLINE
-      ////////////////////////////////////////////////////////
-      c.pgText.textFont(c.fontSecondary);
-      c.pgText.textSize(10);
-      c.pgText.textLeading(10);
-      c.pgText.textAlign(c.CENTER, c.CENTER);
-      c.pgText.push();
-      c.pgText.translate(c.width / 2, c.height - 60);
-      c.pgText.text(this.subline.toUpperCase(), 0, 0);
+      c.pgText.text(this.headline, 20, 20);
       c.pgText.pop();
 
       ////////////////////////////////////////////////////////

@@ -26,9 +26,9 @@ export default {
       this.$store.commit("toggleFontsModal");
     },
     updateFont: function(font) {
-      this.$store.commit("updateFont", font);
+      this.$store.commit("updateHeadlineFont", font);
       this.$store.commit("toggleFontsModal");
-      this.$store.commit("updateFontTrue");
+      this.$store.commit("updateHeadlineFontTrue");
       // this.$store.state.headline.currentFont = font;
     }
   }
