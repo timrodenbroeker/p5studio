@@ -349,7 +349,7 @@ export default {
           for (var x = 1; x < cols; x++) {
             c.pgText.noFill();
             c.pgText.stroke(this.gridColor);
-            c.pgText.strokeWeight(1);
+            c.pgText.strokeWeight(0.6);
             c.pgText.push();
 
             c.pgText.line(x * stepX, 0, x * stepX, c.height);

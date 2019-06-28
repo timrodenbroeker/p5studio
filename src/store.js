@@ -23,11 +23,11 @@ export default new Vuex.Store({
 
 		headline: {
 			pos: {
-				x: 11,
-				y: -25,
+				x: -5,
+				y: -44,
 			},
-			fontSize: 230,
-			lineHeight: 0.79,
+			fontSize: 272,
+			lineHeight: 0.74,
 			content: 'NAM\nJUNE\nPAIK',
 			fontFiles: fontFiles,
 			currentFont: 'Roboto-Light.ttf',
@@ -107,7 +107,7 @@ export default new Vuex.Store({
 				selectedColor: '#f43530',
 			},
 			grid: {
-				selectedColor: '#2203a7',
+				selectedColor: '#f1f1f1',
 			},
 		},
 

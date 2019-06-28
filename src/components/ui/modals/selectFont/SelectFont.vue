@@ -40,7 +40,8 @@ export default {
   padding: 25px;
 }
 .font {
-  font-size: 20px;
+  font-size: 30px;
+  padding-bottom: 10px;
   cursor: pointer;
 }
 </style>
