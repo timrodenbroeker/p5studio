@@ -1,22 +1,10 @@
-@keyframes sayHello {
-	from {
-		transform: scale(0) rotateY(360deg) rotate(45deg);
-	}
-	to {
-		transform: scale(1) rotateY(0deg);
-	}
-}
-
 #poster {
-	// background: $uiMix;
-	// min-width: 586px;
-	// min-height: 810px;
+	transform: scale(0) rotateX(90deg) rotateY(90deg);
+	transition: all 5s ease;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
-	canvas {
-	}
 	perspective: 100px !important;
 	width: 100%;
 	max-width: $posterW;
@@ -29,6 +17,8 @@
 	canvas {
 		width: 100% !important;
 	}
-	animation-name: sayHello;
-	animation-duration: 1s;
+
+	&.ready {
+		transform: scale(1);
+	}
 }

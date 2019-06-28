@@ -1,6 +1,6 @@
 <template>
   <div id="wrapper">
-    <div id="poster">
+    <div id="poster" v-bind:class="{ ready: ready }">
       <vue-p5
         @setup="setup"
         @draw="draw"
@@ -184,6 +184,9 @@ export default {
     },
     saveJPG() {
       return this.$store.state.render.saveJPG;
+    },
+    ready() {
+      return this.$store.state.poster.ready;
     }
 
     // LAYERS
@@ -234,6 +237,7 @@ export default {
       // Create a capturer that exports a WebM video
       // c.capturer = new CCapture({ format: "webm" });
       c.recorder = new CanvasRecorder(c.canvas);
+      this.$store.commit("updateReadyStatus");
     },
     draw(c) {
       ////////////////////////////////////////////////////////

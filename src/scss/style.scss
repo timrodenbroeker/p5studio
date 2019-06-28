@@ -87,20 +87,8 @@ select {
 
 .branding {
 	padding: $uiPadding;
-	@keyframes blink {
-		0% {
-			opacity: 0;
-		}
-		70% {
-			opacity: 1;
-		}
-		100% {
-			opacity: 0;
-		}
-	}
 
 	h1 {
-		// animation: blink 1s linear infinite;
 		font-family: $uiFontSans, sans-serif;
 		color: $uiSecondary;
 		// font-weight: normal;

@@ -166,25 +166,6 @@
     ]
   },
   {
-    "dir": "private",
-    "files": [
-      "35facd5a-d050-41b1-be91-04eb741d8167.jpg",
-      "6.jpg",
-      "Bildschirmfoto-2019-05-11-um-18.18.54.jpg",
-      "Fotogarmme005-Kopie.jpg",
-      "L1190820-1.jpg",
-      "L1190820.jpg",
-      "L1190874.jpg",
-      "LISBOA.jpg",
-      "PSX_20181008_173439.jpg",
-      "PSX_20181008_174033.jpg",
-      "b9b866dc-2fd4-43fa-bdb2-d5ebe418ccd6.jpg",
-      "eusharp.gif",
-      "nn.jpg",
-      "szenepb-Kopie.jpg"
-    ]
-  },
-  {
     "dir": "technology",
     "files": [
       "15881529824_f907d07b5f_o.jpg",
@@ -211,6 +192,25 @@
       "9464634939_41a1e69ed3_o.jpg",
       "9464637131_18a642830f_o.jpg",
       "PIA04347.jpg"
+    ]
+  },
+  {
+    "dir": "private",
+    "files": [
+      "35facd5a-d050-41b1-be91-04eb741d8167.jpg",
+      "6.jpg",
+      "Bildschirmfoto-2019-05-11-um-18.18.54.jpg",
+      "Fotogarmme005-Kopie.jpg",
+      "L1190820-1.jpg",
+      "L1190820.jpg",
+      "L1190874.jpg",
+      "LISBOA.jpg",
+      "PSX_20181008_173439.jpg",
+      "PSX_20181008_174033.jpg",
+      "b9b866dc-2fd4-43fa-bdb2-d5ebe418ccd6.jpg",
+      "eusharp.gif",
+      "nn.jpg",
+      "szenepb-Kopie.jpg"
     ]
   }
 ]

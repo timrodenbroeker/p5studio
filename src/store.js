@@ -13,6 +13,7 @@ export default new Vuex.Store({
 		},
 		// General Poster-settings
 		poster: {
+			ready: false,
 			w: 586,
 			h: 810,
 		},
@@ -324,6 +325,11 @@ export default new Vuex.Store({
 
 		logState(state) {
 			console.log(state);
+		},
+
+		updateReadyStatus(state) {
+			console.log('OKAY I AM READY!');
+			state.poster.ready = true;
 		},
 	},
 });

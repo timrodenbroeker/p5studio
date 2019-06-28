@@ -4,6 +4,7 @@
     <UiRight></UiRight>
     <Artboard></Artboard>
     <Modals/>
+    <Preloader/>
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import Ui from "./components/Ui.vue";
 import UiRight from "./components/UiRight.vue";
 import Artboard from "./components/Artboard.vue";
 import Modals from "./components/ui/modals/Modals.vue";
+import Preloader from "./components/preloader/Preloader.vue";
 
 export default {
   name: "app",
@@ -19,7 +21,8 @@ export default {
     Artboard,
     Ui,
     UiRight,
-    Modals
+    Modals,
+    Preloader
   },
   mounted() {
     // Prevent leaving the page when a file is dropped
