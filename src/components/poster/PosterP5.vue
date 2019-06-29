@@ -346,7 +346,7 @@ export default {
           this.$store.commit("updateImagePos", newPos);
         }
 
-         // IMAGE
+        // IMAGE
         else if (this.selectedLayer == "IMAGE2") {
           var newPos;
           newPos = {
@@ -355,7 +355,6 @@ export default {
           };
           this.$store.commit("updateImage2Pos", newPos);
         }
-
       }
 
       ////////////////////////////////////////////////////////
@@ -420,7 +419,7 @@ export default {
       ////////////////////////////////////////////////////////
       // DISPLAY GRID
       ////////////////////////////////////////////////////////
-
+      c.pgGrid.clear();
       if (this.grid.visible === true) {
         var cols = this.grid.cols;
         var rows = this.grid.rows;
@@ -429,16 +428,16 @@ export default {
 
         for (var y = 1; y < rows; y++) {
           for (var x = 1; x < cols; x++) {
-            c.pgText.noFill();
-            c.pgText.stroke(this.gridColor);
-            c.pgText.strokeWeight(0.6);
-            c.pgText.push();
+            c.pgGrid.noFill();
+            c.pgGrid.stroke(this.gridColor);
+            c.pgGrid.strokeWeight(0.6);
+            c.pgGrid.push();
 
-            c.pgText.line(x * stepX, 0, x * stepX, c.height);
-            c.pgText.pop();
-            c.pgText.push();
-            c.pgText.line(0, y * stepY, c.width, y * stepY);
-            c.pgText.pop();
+            c.pgGrid.line(x * stepX, 0, x * stepX, c.height);
+            c.pgGrid.pop();
+            c.pgGrid.push();
+            c.pgGrid.line(0, y * stepY, c.width, y * stepY);
+            c.pgGrid.pop();
           }
         }
       }
@@ -495,9 +494,10 @@ export default {
       // THE IMAGE-STACK
       ////////////////////////////////////////////////////////
 
-      c.image(c.pgImage, this.width / 2, this.height / 2);
       c.image(c.pgImage2, this.width / 2, this.height / 2);
-      // c.image(c.pgGrid, this.width / 2, this.height / 2);
+      c.image(c.pgGrid, this.width / 2, this.height / 2);
+      c.image(c.pgImage, this.width / 2, this.height / 2);
+
       c.image(c.pgText, this.width / 2, this.height / 2);
 
       ////////////////////////////////////////////////////////
