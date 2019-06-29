@@ -19,3 +19,9 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+public/fonts/SMMaxevilleTrial-Constructed.otf
+public/fonts/SMMaxevilleTrial-ConstructedOblique.otf
+public/fonts/SMMaxevilleTrial-Regular.otf
+public/fonts/SMMaxevilleTrial-RegularOblique.otf
+public/fonts/Mineral.otf
