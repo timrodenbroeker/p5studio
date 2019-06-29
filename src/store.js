@@ -80,6 +80,26 @@ export default new Vuex.Store({
 		},
 
 		////////////////////////////////////////////////////////
+		// IMAGE
+		////////////////////////////////////////////////////////
+
+		image2: {
+			imageCollections: imageCollections,
+			selectedImage: 'technology/9460224502_3ca204a02b_o_kl.jpg',
+			updateImage: false,
+			pos: {
+				x: 367,
+				y: 467,
+			},
+			w: 300,
+			rotation: {
+				x: 139,
+				y: 133,
+				z: 37,
+			},
+		},
+
+		////////////////////////////////////////////////////////
 		// GRID
 		////////////////////////////////////////////////////////
 
@@ -117,7 +137,32 @@ export default new Vuex.Store({
 
 		ui: {
 			// SelectedLayer
-			layers: ['BASE', 'HEADLINE', 'SUBLINE', 'IMAGE', 'GRID'],
+			layers: [
+				{
+					name: 'HEADLINE',
+					visible: true,
+				},
+				{
+					name: 'SUBLINE',
+					visible: true,
+				},
+				{
+					name: 'IMAGE',
+					visible: true,
+				},
+				{
+					name: 'GRID',
+					visible: true,
+				},
+				{
+					name: 'IMAGE2',
+					visible: true,
+				},
+				{
+					name: 'BASE',
+					visible: true,
+				},
+			],
 			selectedLayer: 'HEADLINE',
 
 			// Modals
@@ -228,7 +273,11 @@ export default new Vuex.Store({
 			state.image.w = val;
 		},
 		updateImage(state, loc) {
-			state.image.selectedImage = loc;
+			if (state.ui.selectedLayer == 'IMAGE') {
+				state.image.selectedImage = loc;
+			} else {
+				state.image2.selectedImage = loc;
+			}
 		},
 		updateImageTrue(state) {
 			state.image.updateImage = true;
@@ -244,6 +293,35 @@ export default new Vuex.Store({
 		},
 		updateImageRotationZ(state, val) {
 			state.image.rotation.z = val;
+		},
+
+		////////////////////////////////////////////////////////
+		// IMAGE 2
+		////////////////////////////////////////////////////////
+
+		updateImage2Pos(state, newPos) {
+			state.image2.pos = newPos;
+		},
+		updateImage2W(state, val) {
+			state.image2.w = val;
+		},
+		updateImage2(state, loc) {
+			state.image2.selectedImage = loc;
+		},
+		updateImage2True(state) {
+			state.image2.updateImage = true;
+		},
+		updateImage2False(state) {
+			state.image2.updateImage = false;
+		},
+		updateImage2RotationX(state, val) {
+			state.image2.rotation.x = val;
+		},
+		updateImage2RotationY(state, val) {
+			state.image2.rotation.y = val;
+		},
+		updateImage2RotationZ(state, val) {
+			state.image2.rotation.z = val;
 		},
 
 		////////////////////////////////////////////////////////

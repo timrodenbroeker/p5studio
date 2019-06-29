@@ -35,6 +35,7 @@ export default {
       this.$store.commit("updateImage", dir + "/" + image);
       this.$store.commit("toggleImagesModal");
       this.$store.commit("updateImageTrue");
+      this.$store.commit("updateImage2True");
     }
   }
 };

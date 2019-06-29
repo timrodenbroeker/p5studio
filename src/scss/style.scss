@@ -8,6 +8,10 @@ html {
 	font-family: $uiFontSans, sans-serif;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 textarea,
 input,
 select,

@@ -8,19 +8,35 @@ const stat = util.promisify(fs.stat);
 async function getDirs(location) {
 	let arr = [];
 	let files = await readdir(location);
+
 	for (var i = 0; i < files.length; i++) {
 		let fileStat = await stat(path.join(location, files[i]));
+
 		if (fileStat.isDirectory()) {
 			let subfiles = await readdir(path.join(location, files[i]));
+
+			// console.log(path.join(location, files[i]));
+			// public/images/animals
+			// public/images/art
+			// public/images/landscapes
+
+			// Wenn Dateien im Ordner sind
 			if (subfiles != null) {
 				var item = {};
-				item[files[i]] = subfiles;
+
+				// .DS_Store herausfiltern
+				subfiles = subfiles.filter(e => e !== '.DS_Store');
+				item.dir = files[i];
+				item.files = subfiles;
+				// item[files[i]] = subfiles;
+
 				arr.push(item);
 			} else {
-				arr.push(files[i]);
+				// arr.push(files[i]);
 			}
 		} else {
-			arr.push(files[i]);
+			// Here's no file so do nothing!
+			// arr.push(files[i]);
 		}
 	}
 	return arr;

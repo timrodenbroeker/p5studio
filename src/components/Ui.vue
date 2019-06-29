@@ -145,6 +145,47 @@
         v-bind:update="updateImageRotationZ"
       />
     </Group>
+
+    <Group name="Image2" v-if="selectedLayer == 'IMAGE2'">
+      <Position label="Position" v-bind:posX="image2PosX" v-bind:posY="image2PosY"/>
+
+      <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
+      <Button label="Select" text="Open Library" v-bind:doThis="toggleImagesModal"/>
+      <RangeSlider
+        label="Width"
+        v-bind:min="0"
+        v-bind:max="1700"
+        v-bind:val="parseInt(image2W)"
+        v-bind:step="1"
+        v-bind:update="updateImage2W"
+      />
+
+      <RangeSlider
+        label="Rotate X"
+        v-bind:min="0"
+        v-bind:max="360"
+        v-bind:val="parseInt(image2RotationX)"
+        v-bind:step="1"
+        v-bind:update="updateImage2RotationX"
+      />
+      <RangeSlider
+        label="Rotate Y"
+        v-bind:min="0"
+        v-bind:max="360"
+        v-bind:val="parseInt(image2RotationY)"
+        v-bind:step="1"
+        v-bind:update="updateImage2RotationY"
+      />
+      <RangeSlider
+        label="Rotate Z"
+        v-bind:min="0"
+        v-bind:max="360"
+        v-bind:val="parseInt(image2RotationZ)"
+        v-bind:step="1"
+        v-bind:update="updateImage2RotationZ"
+      />
+    </Group>
+
     <Group name="GRID" v-if="selectedLayer  == 'GRID'">
       <ColorList
         label="GRID"
@@ -339,6 +380,34 @@ export default {
       var r = this.$store.state.image.rotation.z;
       return r;
     },
+
+    ////////////////////////////////////////////////////////
+    // IMAGE 2
+    ////////////////////////////////////////////////////////
+    image2PosX() {
+      return this.$store.state.image2.pos.x;
+    },
+    image2PosY() {
+      return this.$store.state.image2.pos.y;
+    },
+
+    image2W() {
+      return this.$store.state.image2.w;
+    },
+
+    image2RotationX() {
+      var r = this.$store.state.image2.rotation.x;
+      return r;
+    },
+    image2RotationY() {
+      var r = this.$store.state.image2.rotation.y;
+      return r;
+    },
+    image2RotationZ() {
+      var r = this.$store.state.image2.rotation.z;
+      return r;
+    },
+
     ////////////////////////////////////////////////////////
     // GRID
     ////////////////////////////////////////////////////////
@@ -410,23 +479,9 @@ export default {
     // / SUBLINE
     ////////////////////////////////////////////////////////
 
-    updateSelectedColor(index) {
-      this.$store.commit("updateSelectedColor", index);
-    },
-
-    doSomethingStupid() {
-      console.log("i've boiled your dog");
-    },
-
-    updateSelectedLayer(val) {
-      this.$store.commit("updateSelectedLayer", val);
-    },
-    toggleFontsModal() {
-      this.$store.commit("toggleFontsModal");
-    },
-    toggleImagesModal() {
-      this.$store.commit("toggleImagesModal");
-    },
+    ////////////////////////////////////////////////////////
+    // IMAGE
+    ////////////////////////////////////////////////////////
 
     updateImageW(e) {
       this.$store.commit("updateImageW", e.target.value);
@@ -440,6 +495,46 @@ export default {
     },
     updateImageRotationZ(e) {
       this.$store.commit("updateImageRotationZ", e.target.value);
+    },
+
+    ////////////////////////////////////////////////////////
+    // IMAGE 2
+    ////////////////////////////////////////////////////////
+
+    updateImage2W(e) {
+      this.$store.commit("updateImage2W", e.target.value);
+    },
+
+    updateImage2RotationX(e) {
+      this.$store.commit("updateImage2RotationX", e.target.value);
+    },
+    updateImage2RotationY(e) {
+      this.$store.commit("updateImage2RotationY", e.target.value);
+    },
+    updateImage2RotationZ(e) {
+      this.$store.commit("updateImage2RotationZ", e.target.value);
+    },
+
+    ////////////////////////////////////////////////////////
+    // /IMAGE 2
+    ////////////////////////////////////////////////////////
+
+    updateSelectedColor(index) {
+      this.$store.commit("updateSelectedColor", index);
+    },
+
+    doSomethingStupid() {
+      console.log("i've boiled your dog");
+    },
+
+    updateSelectedLayer(val) {
+      this.$store.commit("updateSelectedLayer", val.name);
+    },
+    toggleFontsModal() {
+      this.$store.commit("toggleFontsModal");
+    },
+    toggleImagesModal() {
+      this.$store.commit("toggleImagesModal");
     },
 
     updateGridCols(val) {

@@ -117,8 +117,15 @@ export default {
       return this.$store.state.poster.h;
     },
 
-    // HEADLINE
+    ////////////////////////////////////////////////////////
+    // IMAGE
+    ////////////////////////////////////////////////////////
 
+    currentImage() {
+      var result = this.$store.state.image.selectedImage;
+
+      return result;
+    },
     imagePos() {
       return this.$store.state.image.pos;
     },
@@ -136,13 +143,44 @@ export default {
       return this.$store.state.image.w;
     },
 
-    // FONTS
+    updateImage() {
+      return this.$store.state.image.updateImage;
+    },
 
-    currentImage() {
-      var result = this.$store.state.image.selectedImage;
+    ////////////////////////////////////////////////////////
+    // IMAGE 2
+    ////////////////////////////////////////////////////////
+
+    currentImage2() {
+      var result = this.$store.state.image2.selectedImage;
 
       return result;
     },
+    image2Pos() {
+      return this.$store.state.image2.pos;
+    },
+    image2RotationX() {
+      return this.$store.state.image2.rotation.x;
+    },
+    image2RotationY() {
+      return this.$store.state.image2.rotation.y;
+    },
+    image2RotationZ() {
+      return this.$store.state.image2.rotation.z;
+    },
+
+    image2W() {
+      return this.$store.state.image2.w;
+    },
+
+    updateImage2() {
+      return this.$store.state.image2.updateImage;
+    },
+    // FONTS
+
+    ////////////////////////////////////////////////////////
+    // HEADLINE
+    ////////////////////////////////////////////////////////
 
     // COLORS
     selectedColor() {
@@ -162,10 +200,6 @@ export default {
     draggable() {
       var selectedLayer = this.$store.state.ui.selectedLayer;
       if (selectedLayer == "TEXT" || selectedLayer == "IMAGE") return draggable;
-    },
-
-    updateImage() {
-      return this.$store.state.image.updateImage;
     },
 
     grid() {
@@ -213,17 +247,23 @@ export default {
       c.pathToImages = "images/";
       c.currentImagePath = c.pathToImages + this.currentImage;
       c.img = c.loadImage(c.currentImagePath);
+
+      c.currentImage2Path = c.pathToImages + this.currentImage2;
+      c.img2 = c.loadImage(c.currentImage2Path);
     },
     setup(c) {
       // c.pixelDensity(3);
       // PGraphics: Image
       c.pgImage = c.createGraphics(this.width, this.height, c.WEBGL);
+      c.pgImage2 = c.createGraphics(this.width, this.height, c.WEBGL);
       c.pgText = c.createGraphics(this.width, this.height);
       c.pgGrid = c.createGraphics(this.width, this.height);
       // c.frameRate(1);
       c.dragging = false;
       c.imageOffsetX = 0;
       c.imageOffsetY = 0;
+      c.image2OffsetX = 0;
+      c.image2OffsetY = 0;
       c.headlineOffsetX = 0;
       c.headlineOffsetY = 0;
       c.sublineOffsetX = 0;
@@ -262,10 +302,14 @@ export default {
       ////////////////////////////////////////////////////////
       if (this.updateImage == true) {
         c.currentImagePath = c.pathToImages + this.currentImage;
-
         c.img = c.loadImage(c.currentImagePath);
-
         this.$store.commit("updateImageFalse");
+      }
+
+      if (this.updateImage2 == true) {
+        c.currentImage2Path = c.pathToImages + this.currentImage2;
+        c.img2 = c.loadImage(c.currentImage2Path);
+        this.$store.commit("updateImage2False");
       }
 
       ////////////////////////////////////////////////////////
@@ -301,6 +345,17 @@ export default {
           };
           this.$store.commit("updateImagePos", newPos);
         }
+
+         // IMAGE
+        else if (this.selectedLayer == "IMAGE2") {
+          var newPos;
+          newPos = {
+            x: Math.floor(c.mouseX + c.image2OffsetX),
+            y: Math.floor(c.mouseY + c.image2OffsetY)
+          };
+          this.$store.commit("updateImage2Pos", newPos);
+        }
+
       }
 
       ////////////////////////////////////////////////////////
@@ -329,6 +384,33 @@ export default {
       c.img.filter(c.GRAY);
       // c.pgImage.tint(0, 153, 204); // Tint blue
       c.pgImage.pop();
+
+      ////////////////////////////////////////////////////////
+      // DISPLAY IMAGE2
+      ////////////////////////////////////////////////////////
+
+      // Calculate Aspect Ration
+      var ratio2 = c.img.height / c.img.width;
+      c.pgImage2.clear();
+
+      // c.pgImage.directionalLight(255, 255, 255, 1, -1, 0);
+      c.pgImage2.imageMode(c.CENTER);
+      c.pgImage2.push();
+      c.pgImage2.noStroke();
+      c.pgImage2.translate(this.image2Pos.x, this.image2Pos.y);
+      c.pgImage2.translate(-c.width / 2, -c.height / 2);
+      // c.pgImage.rotate();
+
+      c.pgImage2.texture(c.img2);
+      c.pgImage2.rotateX(c.radians(this.image2RotationX));
+      c.pgImage2.rotateY(c.radians(this.image2RotationY));
+      c.pgImage2.rotateZ(c.radians(this.image2RotationZ));
+      c.pgImage2.plane(this.image2W, this.image2W * ratio2);
+      // c.pgImage.image(c.img, 0, 0, this.imageW, this.imageW * ratio);
+
+      c.img2.filter(c.GRAY);
+      // c.pgImage.tint(0, 153, 204); // Tint blue
+      c.pgImage2.pop();
 
       ////////////////////////////////////////////////////////
       // DISPLAY HEADLINE
@@ -414,6 +496,7 @@ export default {
       ////////////////////////////////////////////////////////
 
       c.image(c.pgImage, this.width / 2, this.height / 2);
+      c.image(c.pgImage2, this.width / 2, this.height / 2);
       // c.image(c.pgGrid, this.width / 2, this.height / 2);
       c.image(c.pgText, this.width / 2, this.height / 2);
 
