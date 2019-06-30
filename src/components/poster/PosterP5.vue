@@ -552,6 +552,17 @@ export default {
         c.mouseY < this.height
       ) {
         c.dragging = true;
+
+        if (this.selectedLayer == "HEADLINE") {
+          c.headlineOffsetX = this.headlinePos.x - c.mouseX;
+          c.headlineOffsetY = this.headlinePos.y - c.mouseY;
+        } else if (this.selectedLayer == "IMAGE") {
+          c.imageOffsetX = this.imagePos.x - c.mouseX;
+          c.imageOffsetY = this.imagePos.y - c.mouseY;
+        } else if (this.selectedLayer == "IMAGE2") {
+          c.image2OffsetX = this.image2Pos.x - c.mouseX;
+          c.image2OffsetY = this.image2Pos.y - c.mouseY;
+        }
         // If so, keep track of relative location of click to corner of rectangle
 
         // if (this.selectedLayer == "TEXT") {
