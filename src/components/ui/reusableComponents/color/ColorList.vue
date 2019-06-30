@@ -47,8 +47,8 @@ export default {
   }
 
   .color {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
     border-radius: 100%;
     border-width: 2px;
     border-style: solid;

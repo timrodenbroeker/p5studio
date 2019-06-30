@@ -47,9 +47,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px dashed $uiFG;
+  border: 1px dashed $uiMix;
 
-  color: $uiFG;
+  color: $uiMix;
 
   &.dragenterClass {
     border: 1px solid $uiSecondary;

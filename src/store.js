@@ -138,7 +138,7 @@ export default new Vuex.Store({
 			// 	'#2955A0',
 			// 	'#F2C641',
 			// ],
-			colors: ['#f1f1f1', '#aaaaaa', '#555555', '#333333', '#111111', '#ff0000', '#2203a7'],
+			colors: ['#f1f1f1', '#111111', '#ff0000', '#2203a7'],
 			background: {
 				selectedColor: '#f1f1f1',
 			},

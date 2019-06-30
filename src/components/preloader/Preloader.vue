@@ -1,10 +1,11 @@
 <template>
   <div id="preloader" v-bind:class="{ ready: ready }">
-    <h1>
-      p5studio
-      <sup>{{version}}</sup>
-    </h1>
-    <h2>LOADING RESOURCES</h2>
+    <div class="scaleme">
+      <h1>
+        p5studio
+        <sup>LOADING</sup>
+      </h1>
+    </div>
   </div>
 </template>
 
@@ -26,6 +27,7 @@ export default {
 <style lang="scss" scoped>
 #preloader {
   transition: top 2s ease;
+  opacity: 1;
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -48,6 +50,22 @@ export default {
       opacity: 0;
     }
   }
+  @keyframes scale {
+    0% {
+      transform: scale(0.6);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+  .scaleme {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: scale 2s 1;
+  }
   h2 {
     color: $uiSecondary;
     animation: blink-animation 2s steps(5, start) infinite;
@@ -59,10 +77,11 @@ export default {
     font-size: calc(16px + 4vw);
     margin: 0;
     padding: 0;
-    animation: blink-animation 2s steps(5, start) infinite;
+    /* animation: blink-animation 2s steps(5, start) infinite; */
     sup {
-      font-size: calc(9px + 1vw);
+      font-size: calc(9px + 0.6vw);
       font-weight: normal;
+      animation: blink-animation 2s steps(5, start) infinite;
     }
   }
 

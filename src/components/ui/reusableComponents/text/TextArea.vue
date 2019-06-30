@@ -4,7 +4,7 @@
       <label>{{label}}</label>
     </div>
     <div class="controller-controller">
-      <textarea :rows="rows" type="text" v-bind:value="value" @input="update"/>
+      <textarea :rows="rows" type="text" v-bind:value="value" @input="update" />
     </div>
   </div>
 </template>
@@ -28,7 +28,7 @@ textarea {
   resize: none;
   width: 100%;
   background: $uiBG;
-  color: $uiSecondary;
+  color: $uiFG;
   border: 1px solid $uiMix;
 
   font-size: 12px;

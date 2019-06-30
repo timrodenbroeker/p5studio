@@ -107,7 +107,6 @@
     </Group>
 
     <Group name="Image" v-if="selectedLayer == 'IMAGE'">
-      <Checkbox label="COLORS?" v-bind:checked="gridVisible" v-bind:toggle="toggleGridVisibility"></Checkbox>
       <Position label="Position" v-bind:posX="imagePosX" v-bind:posY="imagePosY" />
       <Dropzone label="upload" text="drop a file"></Dropzone>
       <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
@@ -148,7 +147,6 @@
     </Group>
 
     <Group name="Image2" v-if="selectedLayer == 'IMAGE2'">
-      <Checkbox label="COLORS?" v-bind:checked="gridVisible" v-bind:toggle="toggleGridVisibility"></Checkbox>
       <Position label="Position" v-bind:posX="image2PosX" v-bind:posY="image2PosY" />
 
       <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
