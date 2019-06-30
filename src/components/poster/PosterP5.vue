@@ -493,9 +493,9 @@ export default {
       ////////////////////////////////////////////////////////
       // THE IMAGE-STACK
       ////////////////////////////////////////////////////////
-
-      c.image(c.pgImage2, this.width / 2, this.height / 2);
       c.image(c.pgGrid, this.width / 2, this.height / 2);
+      c.image(c.pgImage2, this.width / 2, this.height / 2);
+
       c.image(c.pgImage, this.width / 2, this.height / 2);
 
       c.image(c.pgText, this.width / 2, this.height / 2);

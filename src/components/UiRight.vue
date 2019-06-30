@@ -1,6 +1,6 @@
 <template>
   <div id="uiRight">
-    <Group name="View" headline border>
+    <Group name="View" headline>
       <RangeSlider
         label="zoom"
         v-bind:update="updateZoom"
@@ -21,9 +21,9 @@
     </Group>
 
     <Group name="OUTPUT" headline border>
-      <Button v-bind:doThis="logState" label="STATE" text="LOG TO CONSOLE"/>
-      <Button v-bind:doThis="savePNG" label="PNG" text="SAVE"/>
-      <Button v-bind:doThis="saveJPG" label="JPG" text="SAVE"/>
+      <Button v-bind:doThis="logState" label="STATE" text="LOG TO CONSOLE" />
+      <Button v-bind:doThis="savePNG" label="PNG" text="SAVE" />
+      <Button v-bind:doThis="saveJPG" label="JPG" text="SAVE" />
       <VideoRecorder
         v-bind:recording="recording"
         v-bind:doThis="toggleRecord"
@@ -111,6 +111,7 @@ export default {
   position: fixed;
   z-index: 99999;
   top: 0;
+  padding-top: 25px;
   right: 0;
   width: $uiWidth;
   background: $uiBG;

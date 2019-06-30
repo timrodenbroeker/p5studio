@@ -169,12 +169,13 @@ export default new Vuex.Store({
 					name: 'IMAGE',
 					visible: true,
 				},
+
 				{
-					name: 'GRID',
+					name: 'IMAGE2',
 					visible: true,
 				},
 				{
-					name: 'IMAGE2',
+					name: 'GRID',
 					visible: true,
 				},
 				{
