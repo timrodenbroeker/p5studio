@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+var colors = require('colors');
 
 const fontsFolder = './public/fonts/';
 
@@ -16,6 +17,6 @@ fs.readdir(fontsFolder, (err, files) => {
 
 	fs.writeFile('./src/assets/fonts.json', data, err => {
 		if (err) throw err;
-		console.log('Data written to file', data);
+		console.log('fonts exported successfully'.green);
 	});
 });

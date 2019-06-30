@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
+var colors = require('colors');
 
 const readdir = util.promisify(fs.readdir);
 const stat = util.promisify(fs.stat);
@@ -14,11 +15,6 @@ async function getDirs(location) {
 
 		if (fileStat.isDirectory()) {
 			let subfiles = await readdir(path.join(location, files[i]));
-
-			// console.log(path.join(location, files[i]));
-			// public/images/animals
-			// public/images/art
-			// public/images/landscapes
 
 			// Wenn Dateien im Ordner sind
 			if (subfiles != null) {
@@ -51,7 +47,7 @@ const loc = './public/images/';
 
 		fs.writeFile('./src/assets/images.json', data, err => {
 			if (err) throw err;
-			console.log(data);
+			console.log('images exported successfully'.green);
 		});
 	} catch (e) {
 		throw e;
