@@ -8,12 +8,18 @@
         v-on:click="update(option)"
       >
         <div v-if="selectedLayer == option.name" class="inner active">
-          <div>{{option.name}}</div>
-          <div v-on:click="toggleLayerVisibility(index)">Visible: {{option.visible}}</div>
+          <div class="layer-name">{{option.name}}</div>
+          <div v-on:click="toggleLayerVisibility(index)">
+            <div class="text-hide" v-if="option.visible == true">HIDE</div>
+            <div class="text-hidden" v-else>HIDDEN</div>
+          </div>
         </div>
-        <div v-else class="inner">
-          <div>{{option.name}}</div>
-          <div v-on:click="toggleLayerVisibility(index)">Visible: {{option.visible}}</div>
+        <div v-else class="inner" v-bind:class="{ visible: option.visible }">
+          <div class="layer-name">{{option.name}}</div>
+          <div v-on:click="toggleLayerVisibility(index)">
+            <div class="text-hide" v-if="option.visible == true">HIDE</div>
+            <div class="text-hidden" v-else>HIDDEN</div>
+          </div>
         </div>
       </div>
     </div>
@@ -71,11 +77,20 @@ export default {
     cursor: pointer;
     transition: all 0.2s ease;
 
+    .text-hidden {
+      color: $uiSecondary;
+    }
+
+    .layer-name {
+      /* font-weight: bold; */
+    }
+
     &:hover {
       background: $uiFG !important;
       border-color: $uiBG !important;
       color: $uiBG !important;
     }
+
     &.active {
       border-color: $uiFG !important;
       color: $uiBG !important;

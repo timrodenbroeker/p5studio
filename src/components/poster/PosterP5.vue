@@ -221,9 +221,33 @@ export default {
     },
     ready() {
       return this.$store.state.poster.ready;
-    }
+    },
+    checkLayerVisibility_IMAGE() {
+      var layers = this.$store.state.ui.layers;
+      let obj = layers.find(obj => obj.name == "IMAGE");
+      return obj.visible;
+    },
+    checkLayerVisibility_IMAGE2() {
+      var layers = this.$store.state.ui.layers;
+      let obj = layers.find(obj => obj.name == "IMAGE2");
+      return obj.visible;
+    },
+    checkLayerVisibility_HEADLINE() {
+      var layers = this.$store.state.ui.layers;
+      let obj = layers.find(obj => obj.name == "HEADLINE");
+      return obj.visible;
+    },
+    checkLayerVisibility_SUBLINE() {
+      var layers = this.$store.state.ui.layers;
+      let obj = layers.find(obj => obj.name == "SUBLINE");
+      return obj.visible;
+    },
 
-    // LAYERS
+    checkLayerVisibility_GRID() {
+      var layers = this.$store.state.ui.layers;
+      let obj = layers.find(obj => obj.name == "GRID");
+      return obj.visible;
+    }
 
     // IMAGE
   },
@@ -356,33 +380,33 @@ export default {
           this.$store.commit("updateImage2Pos", newPos);
         }
       }
-
       ////////////////////////////////////////////////////////
       // DISPLAY IMAGE
       ////////////////////////////////////////////////////////
-
-      // Calculate Aspect Ration
-      var ratio = c.img.height / c.img.width;
       c.pgImage.clear();
+      if (this.checkLayerVisibility_IMAGE == true) {
+        // Calculate Aspect Ration
 
-      // c.pgImage.directionalLight(255, 255, 255, 1, -1, 0);
-      c.pgImage.imageMode(c.CENTER);
-      c.pgImage.push();
-      c.pgImage.noStroke();
-      c.pgImage.translate(this.imagePos.x, this.imagePos.y);
-      c.pgImage.translate(-c.width / 2, -c.height / 2);
-      // c.pgImage.rotate();
+        // c.pgImage.directionalLight(255, 255, 255, 1, -1, 0);
+        var ratio = c.img.height / c.img.width;
+        c.pgImage.imageMode(c.CENTER);
+        c.pgImage.push();
+        c.pgImage.noStroke();
+        c.pgImage.translate(this.imagePos.x, this.imagePos.y);
+        c.pgImage.translate(-c.width / 2, -c.height / 2);
+        // c.pgImage.rotate();
 
-      c.pgImage.texture(c.img);
-      c.pgImage.rotateX(c.radians(this.imageRotationX));
-      c.pgImage.rotateY(c.radians(this.imageRotationY));
-      c.pgImage.rotateZ(c.radians(this.imageRotationZ));
-      c.pgImage.plane(this.imageW, this.imageW * ratio);
-      // c.pgImage.image(c.img, 0, 0, this.imageW, this.imageW * ratio);
+        c.pgImage.texture(c.img);
+        c.pgImage.rotateX(c.radians(this.imageRotationX));
+        c.pgImage.rotateY(c.radians(this.imageRotationY));
+        c.pgImage.rotateZ(c.radians(this.imageRotationZ));
+        c.pgImage.plane(this.imageW, this.imageW * ratio);
+        // c.pgImage.image(c.img, 0, 0, this.imageW, this.imageW * ratio);
 
-      c.img.filter(c.GRAY);
-      // c.pgImage.tint(0, 153, 204); // Tint blue
-      c.pgImage.pop();
+        c.img.filter(c.GRAY);
+        // c.pgImage.tint(0, 153, 204); // Tint blue
+        c.pgImage.pop();
+      }
 
       ////////////////////////////////////////////////////////
       // DISPLAY IMAGE2
@@ -391,104 +415,113 @@ export default {
       // Calculate Aspect Ration
       var ratio2 = c.img.height / c.img.width;
       c.pgImage2.clear();
+      if (this.checkLayerVisibility_IMAGE2 == true) {
+        // c.pgImage.directionalLight(255, 255, 255, 1, -1, 0);
+        c.pgImage2.imageMode(c.CENTER);
+        c.pgImage2.push();
+        c.pgImage2.noStroke();
+        c.pgImage2.translate(this.image2Pos.x, this.image2Pos.y);
+        c.pgImage2.translate(-c.width / 2, -c.height / 2);
+        // c.pgImage.rotate();
 
-      // c.pgImage.directionalLight(255, 255, 255, 1, -1, 0);
-      c.pgImage2.imageMode(c.CENTER);
-      c.pgImage2.push();
-      c.pgImage2.noStroke();
-      c.pgImage2.translate(this.image2Pos.x, this.image2Pos.y);
-      c.pgImage2.translate(-c.width / 2, -c.height / 2);
-      // c.pgImage.rotate();
+        c.pgImage2.texture(c.img2);
+        c.pgImage2.rotateX(c.radians(this.image2RotationX));
+        c.pgImage2.rotateY(c.radians(this.image2RotationY));
+        c.pgImage2.rotateZ(c.radians(this.image2RotationZ));
+        c.pgImage2.plane(this.image2W, this.image2W * ratio2);
+        // c.pgImage.image(c.img, 0, 0, this.imageW, this.imageW * ratio);
 
-      c.pgImage2.texture(c.img2);
-      c.pgImage2.rotateX(c.radians(this.image2RotationX));
-      c.pgImage2.rotateY(c.radians(this.image2RotationY));
-      c.pgImage2.rotateZ(c.radians(this.image2RotationZ));
-      c.pgImage2.plane(this.image2W, this.image2W * ratio2);
-      // c.pgImage.image(c.img, 0, 0, this.imageW, this.imageW * ratio);
-
-      c.img2.filter(c.GRAY);
-      // c.pgImage.tint(0, 153, 204); // Tint blue
-      c.pgImage2.pop();
+        c.img2.filter(c.GRAY);
+        // c.pgImage.tint(0, 153, 204); // Tint blue
+        c.pgImage2.pop();
+      }
 
       ////////////////////////////////////////////////////////
       // DISPLAY HEADLINE
       ////////////////////////////////////////////////////////
-      c.pgText.clear();
 
       ////////////////////////////////////////////////////////
       // DISPLAY GRID
       ////////////////////////////////////////////////////////
       c.pgGrid.clear();
-      if (this.grid.visible === true) {
-        var cols = this.grid.cols;
-        var rows = this.grid.rows;
-        var stepX = c.width / cols;
-        var stepY = c.height / rows;
+      if (this.checkLayerVisibility_GRID == true) {
+        if (this.grid.visible === true) {
+          var cols = this.grid.cols;
+          var rows = this.grid.rows;
+          var stepX = c.width / cols;
+          var stepY = c.height / rows;
 
-        for (var y = 1; y < rows; y++) {
-          for (var x = 1; x < cols; x++) {
-            c.pgGrid.noFill();
-            c.pgGrid.stroke(this.gridColor);
-            c.pgGrid.strokeWeight(0.6);
-            c.pgGrid.push();
+          for (var y = 1; y < rows; y++) {
+            for (var x = 1; x < cols; x++) {
+              c.pgGrid.noFill();
+              c.pgGrid.stroke(this.gridColor);
+              c.pgGrid.strokeWeight(0.6);
+              c.pgGrid.push();
 
-            c.pgGrid.line(x * stepX, 0, x * stepX, c.height);
-            c.pgGrid.pop();
-            c.pgGrid.push();
-            c.pgGrid.line(0, y * stepY, c.width, y * stepY);
-            c.pgGrid.pop();
+              c.pgGrid.line(x * stepX, 0, x * stepX, c.height);
+              c.pgGrid.pop();
+              c.pgGrid.push();
+              c.pgGrid.line(0, y * stepY, c.width, y * stepY);
+              c.pgGrid.pop();
+            }
           }
         }
       }
       ////////////////////////////////////////////////////////
       // DISPLAY HEADLINE
       ////////////////////////////////////////////////////////
-      if (this.headlineTextAlign == "LEFT") {
-        c.pgText.textAlign(c.LEFT, c.TOP);
-      } else if (this.headlineTextAlign == "CENTER") {
-        c.pgText.textAlign(c.CENTER, c.TOP);
-      } else if (this.headlineTextAlign == "RIGHT") {
-        c.pgText.textAlign(c.RIGHT, c.TOP);
+
+      c.pgText.clear();
+      if (this.checkLayerVisibility_HEADLINE == true) {
+        console.log("HEADLINE VISIBLE");
+        if (this.headlineTextAlign == "LEFT") {
+          c.pgText.textAlign(c.LEFT, c.TOP);
+        } else if (this.headlineTextAlign == "CENTER") {
+          c.pgText.textAlign(c.CENTER, c.TOP);
+        } else if (this.headlineTextAlign == "RIGHT") {
+          c.pgText.textAlign(c.RIGHT, c.TOP);
+        }
+        c.pgText.fill(this.headlineTextColor);
+        c.pgText.noStroke();
+        var fs = Math.floor(this.headlineFontSize);
+        var lh = this.headlineLineHeight;
+        c.pgText.textFont(c.font);
+        c.pgText.textSize(fs);
+        c.pgText.textLeading(fs * lh);
+
+        c.pgText.push();
+        c.pgText.translate(this.headlinePos.x, this.headlinePos.y);
+
+        c.pgText.text(this.headlineContent, 0, 0);
+        c.pgText.pop();
       }
-      c.pgText.fill(this.headlineTextColor);
-      c.pgText.noStroke();
-      var fs = Math.floor(this.headlineFontSize);
-      var lh = this.headlineLineHeight;
-      c.pgText.textFont(c.font);
-      c.pgText.textSize(fs);
-      c.pgText.textLeading(fs * lh);
-
-      c.pgText.push();
-      c.pgText.translate(this.headlinePos.x, this.headlinePos.y);
-
-      c.pgText.text(this.headlineContent, 0, 0);
-      c.pgText.pop();
 
       ////////////////////////////////////////////////////////
       // DISPLAY SUBLINE
       ////////////////////////////////////////////////////////
 
-      if (this.sublineTextAlign == "LEFT") {
-        c.pgText.textAlign(c.LEFT, c.TOP);
-      } else if (this.sublineTextAlign == "CENTER") {
-        c.pgText.textAlign(c.CENTER, c.TOP);
-      } else if (this.sublineTextAlign == "RIGHT") {
-        c.pgText.textAlign(c.RIGHT, c.TOP);
+      if (this.checkLayerVisibility_SUBLINE == true) {
+        if (this.sublineTextAlign == "LEFT") {
+          c.pgText.textAlign(c.LEFT, c.TOP);
+        } else if (this.sublineTextAlign == "CENTER") {
+          c.pgText.textAlign(c.CENTER, c.TOP);
+        } else if (this.sublineTextAlign == "RIGHT") {
+          c.pgText.textAlign(c.RIGHT, c.TOP);
+        }
+        c.pgText.fill(this.headlineTextColor);
+        c.pgText.noStroke();
+        var fs = Math.floor(this.sublineFontSize);
+        var lh = this.sublineLineHeight;
+        c.pgText.textFont(c.sublineFont);
+        c.pgText.textSize(fs);
+        c.pgText.textLeading(fs * lh);
+
+        c.pgText.push();
+        c.pgText.translate(this.sublinePos.x, this.sublinePos.y);
+
+        c.pgText.text(this.sublineContent, 0, 0);
+        c.pgText.pop();
       }
-      c.pgText.fill(this.headlineTextColor);
-      c.pgText.noStroke();
-      var fs = Math.floor(this.sublineFontSize);
-      var lh = this.sublineLineHeight;
-      c.pgText.textFont(c.sublineFont);
-      c.pgText.textSize(fs);
-      c.pgText.textLeading(fs * lh);
-
-      c.pgText.push();
-      c.pgText.translate(this.sublinePos.x, this.sublinePos.y);
-
-      c.pgText.text(this.sublineContent, 0, 0);
-      c.pgText.pop();
 
       ////////////////////////////////////////////////////////
       // THE IMAGE-STACK
