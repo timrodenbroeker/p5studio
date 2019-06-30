@@ -119,15 +119,34 @@ export default new Vuex.Store({
 		////////////////////////////////////////////////////////
 
 		colors: {
-			colors: ['#f1f1f1', '#111111', '#f43530', '#2203a7'],
+			// colors: [
+			// 	'#f1f1f1',
+			// 	'#aaaaaa',
+			// 	'#777777',
+			// 	'#333333',
+			// 	'#111111',
+			// 	'#f43530',
+			// 	'#2203a7',
+			// 	'#7D75FF',
+			// 	'#FFF587',
+			// 	'#FF665A',
+			// 	'#7D6B7D',
+			// 	'#A3A1A8',
+			// 	'#0669A4',
+			// 	'#98BFAC',
+			// 	'#28784F',
+			// 	'#2955A0',
+			// 	'#F2C641',
+			// ],
+			colors: ['#f1f1f1', '#aaaaaa', '#555555', '#333333', '#111111', '#ff0000', '#2203a7'],
 			background: {
 				selectedColor: '#f1f1f1',
 			},
 			text: {
-				selectedColor: '#f43530',
+				selectedColor: '#ff0000',
 			},
 			grid: {
-				selectedColor: '#f1f1f1',
+				selectedColor: '#aaaaaa',
 			},
 		},
 

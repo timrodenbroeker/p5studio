@@ -17,7 +17,7 @@
     <!-- <Tabs v-model="layers"></Tabs> -->
 
     <Group name="HEADLINE" v-if="selectedLayer == 'HEADLINE'">
-      <Position label="Position" v-bind:posX="headlinePosX" v-bind:posY="headlinePosY"/>
+      <Position label="Position" v-bind:posX="headlinePosX" v-bind:posY="headlinePosY" />
       <TextArea
         v-bind:rows="3"
         label="text"
@@ -52,7 +52,7 @@
 
       <DisplayString label="FONT" v-bind:text="headlineCurrentFont"></DisplayString>
 
-      <Button v-bind:doThis="toggleFontsModal" label="Select Font" text="Open Library"/>
+      <Button v-bind:doThis="toggleFontsModal" label="Select Font" text="Open Library" />
 
       <TextAlign
         label="Align"
@@ -62,7 +62,7 @@
     </Group>
 
     <Group name="SUBLINE" v-if="selectedLayer == 'SUBLINE'">
-      <Position label="Position" v-bind:posX="sublinePosX" v-bind:posY="sublinePosY"/>
+      <Position label="Position" v-bind:posX="sublinePosX" v-bind:posY="sublinePosY" />
       <TextArea
         v-bind:rows="3"
         label="text"
@@ -108,10 +108,10 @@
 
     <Group name="Image" v-if="selectedLayer == 'IMAGE'">
       <Checkbox label="COLORS?" v-bind:checked="gridVisible" v-bind:toggle="toggleGridVisibility"></Checkbox>
-      <Position label="Position" v-bind:posX="imagePosX" v-bind:posY="imagePosY"/>
+      <Position label="Position" v-bind:posX="imagePosX" v-bind:posY="imagePosY" />
       <Dropzone label="upload" text="drop a file"></Dropzone>
       <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
-      <Button label="Select" text="Open Library" v-bind:doThis="toggleImagesModal"/>
+      <Button label="Select" text="Open Library" v-bind:doThis="toggleImagesModal" />
       <RangeSlider
         label="Width"
         v-bind:min="0"
@@ -149,10 +149,10 @@
 
     <Group name="Image2" v-if="selectedLayer == 'IMAGE2'">
       <Checkbox label="COLORS?" v-bind:checked="gridVisible" v-bind:toggle="toggleGridVisibility"></Checkbox>
-      <Position label="Position" v-bind:posX="image2PosX" v-bind:posY="image2PosY"/>
+      <Position label="Position" v-bind:posX="image2PosX" v-bind:posY="image2PosY" />
 
       <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
-      <Button label="Select" text="Open Library" v-bind:doThis="toggleImagesModal"/>
+      <Button label="Select" text="Open Library" v-bind:doThis="toggleImagesModal" />
       <RangeSlider
         label="Width"
         v-bind:min="0"
@@ -189,13 +189,14 @@
     </Group>
 
     <Group name="GRID" v-if="selectedLayer  == 'GRID'">
+      <Checkbox label="Show Grid" v-bind:checked="gridVisible" v-bind:toggle="toggleGridVisibility"></Checkbox>
       <ColorList
-        label="GRID"
+        label="COLORS"
         v-bind:colors="colors"
         v-bind:selectedColor="gridColor"
         v-bind:updateSelectedColor="updateGridColor"
       />
-      <Checkbox label="Show Grid" v-bind:checked="gridVisible" v-bind:toggle="toggleGridVisibility"></Checkbox>
+
       <RangeSlider
         label="ROWS"
         v-bind:update="updateGridRows"
