@@ -562,6 +562,9 @@ export default {
         } else if (this.selectedLayer == "IMAGE2") {
           c.image2OffsetX = this.image2Pos.x - c.mouseX;
           c.image2OffsetY = this.image2Pos.y - c.mouseY;
+        } else if (this.selectedLayer == "SUBLINE") {
+          c.sublineOffsetX = this.sublinePos.x - c.mouseX;
+          c.sublineOffsetY = this.sublinePos.y - c.mouseY;
         }
         // If so, keep track of relative location of click to corner of rectangle
 
