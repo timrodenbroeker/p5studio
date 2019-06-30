@@ -1,9 +1,20 @@
 <template>
   <div>
     <div class="layers">
-      <div class="layer" v-for="(option, index) in options" v-on:click="update(option)">
-        <div v-if="selectedLayer == option.name" class="inner active">{{option.name}}</div>
-        <div v-else class="inner">{{option.name}}</div>
+      <div
+        class="layer"
+        v-for="(option, index) in options"
+        v-bind:key="index"
+        v-on:click="update(option)"
+      >
+        <div v-if="selectedLayer == option.name" class="inner active">
+          <div>{{option.name}}</div>
+          <div v-on:click="toggleLayerVisibility(index)">Visible: {{option.visible}}</div>
+        </div>
+        <div v-else class="inner">
+          <div>{{option.name}}</div>
+          <div v-on:click="toggleLayerVisibility(index)">Visible: {{option.visible}}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -17,6 +28,12 @@ export default {
     options: Array,
     selectedLayer: String,
     update: Function
+  },
+  methods: {
+    toggleLayerVisibility(index) {
+      console.log("cclicked");
+      this.$store.commit("toggleLayerVisibility", index);
+    }
   }
 };
 </script>
@@ -39,6 +56,8 @@ export default {
 }
 .layer {
   .inner {
+    display: flex;
+    justify-content: space-between;
     font-family: $uiFontSans, sans-serif;
     text-transform: uppercase;
     font-size: $uiText;

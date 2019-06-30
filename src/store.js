@@ -429,5 +429,8 @@ export default new Vuex.Store({
 			console.log('OKAY I AM READY!');
 			state.poster.ready = true;
 		},
+		toggleLayerVisibility(state, index) {
+			state.ui.layers[index].visible = !state.ui.layers[index].visible;
+		},
 	},
 });
