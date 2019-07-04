@@ -1,17 +1,17 @@
 <template>
-  <div class="modal">
+  <div class="modal imagesModal">
     <div v-on:click="toggleImagesModal" class="close"></div>
 
     <div>
-      <div v-for="(collection, i) in imageCollections" v-bind:key="i">
-        <h2 style="font-size: calc(16px + 2vw)">{{collection.dir}}</h2>
+      <div class="cat" v-for="(collection, i) in imageCollections" v-bind:key="i">
+        <h2>{{collection.dir}}</h2>
         <div class="imageList">
           <img
             v-for="(image, j) in collection.files"
             v-bind:key="j"
             v-bind:src="'images/' + collection.dir + '/' + image"
             @click="updateImage(collection.dir, image)"
-          >
+          />
         </div>
       </div>
     </div>
@@ -42,14 +42,21 @@ export default {
 </script>
 
 <style lang="scss">
-.modal {
-  padding: 25px;
+.cat {
+  padding: 10px;
+  border-bottom: 1px solid black;
 }
-
+.imagesModal {
+  h2 {
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: calc(16px + 3vw);
+  }
+}
 .imageList {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
   img {
     width: 100%;
     cursor: pointer;

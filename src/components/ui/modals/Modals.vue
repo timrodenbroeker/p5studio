@@ -105,7 +105,7 @@ export default {
   top: 0;
   right: -50vw;
   background: $uiFG;
-  width: 50%;
+  width: 50vw;
   height: 100vh;
   overflow-y: scroll;
   z-index: 99999991;

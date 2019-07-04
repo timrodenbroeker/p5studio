@@ -2,12 +2,10 @@
   <div class="modal">
     <div v-on:click="toggleFontsModal" class="close"></div>
     <div class="fontList">
-      <div
-        class="font"
-        v-for="font in fontFiles"
-        v-bind:key="font"
-        @click="updateFont(font)"
-      >{{font}}</div>
+      <div class="font" v-for="font in fontFiles" v-bind:key="font" @click="updateFont(font)">
+        <img v-bind:src="'svg/'+font+'.svg'" />
+        <p>{{font}}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -37,11 +35,25 @@ export default {
 
 <style lang="scss">
 .modal {
-  padding: 25px;
 }
 .font {
-  font-size: 30px;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-bottom: 10px;
+  padding-top: 10px;
   cursor: pointer;
+  border-bottom: 1px solid black;
+  font-size: 12px;
+  img {
+    width: 100%;
+  }
+  p {
+    font-family: "Roboto Mono", monospace;
+    margin: 0;
+  }
+  transition: all 0.4s ease;
+  &:hover {
+  }
 }
 </style>

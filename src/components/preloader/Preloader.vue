@@ -1,10 +1,7 @@
 <template>
   <div id="preloader" v-bind:class="{ ready: ready }">
     <div class="scaleme">
-      <h1>
-        p5studio
-        <sup>LOADING</sup>
-      </h1>
+      <h1>p5studio</h1>
     </div>
   </div>
 </template>

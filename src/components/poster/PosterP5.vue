@@ -303,7 +303,7 @@ export default {
       c.recorder = new CanvasRecorder(c.canvas);
       this.$store.commit("updateReadyStatus");
     },
-    draw(c) {
+    drawPoster(c) {
       ////////////////////////////////////////////////////////
       // BACKGROUND
       ////////////////////////////////////////////////////////
@@ -316,7 +316,7 @@ export default {
 
       if (this.headlineUpdateFont == true) {
         c.currentFontPath = c.pathToFonts + this.headlineCurrentFont;
-        console.log(c.currentFontPath);
+        // console.log(c.currentFontPath);
         c.font = c.loadFont(c.currentFontPath);
 
         this.$store.commit("updateHeadlineFontFalse");
@@ -473,7 +473,6 @@ export default {
 
       c.pgText.clear();
       if (this.checkLayerVisibility_HEADLINE == true) {
-        console.log("HEADLINE VISIBLE");
         if (this.headlineTextAlign == "LEFT") {
           c.pgText.textAlign(c.LEFT, c.TOP);
         } else if (this.headlineTextAlign == "CENTER") {
@@ -609,6 +608,9 @@ export default {
         //   c.imageffsetY = this.imagePosY - c.mouseY;
         // }
       }
+    },
+    draw(c) {
+      this.drawPoster(c);
     }
   },
   render(h) {
