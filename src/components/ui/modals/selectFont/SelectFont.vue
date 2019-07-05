@@ -3,7 +3,7 @@
     <div v-on:click="toggleFontsModal" class="close"></div>
     <div class="fontList">
       <div class="font" v-for="font in fontFiles" v-bind:key="font" @click="updateFont(font)">
-        <img v-bind:src="'svg/'+font+'.svg'" />
+        <img v-bind:src="'./svg/'+font+'.svg'" />
         <p>{{font}}</p>
       </div>
     </div>
