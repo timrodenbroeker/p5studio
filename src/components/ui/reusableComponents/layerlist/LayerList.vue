@@ -70,7 +70,7 @@ export default {
     padding: 10px 10px;
     width: 100%;
     background: $uiBG;
-    color: $uiMix;
+    color: $uiFG;
     border-left: 1px solid $uiMix;
     border-right: 1px solid $uiMix;
     border-top: 1px solid $uiMix;

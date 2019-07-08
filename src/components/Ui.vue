@@ -17,7 +17,7 @@
     <!-- <Tabs v-model="layers"></Tabs> -->
 
     <Group name="HEADLINE" v-if="selectedLayer == 'HEADLINE'">
-      <Position label="Position" v-bind:posX="headlinePosX" v-bind:posY="headlinePosY" />
+      <!-- <Position label="Position" v-bind:posX="headlinePosX" v-bind:posY="headlinePosY" /> -->
       <TextArea
         v-bind:rows="3"
         label="text"
@@ -62,7 +62,7 @@
     </Group>
 
     <Group name="SUBLINE" v-if="selectedLayer == 'SUBLINE'">
-      <Position label="Position" v-bind:posX="sublinePosX" v-bind:posY="sublinePosY" />
+      <!-- <Position label="Position" v-bind:posX="sublinePosX" v-bind:posY="sublinePosY" /> -->
       <TextArea
         v-bind:rows="3"
         label="text"
@@ -107,8 +107,8 @@
     </Group>
 
     <Group name="Image" v-if="selectedLayer == 'IMAGE'">
-      <Position label="Position" v-bind:posX="imagePosX" v-bind:posY="imagePosY" />
-      <Dropzone label="upload" text="drop a file"></Dropzone>
+      <!-- <Position label="Position" v-bind:posX="imagePosX" v-bind:posY="imagePosY" /> -->
+      <!-- <Dropzone label="upload" text="drop a file"></Dropzone> -->
       <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
       <Button label="Select" text="Open Library" v-bind:doThis="toggleImagesModal" />
       <RangeSlider
@@ -147,7 +147,7 @@
     </Group>
 
     <Group name="Image2" v-if="selectedLayer == 'IMAGE2'">
-      <Position label="Position" v-bind:posX="image2PosX" v-bind:posY="image2PosY" />
+      <!-- <Position label="Position" v-bind:posX="image2PosX" v-bind:posY="image2PosY" /> -->
 
       <!-- <Position label="Position" v-bind:posX="posX" v-bind:posY="posY"/> -->
       <Button label="Select" text="Open Library" v-bind:doThis="toggleImagesModal" />
@@ -187,7 +187,7 @@
     </Group>
 
     <Group name="GRID" v-if="selectedLayer  == 'GRID'">
-      <Checkbox label="Show Grid" v-bind:checked="gridVisible" v-bind:toggle="toggleGridVisibility"></Checkbox>
+      <!-- <Checkbox label="Show Grid" v-bind:checked="gridVisible" v-bind:toggle="toggleGridVisibility"></Checkbox> -->
       <ColorList
         label="COLORS"
         v-bind:colors="colors"
